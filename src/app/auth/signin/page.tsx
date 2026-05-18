@@ -5,21 +5,44 @@ import {
   Card,
   CardContent,
   CardDescription,
-  CardFooter,
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 import { signIn } from "next-auth/react";
-import { useSearchParams } from "next/navigation";
-import { FaGoogle } from "react-icons/fa";
+import { useRouter, useSearchParams } from "next/navigation";
+import { useState } from "react";
 
 export default function SignIn() {
+  const router = useRouter();
   const searchParams = useSearchParams();
   const callbackUrl = searchParams.get("callbackUrl") ?? "/";
-  const error = searchParams.get("error");
+  const errorParam = searchParams.get("error");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState(errorParam || "");
+  const [loading, setLoading] = useState(false);
 
-  const handleSignIn = async (provider: string) => {
-    await signIn(provider, { callbackUrl });
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setError("");
+    setLoading(true);
+
+    const result = await signIn("credentials", {
+      email,
+      password,
+      redirect: false,
+      callbackUrl,
+    });
+
+    setLoading(false);
+
+    if (result?.error) {
+      setError("Invalid email or password");
+    } else if (result?.url) {
+      router.push(result.url);
+    }
   };
 
   return (
@@ -33,27 +56,40 @@ export default function SignIn() {
               className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative"
               role="alert"
             >
-              <span className="block sm:inline">
-                Authentication error. Please try again.
-              </span>
+              <span className="block sm:inline">{error}</span>
             </div>
           )}
         </CardHeader>
-        <CardContent className="grid gap-4">
-          <Button
-            variant="outline"
-            className="flex items-center justify-center gap-2"
-            onClick={() => handleSignIn("google")}
-          >
-            <FaGoogle className="h-4 w-4" />
-            Sign in with Google
-          </Button>
-        </CardContent>
-        <CardFooter className="flex flex-col items-center justify-center gap-2">
-          <p className="text-sm text-gray-500 dark:text-gray-400">
-            By signing in, you agree to our Terms of Service and Privacy Policy.
-          </p>
-        </CardFooter>
+        <form onSubmit={handleSubmit}>
+          <CardContent className="grid gap-4">
+            <div className="grid gap-2">
+              <Label htmlFor="email">Email</Label>
+              <Input
+                id="email"
+                type="email"
+                placeholder="name@example.com"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
+                autoFocus
+              />
+            </div>
+            <div className="grid gap-2">
+              <Label htmlFor="password">Password</Label>
+              <Input
+                id="password"
+                type="password"
+                placeholder="Enter your password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                required
+              />
+            </div>
+            <Button type="submit" className="w-full" disabled={loading}>
+              {loading ? "Signing in..." : "Sign in"}
+            </Button>
+          </CardContent>
+        </form>
       </Card>
     </div>
   );
