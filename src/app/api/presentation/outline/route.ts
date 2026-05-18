@@ -182,7 +182,7 @@ export async function POST(req: Request) {
       promptLength: prompt.length,
       language,
       modelProvider,
-      modelId: modelId || "gpt-4o-mini",
+      modelId: modelId || "mistral-nemo",
       webSearch,
     });
 
@@ -221,7 +221,7 @@ export async function POST(req: Request) {
       routeLogger.error("Outline request rejected: invalid model configuration", error, {
         requestId,
         modelProvider,
-        modelId: modelId || "gpt-4o-mini",
+        modelId: modelId || "mistral-nemo",
       });
       return NextResponse.json(
         {
@@ -242,7 +242,7 @@ export async function POST(req: Request) {
         {
           requestId,
           modelProvider,
-          modelId: modelId || "gpt-4o-mini",
+          modelId: modelId || "mistral-nemo",
         },
       );
       return NextResponse.json(
@@ -275,7 +275,7 @@ export async function POST(req: Request) {
     routeLogger.info("Presentation outline generation started", {
       requestId,
       modelProvider,
-      modelId: modelId || "gpt-4o-mini",
+      modelId: modelId || "mistral-nemo",
       numberOfCards,
       webSearch,
     });
@@ -291,7 +291,7 @@ export async function POST(req: Request) {
     routeLogger.info("Presentation outline stream created", {
       requestId,
       modelProvider,
-      modelId: modelId || "gpt-4o-mini",
+      modelId: modelId || "mistral-nemo",
     });
     span.event("allweone.api.response_stream_created");
     return createUIMessageStreamResponse({

@@ -199,7 +199,7 @@ ${
   return createAgent({
     model: modelPicker(
       modelProvider,
-      modelProvider === "openai" ? (modelId || "gpt-4o-mini") : modelId,
+      modelProvider === "openai" ? (modelId || "mistral-nemo") : modelId,
     ).withConfig({
       parallel_tool_calls: false,
     }),

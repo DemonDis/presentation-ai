@@ -443,6 +443,7 @@ export function PresentationGenerationManager() {
           outlineBufferRef.current = null;
           searchResultsBufferRef.current = null;
           lastProcessedMessagesLength.current = 0;
+          usePresentationState.getState().resetForNewGeneration?.();
 
           const { presentationInput } = usePresentationState.getState();
           if (outlineRafIdRef.current === null) {
@@ -453,7 +454,7 @@ export function PresentationGenerationManager() {
           generationLogger.info("Presentation outline generation started", {
             presentationId: currentPresentationId,
             modelProvider,
-            modelId: modelId || "gpt-4o-mini",
+modelId: modelId || "mistral-nemo",
             numSlides,
             language,
             webSearchEnabled,
@@ -683,7 +684,7 @@ export function PresentationGenerationManager() {
         title: currentPresentationTitle ?? presentationInput ?? "",
         outlineItems: outline.length,
         modelProvider,
-        modelId: modelId || "gpt-4o-mini",
+        modelId: modelId || "mistral-nemo",
         imageSource,
         templateCount: selectedSlideTemplates.length,
       });
@@ -738,7 +739,7 @@ export function PresentationGenerationManager() {
         title: currentPresentationTitle ?? presentationInput ?? "",
         outlineItems: outline.length,
         modelProvider,
-        modelId: modelId || "gpt-4o-mini",
+        modelId: modelId || "mistral-nemo",
       });
 
       void generateImageSlides(presentationInput ?? "", {

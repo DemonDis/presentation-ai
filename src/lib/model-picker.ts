@@ -270,7 +270,7 @@ export function assertModelIsConfigured(
   modelId?: string,
 ) {
   const selection = resolveModelSelection(modelProviderOrModel, modelId);
-  const selectedOpenAIModel = selection.modelId || "hydra-gpt-mini";
+  const selectedOpenAIModel = selection.modelId || "mistral-nemo";
   const selectedLocalModel = selection.modelId?.trim();
 
   if (selection.provider === "ollama" && !selectedLocalModel) {
@@ -379,7 +379,7 @@ export function modelPicker(modelProviderOrModel: string, modelId?: string) {
     });
   }
 
-  const selectedOpenAIModel = selection.modelId || "hydra-gpt-mini";
+  const selectedOpenAIModel = selection.modelId || "mistral-nemo";
   const apiKey =
     env.PROVIDER_API_KEY?.trim() || env.OPENAI_API_KEY?.trim();
   const baseURL = env.PROVIDER_BASE_URL?.trim();

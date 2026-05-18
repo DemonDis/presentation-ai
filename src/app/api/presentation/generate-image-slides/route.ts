@@ -136,7 +136,7 @@ export async function POST(req: Request) {
       totalSlides,
       language,
       modelProvider,
-      modelId: modelId || "gpt-4o-mini",
+      modelId: modelId || "mistral-nemo",
     });
     try {
       assertModelIsConfigured(modelProvider, modelId);
@@ -147,7 +147,7 @@ export async function POST(req: Request) {
         {
           requestId,
           modelProvider,
-          modelId: modelId || "gpt-4o-mini",
+          modelId: modelId || "mistral-nemo",
         },
       );
       return NextResponse.json(
@@ -169,7 +169,7 @@ export async function POST(req: Request) {
         {
           requestId,
           modelProvider,
-          modelId: modelId || "gpt-4o-mini",
+          modelId: modelId || "mistral-nemo",
         },
       );
       return NextResponse.json(
@@ -190,7 +190,7 @@ export async function POST(req: Request) {
       title,
       totalSlides,
       modelProvider,
-      modelId: modelId || "gpt-4o-mini",
+      modelId: modelId || "mistral-nemo",
     });
     const stream = await chain.stream({
       TITLE: title,

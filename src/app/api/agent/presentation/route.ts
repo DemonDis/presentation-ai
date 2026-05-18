@@ -42,7 +42,7 @@ export async function POST(req: Request) {
       isResume: Boolean(resumeData),
       messageCount: Array.isArray(messages) ? messages.length : 0,
       modelProvider: modelProvider ?? "openai",
-      modelId: modelId || "gpt-4o-mini",
+      modelId: modelId || "mistral-nemo",
     });
     const session = await auth();
 
@@ -65,7 +65,7 @@ export async function POST(req: Request) {
           requestId,
           presentationId: id,
           modelProvider: modelProvider ?? "openai",
-          modelId: modelId || "gpt-4o-mini",
+          modelId: modelId || "mistral-nemo",
         },
       );
       return new Response(
@@ -83,7 +83,7 @@ export async function POST(req: Request) {
           requestId,
           presentationId: id,
           modelProvider: modelProvider ?? "openai",
-          modelId: modelId || "gpt-4o-mini",
+          modelId: modelId || "mistral-nemo",
         },
       );
       return new Response(
