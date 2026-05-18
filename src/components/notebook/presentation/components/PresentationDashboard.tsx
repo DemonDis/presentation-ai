@@ -1,6 +1,6 @@
 "use client";
 
-import { createBlankPresentation } from "@/app/_actions/notebook/presentation/presentationActions";
+import { createBlankPresentation, deletePresentation } from "@/app/_actions/notebook/presentation/presentationActions";
 import { fetchPresentations } from "@/app/_actions/notebook/presentation/fetchPresentations";
 import { ModelPicker } from "@/components/notebook/presentation/components/ModelPicker";
 import { Button } from "@/components/ui/button";
@@ -15,9 +15,9 @@ import {
 import { Switch } from "@/components/ui/switch";
 import { Textarea } from "@/components/ui/textarea";
 import { usePresentationState } from "@/states/presentation-state";
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { formatDistanceToNow } from "date-fns";
-import { FilePlus2, Globe, Loader2, Presentation, Sparkles } from "lucide-react";
+import { FilePlus2, Globe, Loader2, Presentation, Sparkles, Trash2 } from "lucide-react";
 import { useTheme } from "next-themes";
 import { useRouter } from "next/navigation";
 import { useMemo, useState } from "react";
@@ -49,10 +49,26 @@ export function PresentationDashboard() {
     resetPresentationState,
   } = usePresentationState();
 
+  const queryClient = useQueryClient();
+
   const { data, isLoading } = useQuery({
     queryKey: ["presentations"],
     queryFn: () => fetchPresentations(0),
   });
+
+  const [deletingId, setDeletingId] = useState<string | null>(null);
+
+  const handleDelete = async (id: string, e: React.MouseEvent) => {
+    e.stopPropagation();
+    setDeletingId(id);
+    const result = await deletePresentation(id);
+    setDeletingId(null);
+    if (result.success) {
+      queryClient.invalidateQueries({ queryKey: ["presentations"] });
+    } else {
+      toast.error(result.message ?? "Failed to delete presentation");
+    }
+  };
 
   const items = data?.items ?? [];
   const slidesOptions = useMemo(
@@ -233,22 +249,32 @@ export function PresentationDashboard() {
               </div>
             ) : (
               items.slice(0, 8).map((item) => (
-                <button
-                  key={item.id}
-                  type="button"
-                  onClick={() => router.push(`/presentation/${item.id}`)}
-                  className="flex w-full flex-col rounded-lg border p-3 text-left transition-colors hover:bg-muted/50"
-                >
-                  <span className="font-medium">
-                    {item.title || "Untitled Presentation"}
-                  </span>
-                  <span className="text-sm text-muted-foreground">
-                    Updated{" "}
-                    {formatDistanceToNow(new Date(item.updatedAt), {
-                      addSuffix: true,
-                    })}
-                  </span>
-                </button>
+                <div key={item.id} className="group relative">
+                  <button
+                    type="button"
+                    onClick={() => router.push(`/presentation/${item.id}`)}
+                    className="flex w-full flex-col rounded-lg border p-3 text-left transition-colors hover:bg-muted/50"
+                  >
+                    <span className="font-medium">
+                      {item.title || "Untitled Presentation"}
+                    </span>
+                    <span className="text-sm text-muted-foreground">
+                      Updated{" "}
+                      {formatDistanceToNow(new Date(item.updatedAt), {
+                        addSuffix: true,
+                      })}
+                    </span>
+                  </button>
+                  <button
+                    type="button"
+                    onClick={(e) => void handleDelete(item.id, e)}
+                    disabled={deletingId === item.id}
+                    className="absolute right-2 top-1/2 -translate-y-1/2 rounded-md p-1.5 text-muted-foreground opacity-0 transition-all hover:bg-destructive/10 hover:text-destructive group-hover:opacity-100"
+                    title="Delete presentation"
+                  >
+                    <Trash2 className="h-4 w-4" />
+                  </button>
+                </div>
               ))
             )}
           </CardContent>

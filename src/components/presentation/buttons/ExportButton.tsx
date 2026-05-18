@@ -14,22 +14,23 @@ import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { useToast } from "@/components/ui/use-toast";
 import { usePresentationState } from "@/states/presentation-state";
-import { Download, Loader2 } from "lucide-react";
+import { Download, FileDown, FileImage, Loader2 } from "lucide-react";
 import { useRef, useState } from "react";
+import { exportPresentationToPdf } from "../export/domToPdfConverter";
 import { downloadBlob, exportPresentationToPptx, scanAllSlides } from "../export";
 import { SaveStatus } from "./SaveStatus";
+
+type ExportFormat = "pptx" | "pdf";
 
 export function ExportButton() {
   const [isExportDialogOpen, setIsExportDialogOpen] = useState(false);
   const [isExporting, setIsExporting] = useState(false);
+  const [format, setFormat] = useState<ExportFormat>("pptx");
   const { toast } = useToast();
   const exportResultRef = useRef<{ blob: Blob; fileName: string } | null>(null);
 
   const handleDownload = () => {
-    if (!exportResultRef.current) {
-      return;
-    }
-
+    if (!exportResultRef.current) return;
     downloadBlob(
       exportResultRef.current.blob,
       exportResultRef.current.fileName,
@@ -48,41 +49,47 @@ export function ExportButton() {
         throw new Error("No slides to export");
       }
 
-      const { update, dismiss } = toast({
+      const toastId = toast({
         title: "Exporting Presentation",
         description: (
           <div className="flex items-center gap-2">
             <Loader2 className="h-4 w-4 animate-spin" />
-            <span>Scanning slides...</span>
+            <span>
+              {format === "pptx" ? "Scanning slides..." : "Rendering slides..."}
+            </span>
           </div>
         ),
         duration: Infinity,
       });
 
-      const scanResults = await scanAllSlides(slides);
+      const baseName = currentPresentationTitle ?? "presentation";
 
-      if (scanResults.length === 0) {
-        throw new Error(
-          "Failed to scan slides. Please ensure all slides are visible on the page.",
+      if (format === "pptx") {
+        const scanResults = await scanAllSlides(slides);
+        if (scanResults.length === 0) {
+          throw new Error(
+            "Failed to scan slides. Please ensure all slides are visible on the page.",
+          );
+        }
+        toastId.update({
+          description: (
+            <div className="flex items-center gap-2">
+              <Loader2 className="h-4 w-4 animate-spin" />
+              <span>Generating PowerPoint...</span>
+            </div>
+          ),
+        });
+        exportResultRef.current = await exportPresentationToPptx(
+          scanResults,
+          slides,
+          baseName,
         );
+      } else {
+        const blob = await exportPresentationToPdf(slides, baseName);
+        exportResultRef.current = { blob, fileName: `${baseName}.pdf` };
       }
 
-      update({
-        description: (
-          <div className="flex items-center gap-2">
-            <Loader2 className="h-4 w-4 animate-spin" />
-            <span>Generating PowerPoint...</span>
-          </div>
-        ),
-      });
-
-      exportResultRef.current = await exportPresentationToPptx(
-        scanResults,
-        slides,
-        currentPresentationTitle ?? "presentation",
-      );
-
-      update({
+      toastId.update({
         title: "Export Complete",
         description: (
           <Button
@@ -91,11 +98,11 @@ export function ExportButton() {
             className="mt-2"
             onClick={() => {
               handleDownload();
-              dismiss();
+              toastId.dismiss();
             }}
           >
             <Download className="mr-1 h-4 w-4" />
-            Download PowerPoint
+            Download {format === "pptx" ? "PowerPoint" : "PDF"}
           </Button>
         ),
         duration: 15000,
@@ -135,19 +142,32 @@ export function ExportButton() {
         <DialogHeader>
           <DialogTitle>Export Presentation</DialogTitle>
           <DialogDescription>
-            Export your presentation as a PowerPoint file.
+            Choose a format to export your presentation.
           </DialogDescription>
         </DialogHeader>
 
         <div className="py-4">
-          <Label className="mb-2 block">Export Format</Label>
-          <RadioGroup value="pptx" className="grid gap-4">
-            <div className="flex cursor-pointer items-start space-x-4 rounded-xl border border-primary bg-accent/50 p-4 ring-1 ring-primary">
+          <Label className="mb-3 block text-sm font-medium">
+            Export Format
+          </Label>
+          <RadioGroup
+            value={format}
+            onValueChange={(v) => setFormat(v as ExportFormat)}
+            className="grid gap-3"
+          >
+            <div
+              className={`flex cursor-pointer items-start space-x-4 rounded-xl border p-4 transition-colors ${
+                format === "pptx"
+                  ? "border-primary bg-accent/50 ring-1 ring-primary"
+                  : "border-border hover:bg-muted/50"
+              }`}
+              onClick={() => setFormat("pptx")}
+            >
               <RadioGroupItem value="pptx" id="pptx" className="mt-3" />
               <div className="flex-1 space-y-1">
                 <div className="flex items-center gap-3">
                   <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-primary/10 text-primary">
-                    <Download className="h-5 w-5" />
+                    <FileImage className="h-5 w-5" />
                   </div>
                   <div>
                     <Label
@@ -157,7 +177,36 @@ export function ExportButton() {
                       PowerPoint (.pptx)
                     </Label>
                     <p className="text-sm leading-snug text-muted-foreground">
-                      Standard PowerPoint file
+                      Editable PowerPoint file with text, images and layouts
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div
+              className={`flex cursor-pointer items-start space-x-4 rounded-xl border p-4 transition-colors ${
+                format === "pdf"
+                  ? "border-primary bg-accent/50 ring-1 ring-primary"
+                  : "border-border hover:bg-muted/50"
+              }`}
+              onClick={() => setFormat("pdf")}
+            >
+              <RadioGroupItem value="pdf" id="pdf" className="mt-3" />
+              <div className="flex-1 space-y-1">
+                <div className="flex items-center gap-3">
+                  <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-primary/10 text-primary">
+                    <FileDown className="h-5 w-5" />
+                  </div>
+                  <div>
+                    <Label
+                      htmlFor="pdf"
+                      className="block cursor-pointer text-base font-semibold"
+                    >
+                      PDF (.pdf)
+                    </Label>
+                    <p className="text-sm leading-snug text-muted-foreground">
+                      Fixed-layout PDF document, best for sharing and printing
                     </p>
                   </div>
                 </div>
@@ -182,7 +231,7 @@ export function ExportButton() {
                 Exporting...
               </>
             ) : (
-              "Export to PowerPoint"
+              `Export to ${format === "pptx" ? "PowerPoint" : "PDF"}`
             )}
           </Button>
         </DialogFooter>
