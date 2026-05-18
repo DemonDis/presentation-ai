@@ -1,0 +1,9 @@
+[
+  {
+    "email": "admin@iln.local",
+    "name": "Admin",
+    "role": "ADMIN",
+    "hasAccess": true,
+    "password": "123"
+  }
+]
