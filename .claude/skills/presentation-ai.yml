@@ -1,0 +1,48 @@
+name: presentation-ai
+description: Presentation generator with AI, Credentials auth
+instructions: |
+  ## Project Overview
+  Next.js 15 app that generates presentations via AI. PostgreSQL + Prisma, Tailwind, Zustand.
+
+  ## Auth
+  - Credentials (email/password) via `data/users.json`
+  - Default: `admin@iln.local` / `123` (role: ADMIN)
+  - NextAuth v5 with Prisma adapter
+  - `src/server/auth.ts` — CredentialsProvider with upsert to DB
+
+  ## AI Provider
+  -  AI (OpenAI-compatible): `https://api.ru/v1`
+  - Model: `mistral-nemo` (free, supports Russian)
+  - `src/lib/model-picker.ts` — routes to provider if PROVIDER_API_KEY is set, else falls back to OpenAI
+
+  ## Key Env Vars
+  - `PROVIDER_BASE_URL` — overrides OpenAI endpoint
+  - `PROVIDER_API_KEY` — custom provider key (starts with `sk-ai-`)
+  - `OPENAI_API_KEY` — fallback
+  - `AUTH_SECRET`, `DATABASE_URL`
+
+  ## Export
+  - PPTX via pptxgenjs (scans DOM with html-to-image)
+  - PDF via html2canvas-pro + pdf-lib
+  - `src/components/presentation/buttons/ExportButton.tsx`
+  - `src/components/presentation/export/`
+
+  ## Key Commands
+  - `npm run dev` — start dev server (Turbopack)
+  - `npx prisma db push` — sync schema
+  - `npx prisma studio` — DB UI
+
+  ## Routes
+  - `/presentation` — main page
+  - `/presentation/create` — create new
+  - `/auth/signin` / `/auth/signout`
+
+  ## State
+  - Zustand store: `src/states/presentation-state.ts`
+  - Slides generated in `PresentationGenerationManager.tsx`
+  - Editor: `src/components/notebook/presentation/components/SlideEditor.tsx`
+
+  ## Important
+  - Restart dev server after code changes (Turbopack cache)
+  - UI is in Russian
+  - PostgreSQL at localhost:5432, DB: presentation_ai
