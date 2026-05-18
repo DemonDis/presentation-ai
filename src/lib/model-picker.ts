@@ -270,7 +270,7 @@ export function assertModelIsConfigured(
   modelId?: string,
 ) {
   const selection = resolveModelSelection(modelProviderOrModel, modelId);
-  const selectedOpenAIModel = selection.modelId || "gpt-4o-mini";
+  const selectedOpenAIModel = selection.modelId || "hgptm";
   const selectedLocalModel = selection.modelId?.trim();
 
   if (selection.provider === "ollama" && !selectedLocalModel) {
@@ -375,17 +375,21 @@ export function modelPicker(modelProviderOrModel: string, modelId?: string) {
     });
   }
 
-  const selectedOpenAIModel = selection.modelId || "gpt-4o-mini";
-  const openAIApiKey = env.OPENAI_API_KEY?.trim();
+  const selectedOpenAIModel = selection.modelId || "hgptm";
+  const apiKey =
+    env.PROVIDER_API_KEY?.trim() || env.OPENAI_API_KEY?.trim();
+  const baseURL = env.PROVIDER_BASE_URL?.trim();
 
   modelLogger.info("Creating OpenAI model client", {
     provider: selection.provider,
     modelId: selectedOpenAIModel,
-    hasApiKey: Boolean(openAIApiKey),
+    hasApiKey: Boolean(apiKey),
+    customBaseUrl: Boolean(baseURL),
   });
 
   return new ChatOpenAI({
     model: selectedOpenAIModel,
-    ...(openAIApiKey ? { apiKey: openAIApiKey } : {}),
+    ...(apiKey ? { apiKey } : {}),
+    ...(baseURL ? { configuration: { baseURL } } : {}),
   });
 }

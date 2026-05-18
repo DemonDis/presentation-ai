@@ -9,6 +9,8 @@ export const env = createEnv({
       .enum(["development", "test", "production"])
       .default("development"),
 
+    PROVIDER_BASE_URL: z.string().optional(),
+    PROVIDER_API_KEY: z.string().optional(),
     OPENAI_API_KEY: z.string().optional(),
     TOGETHER_AI_API_KEY: z.string().optional(),
     FAL_API_KEY: z.string().optional(),
@@ -33,6 +35,8 @@ export const env = createEnv({
     UNSPLASH_ACCESS_KEY: process.env.UNSPLASH_ACCESS_KEY,
     TAVILY_API_KEY: process.env.TAVILY_API_KEY,
     NODE_ENV: process.env.NODE_ENV,
+    PROVIDER_BASE_URL: process.env.PROVIDER_BASE_URL,
+    PROVIDER_API_KEY: process.env.PROVIDER_API_KEY,
     OPENAI_API_KEY: process.env.OPENAI_API_KEY,
     TOGETHER_AI_API_KEY: process.env.TOGETHER_AI_API_KEY,
     FAL_API_KEY: process.env.FAL_API_KEY,

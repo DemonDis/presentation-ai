@@ -11,7 +11,8 @@ export async function proxy(request: NextRequest) {
   }
 
   // If user is on auth page but already signed in, redirect to home page
-  if (isAuthPage && session) {
+  // Allow access to signout page so user can sign out
+  if (isAuthPage && session && request.nextUrl.pathname !== "/auth/signout") {
     return NextResponse.redirect(new URL("/presentation", request.url));
   }
 

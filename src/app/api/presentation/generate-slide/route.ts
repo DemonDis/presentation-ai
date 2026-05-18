@@ -220,7 +220,7 @@ Return ONLY the XML for a single slide. No explanation, no wrapper tags.
 Now generate the single image slide.
 `;
 
-const model = modelPicker("gpt-4o-mini");
+const model = modelPicker("hgptm");
 
 function getImageStyleGuidance(style?: string): string {
   switch (style) {
@@ -287,10 +287,10 @@ export async function POST(req: Request) {
       textDensity: textDensity || "Balanced",
       promptLength: prompt.length,
       modelProvider: "openai",
-      modelId: "gpt-4o-mini",
+      modelId: "hgptm",
     });
     try {
-      assertModelIsConfigured("gpt-4o-mini");
+      assertModelIsConfigured("hgptm");
     } catch (error) {
       routeLogger.error(
         "Single slide generation request rejected: invalid model configuration",
@@ -298,7 +298,7 @@ export async function POST(req: Request) {
         {
           requestId,
           modelProvider: "openai",
-          modelId: "gpt-4o-mini",
+          modelId: "hgptm",
         },
       );
       return NextResponse.json(

@@ -1,3 +1,4 @@
+import { db } from "@/server/db";
 import NextAuth, { type DefaultSession, type Session } from "next-auth";
 import Credentials from "next-auth/providers/credentials";
 import fs from "fs";
@@ -80,12 +81,27 @@ export const { auth, handlers, signIn, signOut } = NextAuth({
             return null;
           }
 
+          const dbUser = await db.user.upsert({
+            where: { email: user.email },
+            update: {
+              name: user.name,
+              role: user.role as "ADMIN" | "USER",
+              hasAccess: user.hasAccess,
+            },
+            create: {
+              email: user.email,
+              name: user.name,
+              role: user.role as "ADMIN" | "USER",
+              hasAccess: user.hasAccess,
+            },
+          });
+
           return {
-            id: user.email,
-            email: user.email,
-            name: user.name,
-            role: user.role,
-            hasAccess: user.hasAccess,
+            id: dbUser.id,
+            email: dbUser.email ?? user.email,
+            name: dbUser.name ?? user.name,
+            role: dbUser.role,
+            hasAccess: dbUser.hasAccess,
           };
         } catch {
           return null;

@@ -1,6 +1,7 @@
 "use client";
 import { Brain } from "@/components/ui/icons";
 import { usePresentationState } from "@/states/presentation-state";
+import { useSession, signOut } from "next-auth/react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -11,13 +12,55 @@ import AllweoneText from "@/components/globals/allweone-logo";
 import { PresentButton } from "@/components/presentation/buttons/PresentButton";
 import { ShareButton } from "@/components/presentation/buttons/ShareButton";
 import { PresentationMenu } from "@/components/presentation/controls/PresentationMenu";
+import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 import { Input } from "@/components/ui/input";
-import { Bot, Palette } from "lucide-react";
+import { Bot, LogOut, Palette, User } from "lucide-react";
 import * as motion from "motion/react-client";
 
 interface PresentationHeaderProps {
   title?: string;
+}
+
+function UserMenu() {
+  const { data: session } = useSession();
+  const user = session?.user;
+  const initial = user?.name?.charAt(0)?.toUpperCase() || "U";
+
+  return (
+    <DropdownMenu>
+      <DropdownMenuTrigger asChild>
+        <Button variant="ghost" className="h-9 w-9 rounded-full p-0">
+          <Avatar className="h-8 w-8">
+            <AvatarFallback className="text-xs">{initial}</AvatarFallback>
+          </Avatar>
+        </Button>
+      </DropdownMenuTrigger>
+      <DropdownMenuContent align="end" className="w-48">
+        <DropdownMenuLabel className="font-normal">
+          <div className="flex flex-col space-y-1">
+            <p className="text-sm font-medium leading-none">{user?.name}</p>
+            <p className="text-xs leading-none text-muted-foreground">
+              {user?.email}
+            </p>
+          </div>
+        </DropdownMenuLabel>
+        <DropdownMenuSeparator />
+        <DropdownMenuItem onClick={() => signOut({ callbackUrl: "/" })}>
+          <LogOut className="mr-2 h-4 w-4" />
+          Sign out
+        </DropdownMenuItem>
+      </DropdownMenuContent>
+    </DropdownMenu>
+  );
 }
 
 export default function PresentationHeader({ title }: PresentationHeaderProps) {
@@ -78,7 +121,7 @@ export default function PresentationHeader({ title }: PresentationHeaderProps) {
           </motion.div>
         </div>
 
-        {/* <SideBarDropdown /> */}
+        <UserMenu />
       </header>
     );
 
@@ -165,8 +208,8 @@ export default function PresentationHeader({ title }: PresentationHeaderProps) {
         {/* Present button - Only in presentation page, not outline */}
         {isPresentationPage && <PresentButton />}
 
-        {/* User profile dropdown - Keep this on all pages */}
-        {/* {!isPresenting && <SideBarDropdown />} */}
+        {/* User menu */}
+        {!isPresenting && <UserMenu />}
       </div>
     </header>
   );
