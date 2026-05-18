@@ -78,7 +78,7 @@ export async function createPresentation({
 export async function createEmptyPresentation({
   title,
   theme = "mystique",
-  language = "en-US",
+  language = "ru",
 }: {
   title: string;
   theme?: string;
@@ -95,7 +95,7 @@ export async function createEmptyPresentation({
 export async function createBlankPresentation(
   title: string,
   theme = "mystique",
-  language = "en-US",
+  language = "ru",
 ) {
   const blankSlide: PlateSlide = {
     content: [

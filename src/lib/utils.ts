@@ -67,7 +67,7 @@ export function extractDomain(url: string): string {
 }
 
 export const formatPrice = (price: number) => {
-  return price.toLocaleString("en-US", {
+  return price.toLocaleString("ru", {
     style: "currency",
     currency: "USD",
     currencyDisplay: "symbol",
@@ -240,11 +240,11 @@ export async function generateUniqueToken(length = 32): Promise<string> {
 }
 
 export function getDateRange(start: Date, end: Date) {
-  const startStr = start.toLocaleDateString("en-US", {
+  const startStr = start.toLocaleDateString("ru", {
     month: "short",
     day: "numeric",
   });
-  const endStr = end.toLocaleDateString("en-US", {
+  const endStr = end.toLocaleDateString("ru", {
     month: "short",
     day: "numeric",
   });

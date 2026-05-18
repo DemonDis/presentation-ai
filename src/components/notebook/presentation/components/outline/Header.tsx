@@ -191,17 +191,7 @@ export function Header() {
                     </SelectTrigger>
                     <SelectContent>
                       <SelectItem value="en-US">English (US)</SelectItem>
-                      <SelectItem value="es">Spanish</SelectItem>
-                      <SelectItem value="fr">French</SelectItem>
-                      <SelectItem value="de">German</SelectItem>
-                      <SelectItem value="pt">Portuguese</SelectItem>
-                      <SelectItem value="it">Italian</SelectItem>
-                      <SelectItem value="ja">Japanese</SelectItem>
-                      <SelectItem value="ko">Korean</SelectItem>
-                      <SelectItem value="zh">Chinese</SelectItem>
                       <SelectItem value="ru">Russian</SelectItem>
-                      <SelectItem value="hi">Hindi</SelectItem>
-                      <SelectItem value="ar">Arabic</SelectItem>
                     </SelectContent>
                   </Select>
                 </div>

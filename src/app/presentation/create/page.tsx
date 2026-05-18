@@ -25,7 +25,7 @@ export default function Page() {
   const themeMode = resolvedTheme === "dark" ? "dark" : "light";
   const createTheme = resolvedTheme === "dark" ? "ebony" : "mystique";
   const prompt = params.get("prompt")?.trim() ?? "";
-  const language = params.get("language") ?? "en-US";
+  const language = params.get("language") ?? "ru";
   const noOfSlides = getSlideCount(params.get("noOfSlides"));
   const webSearchEnabled = params.get("webSearch") === "true";
   const {

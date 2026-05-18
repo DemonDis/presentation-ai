@@ -496,7 +496,7 @@ export async function POST(req: Request) {
     const totalSlides = outline.length;
     const templateCount = selectedTemplateCount ?? 0;
 
-    const currentDate = new Date().toLocaleDateString("en-US", {
+    const currentDate = new Date().toLocaleDateString("ru", {
       weekday: "long",
       year: "numeric",
       month: "long",

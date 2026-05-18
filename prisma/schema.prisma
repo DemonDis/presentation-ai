@@ -92,7 +92,7 @@ model Presentation {
   prompt            String?
   presentationStyle String?
   customization     Json?
-  language          String?               @default("en-US")
+  language          String?               @default("ru")
   outline           String[]
   searchResults     Json?
   templateId        String?

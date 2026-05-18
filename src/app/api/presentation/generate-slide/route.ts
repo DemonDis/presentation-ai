@@ -282,7 +282,7 @@ export async function POST(req: Request) {
     routeLogger.info("Validated single slide generation request", {
       requestId,
       slideType: slideType || "standard",
-      language: language || "en-US",
+      language: language || "ru",
       imageStyle: imageStyle || "3D",
       textDensity: textDensity || "Balanced",
       promptLength: prompt.length,
@@ -322,7 +322,7 @@ export async function POST(req: Request) {
       ? {
           PROMPT: prompt,
           CURRENT_SLIDE: currentSlide || "No current slide context provided.",
-          LANGUAGE: language || "en-US",
+          LANGUAGE: language || "ru",
           IMAGE_STYLE: imageStyle || "3D",
           IMAGE_STYLE_GUIDANCE: getImageStyleGuidance(imageStyle),
           TEXT_DENSITY: textDensity || "Balanced",
@@ -331,7 +331,7 @@ export async function POST(req: Request) {
       : {
           PROMPT: prompt,
           CURRENT_SLIDE: currentSlide || "No current slide context provided.",
-          LANGUAGE: language || "en-US",
+          LANGUAGE: language || "ru",
         };
     routeLogger.info("Single slide generation started", {
       requestId,

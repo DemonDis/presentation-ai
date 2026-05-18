@@ -205,21 +205,11 @@ export async function POST(req: Request) {
 
     const languageMap: Record<string, string> = {
       "en-US": "English (US)",
-      pt: "Portuguese",
-      es: "Spanish",
-      fr: "French",
-      de: "German",
-      it: "Italian",
-      ja: "Japanese",
-      ko: "Korean",
-      zh: "Chinese",
       ru: "Russian",
-      hi: "Hindi",
-      ar: "Arabic",
     };
 
     const actualLanguage = languageMap[language] ?? language;
-    const currentDate = new Date().toLocaleDateString("en-US", {
+    const currentDate = new Date().toLocaleDateString("ru", {
       weekday: "long",
       year: "numeric",
       month: "long",

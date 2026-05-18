@@ -353,7 +353,7 @@ export const usePresentationState = create<PresentationState>((set, get) => ({
   thumbnailUrl: undefined,
   setThumbnailUrl: (url) => set({ thumbnailUrl: url }),
   numSlides: 5,
-  language: "en-US",
+  language: "ru",
   pageStyle: "default",
   showTemplates: false,
   presentationInput: "",

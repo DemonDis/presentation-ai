@@ -24,18 +24,8 @@ import { useMemo, useState } from "react";
 import { toast } from "sonner";
 
 const LANGUAGES = [
-  ["en-US", "English"],
-  ["pt", "Portuguese"],
-  ["es", "Spanish"],
-  ["fr", "French"],
-  ["de", "German"],
-  ["it", "Italian"],
-  ["ja", "Japanese"],
-  ["ko", "Korean"],
-  ["zh", "Chinese"],
   ["ru", "Russian"],
-  ["hi", "Hindi"],
-  ["ar", "Arabic"],
+  ["en-US", "English"],
 ] as const;
 
 export function PresentationDashboard() {

@@ -38,7 +38,7 @@ export async function checkLoaded({
           if (now - start >= timeout) {
             reject(new Error(`Font not loaded within ${timeout} ms`));
           } else {
-            // ref: https://developer.mozilla.org/en-US/docs/Web/API/FontFaceSet/check
+            // ref: https://developer.mozilla.org/ru/docs/Web/API/FontFaceSet/check
             const loaded = document.fonts.check(
               `${fontStyle ?? ""} ${fontWeight ?? ""} 0 ${fontFamily}`,
             );
