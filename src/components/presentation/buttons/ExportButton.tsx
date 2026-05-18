@@ -15,7 +15,7 @@ import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { useToast } from "@/components/ui/use-toast";
 import { usePresentationState } from "@/states/presentation-state";
 import { Download, FileDown, FileImage, Loader2 } from "lucide-react";
-import { useRef, useState } from "react";
+import { useState } from "react";
 import { exportPresentationToPdf } from "../export/domToPdfConverter";
 import { downloadBlob, exportPresentationToPptx, scanAllSlides } from "../export";
 import { SaveStatus } from "./SaveStatus";
@@ -27,20 +27,10 @@ export function ExportButton() {
   const [isExporting, setIsExporting] = useState(false);
   const [format, setFormat] = useState<ExportFormat>("pptx");
   const { toast } = useToast();
-  const exportResultRef = useRef<{ blob: Blob; fileName: string } | null>(null);
-
-  const handleDownload = () => {
-    if (!exportResultRef.current) return;
-    downloadBlob(
-      exportResultRef.current.blob,
-      exportResultRef.current.fileName,
-    );
-  };
 
   const handleExport = async () => {
     try {
       setIsExporting(true);
-      exportResultRef.current = null;
 
       const { slides, currentPresentationTitle } =
         usePresentationState.getState();
@@ -49,7 +39,7 @@ export function ExportButton() {
         throw new Error("No slides to export");
       }
 
-      const toastId = toast({
+      toast({
         title: "Exporting Presentation",
         description: (
           <div className="flex items-center gap-2">
@@ -71,41 +61,21 @@ export function ExportButton() {
             "Failed to scan slides. Please ensure all slides are visible on the page.",
           );
         }
-        toastId.update({
-          description: (
-            <div className="flex items-center gap-2">
-              <Loader2 className="h-4 w-4 animate-spin" />
-              <span>Generating PowerPoint...</span>
-            </div>
-          ),
-        });
-        exportResultRef.current = await exportPresentationToPptx(
+        const result = await exportPresentationToPptx(
           scanResults,
           slides,
           baseName,
         );
+        downloadBlob(result.blob, result.fileName);
       } else {
         const blob = await exportPresentationToPdf(slides, baseName);
-        exportResultRef.current = { blob, fileName: `${baseName}.pdf` };
+        downloadBlob(blob, `${baseName}.pdf`);
       }
 
-      toastId.update({
+      toast({
         title: "Export Complete",
-        description: (
-          <Button
-            size="sm"
-            variant="outline"
-            className="mt-2"
-            onClick={() => {
-              handleDownload();
-              toastId.dismiss();
-            }}
-          >
-            <Download className="mr-1 h-4 w-4" />
-            Download {format === "pptx" ? "PowerPoint" : "PDF"}
-          </Button>
-        ),
-        duration: 15000,
+        description: `${format === "pptx" ? "PowerPoint" : "PDF"} file has been downloaded.`,
+        duration: 5000,
       });
 
       setIsExportDialogOpen(false);
