@@ -77,14 +77,30 @@ function hasGeneratedOutline(outline: string[]): boolean {
 }
 
 function parseOutlineItems(content: string): string[] {
-  if (!/^#\s+/m.test(content)) {
+  if (/^#\s+/m.test(content)) {
+    const sections = content.split(/^# /gm).filter(Boolean);
+    if (sections.length > 0) {
+      return sections.map((section) => `# ${section}`.trim());
+    }
+  }
+
+  const lines = content.split("\n").map((l) => l.trim()).filter(Boolean);
+  const topics = lines.filter(
+    (line) =>
+      /^\d+[\.\)]\s+/.test(line) ||
+      /^[А-ЯA-Z][^.]{3,}$/m.test(line) ||
+      (line.startsWith("-") && line.length > 5 && !line.startsWith("- -")),
+  );
+
+  if (topics.length > 0) {
+    return topics;
+  }
+
+  if (lines.length <= 3) {
     return [];
   }
 
-  const sections = content.split(/^# /gm).filter(Boolean);
-  return sections.length > 0
-    ? sections.map((section) => `# ${section}`.trim())
-    : [];
+  return lines.filter((l) => l.length > 10 && !l.startsWith("-") && !l.startsWith("*"));
 }
 
 function usesStockSearchForPresentation(
@@ -273,12 +289,17 @@ export function PresentationGenerationManager() {
         continue;
       }
 
+
+
+
+
       const { title, cleanContent } = extractTitle(assistantText);
       if (title) {
         latestTitle = title;
       }
 
       const outlineItems = parseOutlineItems(cleanContent);
+
       if (outlineItems.length > 0) {
         latestOutlineItems = outlineItems;
       }

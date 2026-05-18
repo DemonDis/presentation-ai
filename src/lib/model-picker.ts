@@ -270,7 +270,7 @@ export function assertModelIsConfigured(
   modelId?: string,
 ) {
   const selection = resolveModelSelection(modelProviderOrModel, modelId);
-  const selectedOpenAIModel = selection.modelId || "hgptm";
+  const selectedOpenAIModel = selection.modelId || "hydra-gpt-mini";
   const selectedLocalModel = selection.modelId?.trim();
 
   if (selection.provider === "ollama" && !selectedLocalModel) {
@@ -289,14 +289,18 @@ export function assertModelIsConfigured(
     throw new Error("An LM Studio model must be selected before continuing.");
   }
 
-  if (selection.provider === "openai" && !env.OPENAI_API_KEY?.trim()) {
+  if (
+    selection.provider === "openai" &&
+    !env.OPENAI_API_KEY?.trim() &&
+    !env.PROVIDER_API_KEY?.trim()
+  ) {
     modelLogger.error("Model configuration failed", undefined, {
       provider: selection.provider,
       modelId: selectedOpenAIModel,
-      reason: "missing_openai_api_key",
+      reason: "missing_api_key",
     });
     throw new Error(
-      `OPENAI_API_KEY is required when using the OpenAI model "${selectedOpenAIModel}".`,
+      `API key is required when using the OpenAI model "${selectedOpenAIModel}". Set OPENAI_API_KEY or PROVIDER_API_KEY in .env`,
     );
   }
 
@@ -375,7 +379,7 @@ export function modelPicker(modelProviderOrModel: string, modelId?: string) {
     });
   }
 
-  const selectedOpenAIModel = selection.modelId || "hgptm";
+  const selectedOpenAIModel = selection.modelId || "hydra-gpt-mini";
   const apiKey =
     env.PROVIDER_API_KEY?.trim() || env.OPENAI_API_KEY?.trim();
   const baseURL = env.PROVIDER_BASE_URL?.trim();

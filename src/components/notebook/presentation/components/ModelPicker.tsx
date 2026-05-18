@@ -38,7 +38,7 @@ export function ModelPicker({
       if (savedModel) {
         modelPickerLogger.info("Restoring previously selected model", {
           modelProvider: savedModel.modelProvider,
-          modelId: savedModel.modelId || "hgptm",
+          modelId: savedModel.modelId || "hydra-gpt-mini",
         });
         setModelProvider(
           savedModel.modelProvider as "openai" | "ollama" | "lmstudio",
@@ -100,7 +100,7 @@ export function ModelPicker({
 
     if (currentValue === "openai") {
       return {
-        label: "hgptm",
+        label: "hydra-gpt-mini",
         icon: Bot,
       };
     }
@@ -133,7 +133,7 @@ export function ModelPicker({
     if (value === "openai") {
       modelPickerLogger.info("Selected OpenAI model", {
         modelProvider: "openai",
-        modelId: "hgptm",
+        modelId: "hydra-gpt-mini",
       });
       setModelProvider("openai");
       setModelId("");
