@@ -667,6 +667,45 @@ export async function exportPresentationToPptx(
 }
 
 /**
+ * Export function that temporarily resizes slides for accurate scanning
+ */
+export async function exportPresentationToPptxWithRender(
+  slides: PlateSlide[],
+  fileName: string = "presentation",
+): Promise<{ blob: Blob; fileName: string }> {
+  const { prepareSlidesForExport } = await import("./slideRenderer");
+  const { scanAllSlides } = await import("./domSlideScanner");
+
+  // Temporarily set slides to 1920x1080 for accurate scanning
+  const restoreSizes = prepareSlidesForExport(slides);
+
+  try {
+    // Wait for DOM to reflow and styles to apply
+    await new Promise((resolve) => setTimeout(resolve, 300));
+    await document.fonts?.ready;
+
+    // Scan the slides at fixed dimensions
+    const scanResults = await scanAllSlides(slides);
+
+    if (scanResults.length === 0) {
+      throw new Error(
+        "Failed to scan slides. Please ensure all slides are visible on the page.",
+      );
+    }
+
+    const arrayBuffer = await convertToPptx(scanResults, slides);
+
+    const blob = new Blob([arrayBuffer], {
+      type: "application/vnd.openxmlformats-officedocument.presentationml.presentation",
+    });
+
+    return { blob, fileName: `${fileName}.pptx` };
+  } finally {
+    restoreSizes();
+  }
+}
+
+/**
  * Helper to trigger download of a blob
  */
 export function downloadBlob(blob: Blob, fileName: string): void {

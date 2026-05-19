@@ -17,7 +17,7 @@ import { usePresentationState } from "@/states/presentation-state";
 import { Download, FileDown, FileImage, Loader2 } from "lucide-react";
 import { useState } from "react";
 import { exportPresentationToPdf } from "../export/domToPdfConverter";
-import { downloadBlob, exportPresentationToPptx, scanAllSlides } from "../export";
+import { downloadBlob, exportPresentationToPptxWithRender, scanAllSlides } from "../export";
 import { SaveStatus } from "./SaveStatus";
 
 type ExportFormat = "pptx" | "pdf";
@@ -55,14 +55,7 @@ export function ExportButton() {
       const baseName = currentPresentationTitle ?? "presentation";
 
       if (format === "pptx") {
-        const scanResults = await scanAllSlides(slides);
-        if (scanResults.length === 0) {
-          throw new Error(
-            "Failed to scan slides. Please ensure all slides are visible on the page.",
-          );
-        }
-        const result = await exportPresentationToPptx(
-          scanResults,
+        const result = await exportPresentationToPptxWithRender(
           slides,
           baseName,
         );

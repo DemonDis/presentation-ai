@@ -22,10 +22,10 @@ export const IMAGE_MODELS: { value: ImageModelList; label: string }[] = [
 interface ImageSourceSelectorProps {
   imageSource: "automatic" | "ai" | "stock";
   imageModel: ImageModelList;
-  stockImageProvider: "unsplash" | "pixabay";
+  stockImageProvider: "unsplash" | "pixabay" | "pexels" | "magnific";
   onImageSourceChange: (source: "automatic" | "ai" | "stock") => void;
   onImageModelChange: (model: ImageModelList) => void;
-  onStockImageProviderChange: (provider: "unsplash" | "pixabay") => void;
+  onStockImageProviderChange: (provider: "unsplash" | "pixabay" | "pexels" | "magnific") => void;
   className?: string;
   showLabel?: boolean;
 }
@@ -60,7 +60,9 @@ export function ImageSourceSelector({
             // Handle stock image selection
             const provider = value.replace("stock-", "") as
               | "unsplash"
-              | "pixabay";
+              | "pixabay"
+              | "pexels"
+              | "magnific";
             onImageSourceChange("stock");
             onStockImageProviderChange(provider);
           } else {
@@ -97,6 +99,8 @@ export function ImageSourceSelector({
             </SelectLabel>
             <SelectItem value="stock-unsplash">Unsplash</SelectItem>
             <SelectItem value="stock-pixabay">Pixabay</SelectItem>
+            <SelectItem value="stock-pexels">Pexels</SelectItem>
+            <SelectItem value="stock-magnific">Magnific</SelectItem>
           </SelectGroup>
         </SelectContent>
       </Select>

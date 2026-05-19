@@ -2,6 +2,8 @@
 
 import { generateImageAction } from "@/app/_actions/apps/image-studio/generate";
 import { getImageFromPixabay } from "@/app/_actions/apps/image-studio/pixabay";
+import { getImageFromPexels } from "@/app/_actions/apps/image-studio/pexels";
+import { getImageFromMagnific } from "@/app/_actions/apps/image-studio/magnific";
 import { getImageFromUnsplash } from "@/app/_actions/apps/image-studio/unsplash";
 import { updatePresentation } from "@/app/_actions/notebook/presentation/presentationActions";
 import { generateSlideImageAction } from "@/app/_actions/presentation/generate-slide-image";
@@ -801,6 +803,34 @@ modelId: modelId || "Qwen/Qwen3.5-397B-A17B-GPTQ-Int4",
                     result = {
                       success: true,
                       image: { url: pixabayResult.imageUrl },
+                    };
+                  }
+                } else if (
+                  imageSource === "stock" &&
+                  stockImageProvider === "pexels"
+                ) {
+                  const pexelsResult = await getImageFromPexels(
+                    slide.rootImage!.query,
+                    slide.rootImage!.layoutType,
+                  );
+                  if (pexelsResult.success && pexelsResult.imageUrl) {
+                    result = {
+                      success: true,
+                      image: { url: pexelsResult.imageUrl },
+                    };
+                  }
+                } else if (
+                  imageSource === "stock" &&
+                  stockImageProvider === "magnific"
+                ) {
+                  const magnificResult = await getImageFromMagnific(
+                    slide.rootImage!.query,
+                    slide.rootImage!.layoutType,
+                  );
+                  if (magnificResult.success && magnificResult.imageUrl) {
+                    result = {
+                      success: true,
+                      image: { url: magnificResult.imageUrl },
                     };
                   }
                 } else {

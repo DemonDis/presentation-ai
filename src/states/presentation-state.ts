@@ -53,7 +53,7 @@ interface PresentationState {
   presentationInput: string;
   imageModel: ImageModelList;
   imageSource: "automatic" | "ai" | "stock";
-  stockImageProvider: "unsplash" | "pixabay";
+  stockImageProvider: "unsplash" | "pixabay" | "pexels" | "magnific";
   presentationStyle: string;
   modelProvider: "openai" | "ollama" | "lmstudio";
   modelId: string;
@@ -155,7 +155,7 @@ interface PresentationState {
   setWebSearchEnabled: (enabled: boolean) => void;
   setImageModel: (model: ImageModelList) => void;
   setImageSource: (source: "automatic" | "ai" | "stock") => void;
-  setStockImageProvider: (provider: "unsplash" | "pixabay") => void;
+  setStockImageProvider: (provider: "unsplash" | "pixabay" | "pexels" | "magnific") => void;
   setPresentationStyle: (style: string) => void;
   setModelProvider: (provider: "openai" | "ollama" | "lmstudio") => void;
   setModelId: (id: string) => void;
@@ -290,15 +290,19 @@ interface PresentationState {
 
   // Image search state
   imageSearchState: {
-    mode: "unsplash" | "pixabay";
+    mode: "unsplash" | "pixabay" | "pexels" | "magnific";
     unsplashQuery: string;
     pixabayQuery: string;
+    pexelsQuery: string;
+    magnificQuery: string;
   };
   setImageSearchState: (
     state: Partial<{
-      mode: "unsplash" | "pixabay";
+      mode: "unsplash" | "pixabay" | "pexels" | "magnific";
       unsplashQuery: string;
       pixabayQuery: string;
+      pexelsQuery: string;
+      magnificQuery: string;
     }>,
   ) => void;
 
@@ -411,6 +415,8 @@ export const usePresentationState = create<PresentationState>((set, get) => ({
     mode: "unsplash",
     unsplashQuery: "",
     pixabayQuery: "",
+    pexelsQuery: "",
+    magnificQuery: "",
   },
   setImageSearchState: (newState) =>
     set((state) => ({

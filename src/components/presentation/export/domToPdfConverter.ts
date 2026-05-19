@@ -16,10 +16,12 @@ export async function exportPresentationToPdf(
     if (!el) continue;
 
     const canvas = await html2canvas(el as HTMLElement, {
-      scale: 2,
+      scale: 1,
       useCORS: true,
       allowTaint: false,
       backgroundColor: "#ffffff",
+      width: slideW,
+      height: slideH,
     });
 
     const dataUrl = canvas.toDataURL("image/png");

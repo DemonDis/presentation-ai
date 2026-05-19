@@ -17,6 +17,7 @@ export {
   convertToPptx,
   downloadBlob,
   exportPresentationToPptx,
+  exportPresentationToPptxWithRender,
 } from "./domToPptxConverter";
 export {
   DEFAULT_SLIDE_HEIGHT_INCHES,
