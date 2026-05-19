@@ -1,6 +1,7 @@
 "use server";
 
 import { env } from "@/env";
+import { proxyDispatcher, createTimeoutSignal } from "@/lib/image-search-proxy";
 
 type PexelsImage = {
   url: string;
@@ -63,6 +64,8 @@ export async function searchPexelsImages(
     url.searchParams.set("page", String(page));
 
     const response = await fetch(url.toString(), {
+      signal: createTimeoutSignal(),
+      dispatcher: proxyDispatcher,
       headers: {
         Authorization: apiKey,
       },

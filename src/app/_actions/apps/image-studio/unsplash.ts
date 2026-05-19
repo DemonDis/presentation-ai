@@ -3,6 +3,7 @@
 import { getImageFromUnsplash as getSingleUnsplashImage } from "@/app/_actions/image/unsplash";
 import { env } from "@/env";
 import { requireOptionalIntegration } from "@/lib/env/optional-integrations";
+import { proxyDispatcher, createTimeoutSignal } from "@/lib/image-search-proxy";
 
 type UnsplashImageResult = {
   url: string;
@@ -55,6 +56,8 @@ export async function searchUnsplashImages(
     const response = await fetch(
       `https://api.unsplash.com/search/photos?query=${encodeURIComponent(query)}&page=${page}&per_page=${perPage}`,
       {
+        signal: createTimeoutSignal(),
+        dispatcher: proxyDispatcher,
         headers: {
           Authorization: `Client-ID ${unsplashConfig.value}`,
         },
@@ -102,6 +105,8 @@ export async function triggerUnsplashDownload(downloadLocation: string) {
 
   try {
     await fetch(downloadLocation, {
+      signal: createTimeoutSignal(),
+      dispatcher: proxyDispatcher,
       headers: {
         Authorization: `Client-ID ${unsplashConfig.value}`,
       },

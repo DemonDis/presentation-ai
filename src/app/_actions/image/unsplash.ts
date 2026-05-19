@@ -4,6 +4,7 @@ import { type LayoutType } from "@/components/presentation/utils/parser";
 import { env } from "@/env";
 import { requireOptionalIntegration } from "@/lib/env/optional-integrations";
 import { auth } from "@/server/auth";
+import { proxyDispatcher, createTimeoutSignal } from "@/lib/image-search-proxy";
 
 export interface UnsplashImage {
   id: string;
@@ -68,6 +69,8 @@ export async function getImageFromUnsplash(
     const response = await fetch(
       `https://api.unsplash.com/search/photos?query=${encodeURIComponent(query)}&page=1&per_page=1${orientationQuery}`,
       {
+        signal: createTimeoutSignal(),
+        dispatcher: proxyDispatcher,
         headers: {
           Authorization: `Client-ID ${unsplashConfig.value}`,
         },

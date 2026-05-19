@@ -1,6 +1,7 @@
 "use server";
 
 import { env } from "@/env";
+import { proxyDispatcher, createTimeoutSignal } from "@/lib/image-search-proxy";
 
 type MagnificImage = {
   url: string;
@@ -67,6 +68,8 @@ export async function searchMagnificImages(
     url.searchParams.set("filters[license][freemium]", "1");
 
     const response = await fetch(url.toString(), {
+      signal: createTimeoutSignal(),
+      dispatcher: proxyDispatcher,
       headers: {
         "x-magnific-api-key": apiKey,
       },

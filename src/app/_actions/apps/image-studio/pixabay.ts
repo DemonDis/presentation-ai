@@ -1,6 +1,7 @@
 "use server";
 
 import { env } from "@/env";
+import { proxyDispatcher, createTimeoutSignal } from "@/lib/image-search-proxy";
 
 type PixabayImage = {
   url: string;
@@ -51,7 +52,10 @@ export async function searchPixabayImages(
     url.searchParams.set("page", String(page));
     url.searchParams.set("safesearch", "true");
 
-    const response = await fetch(url.toString());
+    const response = await fetch(url.toString(), {
+      signal: createTimeoutSignal(),
+      dispatcher: proxyDispatcher,
+    });
 
     if (!response.ok) {
       throw new Error(`Pixabay API error: ${response.status}`);
