@@ -12,7 +12,7 @@ instructions: |
 
   ## AI Provider
   -  AI (OpenAI-compatible): `https://api.ru/v1`
-  - Model: `mistral-nemo` (free, supports Russian)
+  - Model: `Qwen/Qwen3.5-397B-A17B-GPTQ-Int4` (free, supports Russian)
   - `src/lib/model-picker.ts` — routes to provider if PROVIDER_API_KEY is set, else falls back to OpenAI
 
   ## Key Env Vars

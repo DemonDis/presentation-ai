@@ -15,6 +15,7 @@ import {
   setSelectedModel,
   useLocalModels,
 } from "@/hooks/presentation/useLocalModels";
+import { useCloudModels } from "@/hooks/presentation/useCloudModels";
 import { usePresentationState } from "@/states/presentation-state";
 import { Bot, Cpu, Loader2, Monitor } from "lucide-react";
 import { useEffect, useRef } from "react";
@@ -30,6 +31,7 @@ export function ModelPicker({
     usePresentationState();
 
   const { data: modelsData, isLoading, isInitialLoad } = useLocalModels();
+  const { data: cloudModels, isLoading: isLoadingCloud } = useCloudModels();
   const hasRestoredFromStorage = useRef(false);
 
   useEffect(() => {
@@ -38,7 +40,7 @@ export function ModelPicker({
       if (savedModel) {
         modelPickerLogger.info("Restoring previously selected model", {
           modelProvider: savedModel.modelProvider,
-          modelId: savedModel.modelId || "mistral-nemo",
+          modelId: savedModel.modelId || "Qwen/Qwen3.5-397B-A17B-GPTQ-Int4",
         });
         setModelProvider(
           savedModel.modelProvider as "openai" | "ollama" | "lmstudio",
@@ -92,15 +94,22 @@ export function ModelPicker({
       return `lmstudio-${modelId}`;
     }
 
-    return "openai";
+    return modelId || "openai";
   };
 
   const getCurrentModelOption = () => {
     const currentValue = getCurrentModelValue();
 
+    if (currentValue.startsWith("openai:")) {
+      return {
+        label: currentValue.replace("openai:", ""),
+        icon: Bot,
+      };
+    }
+
     if (currentValue === "openai") {
       return {
-        label: "mistral-nemo",
+        label: cloudModels?.[0]?.name ?? "Qwen/Qwen3.5-397B-A17B-GPTQ-Int4",
         icon: Bot,
       };
     }
@@ -130,14 +139,15 @@ export function ModelPicker({
   };
 
   const handleModelChange = (value: string) => {
-    if (value === "openai") {
-      modelPickerLogger.info("Selected OpenAI model", {
+    if (value.startsWith("openai:")) {
+      const modelIdValue = value.replace("openai:", "");
+      modelPickerLogger.info("Selected cloud model", {
         modelProvider: "openai",
-        modelId: "mistral-nemo",
+        modelId: modelIdValue,
       });
       setModelProvider("openai");
-      setModelId("");
-      setSelectedModel("openai", "");
+      setModelId(modelIdValue);
+      setSelectedModel("openai", modelIdValue);
       return;
     }
 
@@ -220,20 +230,46 @@ export function ModelPicker({
 
           <SelectGroup>
             <SelectLabel>Cloud Models</SelectLabel>
-            <SelectItem value="openai">
-              <div className="flex items-center gap-3">
-                <Bot className="h-4 w-4 flex-shrink-0" />
-                <div className="flex min-w-0 flex-col">
-                  <span className="truncate text-sm">GPT-4o-mini</span>
-                  <span className="truncate text-xs text-muted-foreground">
-                    Cloud-based AI model
-                  </span>
+            {isLoadingCloud && (
+              <SelectItem value="loading-cloud" disabled>
+                <div className="flex items-center gap-3">
+                  <Loader2 className="h-4 w-4 flex-shrink-0 animate-spin" />
+                  <span className="truncate text-sm">Loading cloud models...</span>
                 </div>
-              </div>
-            </SelectItem>
+              </SelectItem>
+            )}
+            {!isLoadingCloud && cloudModels && cloudModels.length > 0 ? (
+              cloudModels.map((model) => (
+                <SelectItem key={model.id} value={`openai:${model.id}`}>
+                  <div className="flex items-center gap-3">
+                    <Bot className="h-4 w-4 flex-shrink-0" />
+                    <div className="flex min-w-0 flex-col">
+                      <span className="truncate text-sm">{model.name}</span>
+                      <span className="truncate text-xs text-muted-foreground">
+                        Cloud-based AI model
+                      </span>
+                    </div>
+                  </div>
+                </SelectItem>
+              ))
+            ) : (
+              !isLoadingCloud && (
+                <SelectItem value="openai">
+                  <div className="flex items-center gap-3">
+                    <Bot className="h-4 w-4 flex-shrink-0" />
+                    <div className="flex min-w-0 flex-col">
+                      <span className="truncate text-sm">Qwen/Qwen3.5-397B-A17B-GPTQ-Int4</span>
+                      <span className="truncate text-xs text-muted-foreground">
+                        Cloud-based AI model
+                      </span>
+                    </div>
+                  </div>
+                </SelectItem>
+              )
+            )}
           </SelectGroup>
 
-          {ollamaModels.length > 0 && (
+          {/* {ollamaModels.length > 0 && (
             <SelectGroup>
               <SelectLabel>Local Ollama Models</SelectLabel>
               {ollamaModels.map((model) => {
@@ -283,9 +319,9 @@ export function ModelPicker({
                 );
               })}
             </SelectGroup>
-          )}
+          )} */}
 
-          {lmStudioModels.length === 0 && (
+          {/* {lmStudioModels.length === 0 && (
             <SelectGroup>
               <SelectLabel>LM Studio</SelectLabel>
               <SelectItem value="lmstudio-setup" disabled>
@@ -302,9 +338,9 @@ export function ModelPicker({
                 </div>
               </SelectItem>
             </SelectGroup>
-          )}
+          )} */}
 
-          {showDownloadable && downloadableOllamaModels.length > 0 && (
+          {/* {showDownloadable && downloadableOllamaModels.length > 0 && (
             <SelectGroup>
               <SelectLabel>Downloadable Ollama Models</SelectLabel>
               {downloadableOllamaModels.map((model) => {
@@ -328,7 +364,7 @@ export function ModelPicker({
                 );
               })}
             </SelectGroup>
-          )}
+          )} */}
         </SelectContent>
       </Select>
     </div>

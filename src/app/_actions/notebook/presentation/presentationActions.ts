@@ -32,7 +32,7 @@ export async function createPresentation({
   language?: string;
 }) {
   const session = await auth();
-  if (!session?.user) {
+  if (!session?.user || !session.user.id) {
     throw new Error("Unauthorized");
   }
 
@@ -147,7 +147,7 @@ export async function updatePresentation({
   thumbnailUrl?: string | null;
 }) {
   const session = await auth();
-  if (!session?.user) {
+  if (!session?.user || !session.user.id) {
     throw new Error("Unauthorized");
   }
 
@@ -206,7 +206,7 @@ export async function updatePresentation({
 
 export async function updatePresentationTitle(id: string, title: string) {
   const session = await auth();
-  if (!session?.user) {
+  if (!session?.user || !session.user.id) {
     throw new Error("Unauthorized");
   }
 
@@ -250,7 +250,7 @@ export async function deletePresentation(id: string) {
 
 export async function deletePresentations(ids: string[]) {
   const session = await auth();
-  if (!session?.user) {
+  if (!session?.user || !session.user.id) {
     throw new Error("Unauthorized");
   }
 
@@ -381,7 +381,7 @@ export async function updatePresentationTheme(id: string, theme: string) {
 
 export async function duplicatePresentation(id: string, newTitle?: string) {
   const session = await auth();
-  if (!session?.user) {
+  if (!session?.user || !session.user.id) {
     throw new Error("Unauthorized");
   }
 

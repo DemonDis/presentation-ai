@@ -220,7 +220,7 @@ Return ONLY the XML for a single slide. No explanation, no wrapper tags.
 Now generate the single image slide.
 `;
 
-const model = modelPicker("mistral-nemo");
+const model = modelPicker("Qwen/Qwen3.5-397B-A17B-GPTQ-Int4");
 
 function getImageStyleGuidance(style?: string): string {
   switch (style) {
@@ -287,10 +287,10 @@ export async function POST(req: Request) {
       textDensity: textDensity || "Balanced",
       promptLength: prompt.length,
       modelProvider: "openai",
-      modelId: "mistral-nemo",
+      modelId: "Qwen/Qwen3.5-397B-A17B-GPTQ-Int4",
     });
     try {
-      assertModelIsConfigured("mistral-nemo");
+      assertModelIsConfigured("Qwen/Qwen3.5-397B-A17B-GPTQ-Int4");
     } catch (error) {
       routeLogger.error(
         "Single slide generation request rejected: invalid model configuration",
@@ -298,7 +298,7 @@ export async function POST(req: Request) {
         {
           requestId,
           modelProvider: "openai",
-          modelId: "mistral-nemo",
+          modelId: "Qwen/Qwen3.5-397B-A17B-GPTQ-Int4",
         },
       );
       return NextResponse.json(

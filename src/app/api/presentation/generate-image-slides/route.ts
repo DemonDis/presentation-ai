@@ -136,7 +136,7 @@ export async function POST(req: Request) {
       totalSlides,
       language,
       modelProvider,
-      modelId: modelId || "mistral-nemo",
+      modelId: modelId || "Qwen/Qwen3.5-397B-A17B-GPTQ-Int4",
     });
     try {
       assertModelIsConfigured(modelProvider, modelId);
@@ -147,7 +147,7 @@ export async function POST(req: Request) {
         {
           requestId,
           modelProvider,
-          modelId: modelId || "mistral-nemo",
+          modelId: modelId || "Qwen/Qwen3.5-397B-A17B-GPTQ-Int4",
         },
       );
       return NextResponse.json(
@@ -169,7 +169,7 @@ export async function POST(req: Request) {
         {
           requestId,
           modelProvider,
-          modelId: modelId || "mistral-nemo",
+          modelId: modelId || "Qwen/Qwen3.5-397B-A17B-GPTQ-Int4",
         },
       );
       return NextResponse.json(
@@ -190,7 +190,7 @@ export async function POST(req: Request) {
       title,
       totalSlides,
       modelProvider,
-      modelId: modelId || "mistral-nemo",
+      modelId: modelId || "Qwen/Qwen3.5-397B-A17B-GPTQ-Int4",
     });
     const stream = await chain.stream({
       TITLE: title,

@@ -56,7 +56,7 @@ Current Date: {currentDate}
 
 ## Outline Requirements:
 - First generate an appropriate title for the presentation
-- Generate exactly {numberOfCards} main topics
+- CRITICAL: Generate EXACTLY {numberOfCards} main topics — no more, no less. This is a hard requirement.
 - Each topic should be a clear, engaging heading
 - Include 2-3 bullet points per topic
 - Use {language} language
@@ -64,6 +64,8 @@ Current Date: {currentDate}
 - Tailor language for the requested tone, audience, and scenario
 - ALWAYS use bullet points formatted as "- point text"
 - Do not use bold, italic, or underline
+- Before outputting, count your "# Topic" headings to ensure you have exactly {numberOfCards}
+- Count your headings before outputting: you MUST have exactly {numberOfCards} "# Topic" headings
 
 ## Output Format:
 Start with the title in XML tags, then generate markdown with each topic as a heading followed by bullet points.
@@ -182,7 +184,7 @@ export async function POST(req: Request) {
       promptLength: prompt.length,
       language,
       modelProvider,
-      modelId: modelId || "mistral-nemo",
+      modelId: modelId || "Qwen/Qwen3.5-397B-A17B-GPTQ-Int4",
       webSearch,
     });
 
@@ -221,7 +223,7 @@ export async function POST(req: Request) {
       routeLogger.error("Outline request rejected: invalid model configuration", error, {
         requestId,
         modelProvider,
-        modelId: modelId || "mistral-nemo",
+        modelId: modelId || "Qwen/Qwen3.5-397B-A17B-GPTQ-Int4",
       });
       return NextResponse.json(
         {
@@ -242,7 +244,7 @@ export async function POST(req: Request) {
         {
           requestId,
           modelProvider,
-          modelId: modelId || "mistral-nemo",
+          modelId: modelId || "Qwen/Qwen3.5-397B-A17B-GPTQ-Int4",
         },
       );
       return NextResponse.json(
@@ -275,7 +277,7 @@ export async function POST(req: Request) {
     routeLogger.info("Presentation outline generation started", {
       requestId,
       modelProvider,
-      modelId: modelId || "mistral-nemo",
+      modelId: modelId || "Qwen/Qwen3.5-397B-A17B-GPTQ-Int4",
       numberOfCards,
       webSearch,
     });
@@ -291,7 +293,7 @@ export async function POST(req: Request) {
     routeLogger.info("Presentation outline stream created", {
       requestId,
       modelProvider,
-      modelId: modelId || "mistral-nemo",
+      modelId: modelId || "Qwen/Qwen3.5-397B-A17B-GPTQ-Int4",
     });
     span.event("allweone.api.response_stream_created");
     return createUIMessageStreamResponse({

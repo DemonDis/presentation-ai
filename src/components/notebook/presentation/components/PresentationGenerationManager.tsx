@@ -454,7 +454,7 @@ export function PresentationGenerationManager() {
           generationLogger.info("Presentation outline generation started", {
             presentationId: currentPresentationId,
             modelProvider,
-modelId: modelId || "mistral-nemo",
+modelId: modelId || "Qwen/Qwen3.5-397B-A17B-GPTQ-Int4",
             numSlides,
             language,
             webSearchEnabled,
@@ -493,7 +493,7 @@ modelId: modelId || "mistral-nemo",
     };
 
     void startOutlineGeneration();
-  }, [shouldStartOutlineGeneration]);
+  }, [shouldStartOutlineGeneration, modelId, modelProvider]);
 
   const { completion: presentationCompletion, complete: generatePresentation } =
     useCompletion({
@@ -684,7 +684,7 @@ modelId: modelId || "mistral-nemo",
         title: currentPresentationTitle ?? presentationInput ?? "",
         outlineItems: outline.length,
         modelProvider,
-        modelId: modelId || "mistral-nemo",
+        modelId: modelId || "Qwen/Qwen3.5-397B-A17B-GPTQ-Int4",
         imageSource,
         templateCount: selectedSlideTemplates.length,
       });
@@ -708,7 +708,7 @@ modelId: modelId || "mistral-nemo",
         },
       });
     }
-  }, [shouldStartPresentationGeneration]);
+  }, [shouldStartPresentationGeneration, modelId, modelProvider]);
 
   // Watch for image slide generation start
   useEffect(() => {
@@ -739,7 +739,7 @@ modelId: modelId || "mistral-nemo",
         title: currentPresentationTitle ?? presentationInput ?? "",
         outlineItems: outline.length,
         modelProvider,
-        modelId: modelId || "mistral-nemo",
+        modelId: modelId || "Qwen/Qwen3.5-397B-A17B-GPTQ-Int4",
       });
 
       void generateImageSlides(presentationInput ?? "", {
@@ -753,7 +753,7 @@ modelId: modelId || "mistral-nemo",
         },
       });
     }
-  }, [shouldStartImageSlideGeneration]);
+  }, [shouldStartImageSlideGeneration, modelId, modelProvider]);
 
   // Listen for manual root image generation changes (when user manually triggers image generation)
   useEffect(() => {

@@ -199,7 +199,7 @@ ${
   return createAgent({
     model: modelPicker(
       modelProvider,
-      modelProvider === "openai" ? (modelId || "mistral-nemo") : modelId,
+      modelProvider === "openai" ? (modelId || "Qwen/Qwen3.5-397B-A17B-GPTQ-Int4") : modelId,
     ).withConfig({
       parallel_tool_calls: false,
     }),

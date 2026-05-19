@@ -367,7 +367,7 @@ export const usePresentationState = create<PresentationState>((set, get) => ({
   stockImageProvider: "unsplash",
   presentationStyle: "professional",
   modelProvider: "openai",
-  modelId: "llama3.1:8b",
+  modelId: "Qwen/Qwen3.5-397B-A17B-GPTQ-Int4",
   textContent: "concise",
   tone: "auto",
   audience: "auto",
