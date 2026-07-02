@@ -74,62 +74,52 @@
 ### Установка
 
 1. **Клонируйте репозиторий**
-
-   ```bash
-   git clone git@github.com:allweonedev/presentation-ai.git
-   cd presentation-ai
-   ```
-
 2. **Установите зависимости**
-
-   ```bash
-   pnpm install
-   ```
+```bash
+pnpm install
+```
 
 3. **Настройте переменные окружения**
+Создайте файл `.env` в корневой директории со следующими переменными:
 
-   Создайте файл `.env` в корневой директории со следующими переменными:
+```env
+# База данных
+DATABASE_URL="postgresql://username:password@localhost:5432/presentation_ai"
 
-   ```env
-   # База данных
-   DATABASE_URL="postgresql://username:password@localhost:5432/presentation_ai"
+# Аутентификация
+NEXTAUTH_SECRET=""
+NEXTAUTH_URL="http://localhost:3000"
 
-   # Аутентификация
-   NEXTAUTH_SECRET=""
-   NEXTAUTH_URL="http://localhost:3000"
+# Google OAuth Provider
+GOOGLE_CLIENT_ID=""
+GOOGLE_CLIENT_SECRET=""
 
-   # Google OAuth Provider
-   GOOGLE_CLIENT_ID=""
-   GOOGLE_CLIENT_SECRET=""
+# AI провайдеры
+OPENAI_API_KEY=""
+TOGETHER_AI_API_KEY=""
+FAL_API_KEY=""
 
-   # AI провайдеры
-   OPENAI_API_KEY=""
-   TOGETHER_AI_API_KEY=""
-   FAL_API_KEY=""
+# Сервис загрузки файлов
+UPLOADTHING_TOKEN=""
 
-   # Сервис загрузки файлов
-   UPLOADTHING_TOKEN=""
+# Дополнительные провайдеры поиска и медиа
+UNSPLASH_ACCESS_KEY=""
+TAVILY_API_KEY=""
+```
 
-   # Дополнительные провайдеры поиска и медиа
-   UNSPLASH_ACCESS_KEY=""
-   TAVILY_API_KEY=""
-   ```
-
-   > 💡 **Совет**: Скопируйте `.env.example` в `.env` и заполните вашими реальными значениями. Если вы планируете использовать локальные текстовые модели через Ollama или LM Studio, вы можете запускать генерацию текста без `OPENAI_API_KEY`.
+> 💡 **Совет**: Скопируйте `.env.example` в `.env` и заполните вашими реальными значениями. Если вы планируете использовать локальные текстовые модели через Ollama или LM Studio, вы можете запускать генерацию текста без `OPENAI_API_KEY`.
 
 ### Настройка базы данных
 
 1. **Инициализируйте базу данных**
-
-   ```bash
-   pnpm db:push
-   ```
+```bash
+pnpm db:push
+```
 
 2. **Запустите сервер разработки**
-
-   ```bash
-   pnpm dev
-   ```
+```bash
+pnpm dev
+```
 
 3. **Откройте приложение**
 
