@@ -3,7 +3,8 @@ import { db } from "@/server/db";
 import { PrismaAdapter } from "@auth/prisma-adapter";
 import NextAuth, { type DefaultSession, type Session } from "next-auth";
 import { type Adapter } from "next-auth/adapters";
-import GoogleProvider from "next-auth/providers/google";
+import CredentialsProvider from "next-auth/providers/credentials";
+import bcrypt from "bcryptjs";
 declare module "next-auth" {
   interface Session extends DefaultSession {
     user: {
@@ -70,20 +71,18 @@ export const { auth, handlers, signIn, signOut } = NextAuth({
       session.user.isAdmin = token.role === "ADMIN";
       return session;
     },
-    async signIn({ user, account }) {
-      if (account?.provider === "google") {
-        const dbUser = await db.user.findUnique({
-          where: { email: user.email! },
-          select: { id: true, hasAccess: true, role: true },
-        });
+    async signIn({ user }) {
+      const dbUser = await db.user.findUnique({
+        where: { email: user.email! },
+        select: { id: true, hasAccess: true, role: true },
+      });
 
-        if (dbUser) {
-          user.hasAccess = dbUser.hasAccess;
-          user.role = dbUser.role;
-        } else {
-          user.hasAccess = false;
-          user.role = "USER";
-        }
+      if (dbUser) {
+        user.hasAccess = dbUser.hasAccess;
+        user.role = dbUser.role;
+      } else {
+        user.hasAccess = false;
+        user.role = "USER";
       }
 
       return true;
@@ -92,9 +91,43 @@ export const { auth, handlers, signIn, signOut } = NextAuth({
 
   adapter: PrismaAdapter(db) as Adapter,
   providers: [
-    GoogleProvider({
-      clientId: env.GOOGLE_CLIENT_ID,
-      clientSecret: env.GOOGLE_CLIENT_SECRET,
+    CredentialsProvider({
+      name: "credentials",
+      credentials: {
+        email: { label: "Email", type: "email" },
+        password: { label: "Password", type: "password" },
+      },
+      async authorize(credentials) {
+        if (!credentials?.email || !credentials?.password) {
+          throw new Error("Email и пароль обязательны");
+        }
+
+        const user = await db.user.findUnique({
+          where: { email: credentials.email as string },
+        });
+
+        if (!user || !user.password) {
+          throw new Error("Неверный email или пароль");
+        }
+
+        const isPasswordValid = await bcrypt.compare(
+          credentials.password as string,
+          user.password
+        );
+
+        if (!isPasswordValid) {
+          throw new Error("Неверный email или пароль");
+        }
+
+        return {
+          id: user.id,
+          email: user.email,
+          name: user.name,
+          image: user.image,
+          hasAccess: user.hasAccess,
+          role: user.role,
+        };
+      },
     }),
   ],
 });
