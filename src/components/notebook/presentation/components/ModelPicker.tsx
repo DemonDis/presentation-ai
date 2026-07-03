@@ -180,6 +180,20 @@ export function ModelPicker({
       };
     }
 
+    if (modelProvider === "remote") {
+      const remoteModel = remoteModelsData?.find((model) => model.id === modelId);
+      if (remoteModel) {
+        return {
+          label: remoteModel.name,
+          icon: Bot,
+        };
+      }
+      return {
+        label: modelId || "Выбрать модель",
+        icon: Bot,
+      };
+    }
+
     const localModel = localModels.find((model) => model.id === currentValue);
     if (localModel) {
       return {
