@@ -127,22 +127,22 @@ type ViewMode = "grid" | "list";
 type SortBy = "date-desc" | "date-asc" | "name-asc" | "name-desc";
 
 const LANGUAGE_OPTIONS = [
-  { label: "English", value: "en-US" },
-  { label: "Portuguese", value: "pt" },
-  { label: "Spanish", value: "es" },
-  { label: "French", value: "fr" },
-  { label: "German", value: "de" },
-  { label: "Italian", value: "it" },
-  { label: "Japanese", value: "ja" },
-  { label: "Korean", value: "ko" },
-  { label: "Chinese", value: "zh" },
-  { label: "Russian", value: "ru" },
-  { label: "Hindi", value: "hi" },
-  { label: "Arabic", value: "ar" },
+  { label: "Английский", value: "en-US" },
+  { label: "Португальский", value: "pt" },
+  { label: "Испанский", value: "es" },
+  { label: "Французский", value: "fr" },
+  { label: "Немецкий", value: "de" },
+  { label: "Итальянский", value: "it" },
+  { label: "Японский", value: "ja" },
+  { label: "Корейский", value: "ko" },
+  { label: "Китайский", value: "zh" },
+  { label: "Русский", value: "ru" },
+  { label: "Хинди", value: "hi" },
+  { label: "Арабский", value: "ar" },
 ] as const;
 
 const SLIDE_OPTIONS = Array.from({ length: 12 }, (_, index) => ({
-  label: `${index + 1} slide${index === 0 ? "" : "s"}`,
+  label: `${index + 1} слайд${index === 0 ? "" : index < 4 ? "а" : "ов"}`,
   value: String(index + 1),
 }));
 
@@ -173,7 +173,7 @@ function GreetingSection() {
   return (
     <section className="mb-5 flex flex-col items-center text-center sm:mb-6">
       <h1 className="max-w-4xl text-2xl font-semibold tracking-normal text-foreground sm:text-3xl">
-        What presentation would you like to create today?
+        Какую презентацию вы хотите создать сегодня?
       </h1>
     </section>
   );
@@ -288,11 +288,11 @@ function PresentationFavoriteButton({
       type="button"
       aria-label={
         file.isFavorited
-          ? `Remove ${file.name} from favorites`
-          : `Add ${file.name} to favorites`
+          ? `Удалить «${file.name}» из избранного`
+          : `Добавить «${file.name}» в избранное`
       }
       aria-pressed={file.isFavorited}
-      title={file.isFavorited ? "Remove from favorites" : "Add to favorites"}
+      title={file.isFavorited ? "Удалить из избранного" : "Добавить в избранное"}
       disabled={file.isFavoritePending}
       onClick={(event) => {
         event.stopPropagation();
@@ -341,7 +341,7 @@ function PresentationFileActionsMenu({
             className="size-8 rounded-full bg-background/90 text-muted-foreground shadow-sm backdrop-blur hover:bg-background hover:text-foreground"
           >
             <MoreVertical className="size-4" />
-            <span className="sr-only">Open presentation actions</span>
+            <span className="sr-only">Открыть меню действий</span>
           </Button>
         </DropdownMenuTrigger>
         <DropdownMenuContent align="end" className="w-52">
@@ -354,7 +354,7 @@ function PresentationFileActionsMenu({
             ) : (
               <Pencil className="mr-2 size-4" />
             )}
-            Rename
+            Переименовать
           </DropdownMenuItem>
           <DropdownMenuItem
             disabled={file.isDuplicatePending}
@@ -365,7 +365,7 @@ function PresentationFileActionsMenu({
             ) : (
               <Copy className="mr-2 size-4" />
             )}
-            Duplicate
+            Дублировать
           </DropdownMenuItem>
           <DropdownMenuItem
             disabled={file.isFavoritePending}
@@ -381,7 +381,7 @@ function PresentationFileActionsMenu({
                 )}
               />
             )}
-            {file.isFavorited ? "Remove from favorites" : "Add to favorites"}
+            {file.isFavorited ? "Удалить из избранного" : "Добавить в избранное"}
           </DropdownMenuItem>
           <DropdownMenuSeparator />
           <DropdownMenuItem
@@ -394,7 +394,7 @@ function PresentationFileActionsMenu({
             ) : (
               <Trash2 className="mr-2 size-4" />
             )}
-            Delete
+            Удалить
           </DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>
@@ -437,15 +437,15 @@ function PresentationProjectFilesSection({
   const searchInputRef = useRef<HTMLInputElement>(null);
 
   const tabs: { id: LibraryTab; label: string; icon: LucideIcon }[] = [
-    { id: "all", label: "All", icon: Archive },
-    { id: "recent", label: "Recently viewed", icon: Clock3 },
-    { id: "favorites", label: "Favorites", icon: Star },
+    { id: "all", label: "Все", icon: Archive },
+    { id: "recent", label: "Недавние", icon: Clock3 },
+    { id: "favorites", label: "Избранное", icon: Star },
   ];
   const sortOptions: { id: SortBy; label: string; icon: LucideIcon }[] = [
-    { id: "date-desc", label: "Newest first", icon: Clock3 },
-    { id: "date-asc", label: "Oldest first", icon: Clock3 },
-    { id: "name-asc", label: "Name A-Z", icon: Grid2X2 },
-    { id: "name-desc", label: "Name Z-A", icon: Grid2X2 },
+    { id: "date-desc", label: "Сначала новые", icon: Clock3 },
+    { id: "date-asc", label: "Сначала старые", icon: Clock3 },
+    { id: "name-asc", label: "По имени А-Я", icon: Grid2X2 },
+    { id: "name-desc", label: "По имени Я-А", icon: Grid2X2 },
   ];
   const shouldShowSearchInput = Boolean(searchQuery) || isSearchOpen;
   const activeFiltersCount =
@@ -564,7 +564,7 @@ function PresentationProjectFilesSection({
                     )}
                   >
                     <Search className="size-4" />
-                    <span className="sr-only">Search files</span>
+                    <span className="sr-only">Поиск файлов</span>
                   </Button>
                   <div
                     className={cn(
@@ -578,15 +578,15 @@ function PresentationProjectFilesSection({
                     <input
                       ref={searchInputRef}
                       type="text"
-                      aria-label="Search files"
-                      placeholder="Search"
+                      aria-label="Поиск файлов"
+                      placeholder="Поиск"
                       value={searchQuery}
                       onChange={(event) => setSearchQuery(event.target.value)}
                       className="h-8.5 w-full min-w-0 rounded-lg border border-border bg-background py-1.5 pr-8 pl-9 text-sm text-foreground outline-none focus:border-primary"
                     />
                     <button
                       type="button"
-                      aria-label="Close search"
+                      aria-label="Закрыть поиск"
                       onClick={() => {
                         setSearchQuery("");
                         setIsSearchOpen(false);
@@ -607,7 +607,7 @@ function PresentationProjectFilesSection({
                   className="h-8.5 gap-1.5 rounded-lg px-3"
                 >
                   <Plus className="size-4" />
-                  <span>Create new</span>
+                  <span>Создать новую</span>
                 </Button>
                 <DropdownMenu>
                   <DropdownMenuTrigger asChild>
@@ -618,7 +618,7 @@ function PresentationProjectFilesSection({
                       className="relative size-8.5 p-0"
                     >
                       <SlidersHorizontal className="size-4" />
-                      <span className="sr-only">Sort and filter files</span>
+                      <span className="sr-only">Сортировка и фильтрация файлов</span>
                       {activeFiltersCount > 0 ? (
                         <span className="absolute -top-1 -right-1 flex h-4.5 min-w-4.5 items-center justify-center rounded-full bg-primary px-1 text-[10px] font-medium text-primary-foreground sm:static sm:h-5 sm:min-w-5 sm:rounded-full">
                           {activeFiltersCount}
@@ -627,7 +627,7 @@ function PresentationProjectFilesSection({
                     </Button>
                   </DropdownMenuTrigger>
                   <DropdownMenuContent align="end" className="w-52">
-                    <DropdownMenuLabel>Sort by</DropdownMenuLabel>
+                    <DropdownMenuLabel>Сортировать по</DropdownMenuLabel>
                     {sortOptions.map((option) => (
                       <DropdownMenuItem
                         key={option.id}
@@ -644,7 +644,7 @@ function PresentationProjectFilesSection({
                       </DropdownMenuItem>
                     ))}
                     <DropdownMenuSeparator />
-                    <DropdownMenuLabel>Filter</DropdownMenuLabel>
+                    <DropdownMenuLabel>Фильтр</DropdownMenuLabel>
                     <DropdownMenuItem
                       onClick={() =>
                         onShowFavoritesOnlyChange(!showFavoritesOnly)
@@ -659,12 +659,12 @@ function PresentationProjectFilesSection({
                               "fill-yellow-400 text-yellow-400",
                           )}
                         />
-                        Favorites only
+                        Только избранные
                       </span>
                       {showFavoritesOnly ? <Check className="size-4" /> : null}
                     </DropdownMenuItem>
                     <DropdownMenuSeparator />
-                    <DropdownMenuLabel>Type</DropdownMenuLabel>
+                    <DropdownMenuLabel>Тип</DropdownMenuLabel>
                     {filterOptions.map((option) => (
                       <DropdownMenuItem
                         key={option.id}
@@ -691,7 +691,7 @@ function PresentationProjectFilesSection({
                     )}
                   >
                     <Grid2X2 className="size-3.5" />
-                    <span className="hidden sm:inline">Grid</span>
+                    <span className="hidden sm:inline">Сетка</span>
                   </button>
                   <button
                     type="button"
@@ -704,7 +704,7 @@ function PresentationProjectFilesSection({
                     )}
                   >
                     <List className="size-3.5" />
-                    <span className="hidden sm:inline">List</span>
+                    <span className="hidden sm:inline">Список</span>
                   </button>
                 </div>
               </div>
@@ -756,10 +756,10 @@ function PresentationProjectFilesSection({
                 <Folder className="size-8 text-muted-foreground" />
               </div>
               <p className="mb-2 text-sm font-medium text-foreground">
-                No presentations yet
+                Пока нет презентаций
               </p>
               <p className="mb-6 text-sm text-muted-foreground">
-                Create your first presentation to get started
+                Создайте свою первую презентацию, чтобы начать
               </p>
             </div>
           ) : viewMode === "grid" ? (
@@ -892,15 +892,15 @@ function PresentationProjectFilesSection({
       >
         <CredenzaContent className="sm:max-w-md">
           <CredenzaHeader>
-            <CredenzaTitle>Rename presentation</CredenzaTitle>
+            <CredenzaTitle>Переименовать презентацию</CredenzaTitle>
             <CredenzaDescription>
-              Choose a new name for this presentation.
+              Введите новое название для этой презентации.
             </CredenzaDescription>
           </CredenzaHeader>
           <Input
             value={renameValue}
             onChange={(event) => setRenameValue(event.target.value)}
-            placeholder="Enter a new presentation name"
+            placeholder="Введите новое название презентации"
             autoFocus
           />
           <CredenzaFooter>
@@ -910,7 +910,7 @@ function PresentationProjectFilesSection({
               onClick={closeRenameDialog}
               disabled={isRenamePending}
             >
-              Cancel
+              Отмена
             </Button>
             <Button
               type="button"
@@ -941,7 +941,7 @@ function PresentationProjectFilesSection({
               {isRenamePending ? (
                 <Loader2 className="mr-2 size-4 animate-spin" />
               ) : null}
-              Rename
+              Переименовать
             </Button>
           </CredenzaFooter>
         </CredenzaContent>
@@ -957,15 +957,15 @@ function PresentationProjectFilesSection({
       >
         <AlertDialogContent>
           <AlertDialogHeader>
-            <AlertDialogTitle>Delete presentation</AlertDialogTitle>
+            <AlertDialogTitle>Удалить презентацию</AlertDialogTitle>
             <AlertDialogDescription>
-              This will permanently delete "{deleteTarget?.name}". This action
-              cannot be undone.
+              Это действие безвозвратно удалит «{deleteTarget?.name}». Это действие
+              нельзя отменить.
             </AlertDialogDescription>
           </AlertDialogHeader>
           <AlertDialogFooter>
             <AlertDialogCancel disabled={isDeletePending}>
-              Cancel
+              Отмена
             </AlertDialogCancel>
             <AlertDialogAction
               className="bg-destructive text-destructive-foreground hover:bg-destructive/90"
@@ -986,7 +986,7 @@ function PresentationProjectFilesSection({
               {isDeletePending ? (
                 <Loader2 className="mr-2 size-4 animate-spin" />
               ) : null}
-              Delete
+              Удалить
             </AlertDialogAction>
           </AlertDialogFooter>
         </AlertDialogContent>
@@ -1165,7 +1165,7 @@ export function PresentationDashboard() {
       toast.error(
         error instanceof Error
           ? error.message
-          : "Failed to update favorite",
+          : "Не удалось обновить избранное",
       );
     },
     onSuccess: (result, variables) => {
@@ -1217,11 +1217,11 @@ export function PresentationDashboard() {
       toast.error(
         error instanceof Error
           ? error.message
-          : "Failed to rename presentation",
+          : "Не удалось переименовать презентацию",
       );
     },
     onSuccess: () => {
-      toast.success("Presentation renamed");
+      toast.success("Презентация переименована");
     },
     onSettled: () => {
       queryClient.invalidateQueries({ queryKey: PRESENTATIONS_QUERY_KEY });
@@ -1258,11 +1258,11 @@ export function PresentationDashboard() {
       toast.error(
         error instanceof Error
           ? error.message
-          : "Failed to delete presentation",
+          : "Не удалось удалить презентацию",
       );
     },
     onSuccess: () => {
-      toast.success("Presentation deleted");
+      toast.success("Презентация удалена");
     },
     onSettled: () => {
       queryClient.invalidateQueries({ queryKey: PRESENTATIONS_QUERY_KEY });
@@ -1281,14 +1281,14 @@ export function PresentationDashboard() {
     },
     onSuccess: (presentation) => {
       queryClient.invalidateQueries({ queryKey: PRESENTATIONS_QUERY_KEY });
-      toast.success("Presentation duplicated");
+      toast.success("Презентация дублирована");
       router.push(`/presentation/${presentation.id}`);
     },
     onError: (error) => {
       toast.error(
         error instanceof Error
           ? error.message
-          : "Failed to duplicate presentation",
+          : "Не удалось дублировать презентацию",
       );
     },
   });
@@ -1313,7 +1313,7 @@ export function PresentationDashboard() {
   const allPresentations = data?.pages.flatMap((page) => page.items) ?? [];
   const fileItems: PresentationFileItem[] = allPresentations.map((item) => ({
     id: item.id,
-    name: item.title || "Untitled",
+    name: item.title || "Без названия",
     thumbnailUrl: item.thumbnailUrl,
     modified: formatDistanceToNow(new Date(item.updatedAt), {
       addSuffix: true,
@@ -1360,16 +1360,16 @@ export function PresentationDashboard() {
 
   const selectedLanguageLabel =
     LANGUAGE_OPTIONS.find((option) => option.value === language)?.label ??
-    "English";
+    "Английский";
   const slidesLabel =
     SLIDE_OPTIONS.find((option) => option.value === String(numSlides))?.label ??
-    `${numSlides} slides`;
+    `${numSlides} слайд${numSlides === 1 ? "" : numSlides < 5 ? "а" : "ов"}`;
   const outputFormatLabel =
     getPresentationGenerationAspectRatioLabel(generationAspectRatio);
   const filterOptions = useMemo(
     () => [
-      { id: ALL_PRESENTATION_DOCUMENT_TYPES, label: "All" },
-      { id: "PRESENTATION", label: "Presentations" },
+      { id: ALL_PRESENTATION_DOCUMENT_TYPES, label: "Все" },
+      { id: "PRESENTATION", label: "Презентации" },
     ],
     [],
   );
@@ -1416,7 +1416,7 @@ export function PresentationDashboard() {
 
       if (!result.success || !result.presentation) {
         setIsGeneratingOutline(false);
-        toast.error(result.message || "Failed to create presentation");
+        toast.error(result.message || "Не удалось создать презентацию");
         return;
       }
 
@@ -1426,7 +1426,7 @@ export function PresentationDashboard() {
     } catch (error) {
       setIsGeneratingOutline(false);
       console.error("Error creating presentation:", error);
-      toast.error("Failed to create presentation");
+      toast.error("Не удалось создать презентацию");
     }
   };
 
@@ -1435,7 +1435,7 @@ export function PresentationDashboard() {
       <GreetingSection />
 
       <NotebookInputBox
-        placeholder="Describe your topic or paste your content here. Our AI will structure it into a compelling presentation."
+        placeholder="Опишите вашу тему или вставьте контент здесь. Наш ИИ структурирует его в убедительную презентацию."
         value={presentationInput}
         onChange={setPresentationInput}
         onSubmit={handleGenerate}
@@ -1444,7 +1444,7 @@ export function PresentationDashboard() {
       >
         <div className="flex min-w-0 flex-wrap items-center gap-2">
           <SettingPill icon={PanelsTopLeft} label={slidesLabel}>
-            <DropdownMenuLabel>Slides</DropdownMenuLabel>
+            <DropdownMenuLabel>Слайды</DropdownMenuLabel>
             <DropdownMenuRadioGroup
               value={String(numSlides)}
               onValueChange={(value) => setNumSlides(Number(value))}
@@ -1458,7 +1458,7 @@ export function PresentationDashboard() {
           </SettingPill>
 
           <SettingPill icon={LayoutTemplate} label={outputFormatLabel}>
-            <DropdownMenuLabel>Format</DropdownMenuLabel>
+            <DropdownMenuLabel>Формат</DropdownMenuLabel>
             <DropdownMenuRadioGroup
               value={generationAspectRatio}
               onValueChange={(value) =>
@@ -1468,14 +1468,14 @@ export function PresentationDashboard() {
               }
             >
               <DropdownMenuRadioItem value="dynamic">
-                Dynamic
+                Динамический
               </DropdownMenuRadioItem>
               <DropdownMenuRadioItem value="16:9">16:9</DropdownMenuRadioItem>
             </DropdownMenuRadioGroup>
           </SettingPill>
 
           <SettingPill icon={Languages} label={selectedLanguageLabel}>
-            <DropdownMenuLabel>Language</DropdownMenuLabel>
+            <DropdownMenuLabel>Язык</DropdownMenuLabel>
             <DropdownMenuRadioGroup value={language} onValueChange={setLanguage}>
               {LANGUAGE_OPTIONS.map((option) => (
                 <DropdownMenuRadioItem key={option.value} value={option.value}>
@@ -1492,7 +1492,7 @@ export function PresentationDashboard() {
                 className="inline-flex h-8 items-center gap-2 rounded-full border border-border bg-background px-3 text-[13px] font-medium text-foreground transition-colors hover:bg-accent sm:h-9 sm:px-3.5 sm:text-sm"
               >
                 <WandSparkles className="size-3.5 sm:size-4" />
-                More
+                Ещё
               </button>
             </DropdownMenuTrigger>
             <DropdownMenuContent align="start" className="w-56">
@@ -1501,14 +1501,14 @@ export function PresentationDashboard() {
                 onCheckedChange={setWebSearchEnabled}
               >
                 <Globe className="size-4" />
-                Web Search
+                Поиск в интернете
               </DropdownMenuCheckboxItem>
               <DropdownMenuCheckboxItem
                 checked={autoThemeEnabled}
                 onCheckedChange={setAutoThemeEnabled}
               >
                 <WandSparkles className="size-4" />
-                Auto Theme
+                Авто-тема
               </DropdownMenuCheckboxItem>
             </DropdownMenuContent>
           </DropdownMenu>

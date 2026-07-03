@@ -308,7 +308,7 @@ export function ModelPicker({
             </SelectGroup>
           ) : null}
 
-          <SelectGroup>
+          {/* <SelectGroup>
             <SelectLabel>Cloud Models</SelectLabel>
             {OPENAI_MODELS.map((model) => (
               <SelectItem
@@ -440,7 +440,7 @@ export function ModelPicker({
                 );
               })}
             </SelectGroup>
-          )}
+          )} */}
 
           {remoteModelsData && remoteModelsData.length > 0 && (
             <SelectGroup>
