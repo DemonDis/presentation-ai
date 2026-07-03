@@ -14,10 +14,10 @@ const LM_STUDIO_MODELS_URLS = [
   `${LM_STUDIO_BASE_URL}/api/v0/models`,
 ] as const;
 
-// Remote models API (chat.ehd-zr.cbr.ru)
-const REMOTE_MODELS_API_URL = "https://chat.ehd-zr.cbr.ru/api/models";
-const REMOTE_CHAT_API_BASE_URL = "https://chat.ehd-zr.cbr.ru/api/v1";
-const REMOTE_API_KEY = env.REMOTE_API_KEY ?? "";
+// Remote models API
+const REMOTE_MODELS_API_URL = env.REMOTE_MODELS_API_URL;
+const REMOTE_CHAT_API_BASE_URL = env.REMOTE_CHAT_API_BASE_URL;
+const REMOTE_API_KEY = env.REMOTE_API_KEY;
 
 interface OllamaTagsResponse {
   models?: Array<{ name?: string }>;

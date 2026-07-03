@@ -444,7 +444,7 @@ export function ModelPicker({
 
           {remoteModelsData && remoteModelsData.length > 0 && (
             <SelectGroup>
-              <SelectLabel>Remote Models (chat.ehd-zr.cbr.ru)</SelectLabel>
+              <SelectLabel>Remote Models</SelectLabel>
               {remoteModelsData.map((model) => {
                 const Icon = Bot;
                 const value = `remote-${model.id}`;

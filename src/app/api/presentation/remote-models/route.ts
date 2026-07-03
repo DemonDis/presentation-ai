@@ -1,15 +1,16 @@
 import { NextResponse } from "next/server";
+import { env } from "@/env";
 import { appLogger } from "@/lib/observability/logger";
 
 const routeLogger = appLogger.child("api:remote-models");
 
 // Fallback static models for remote provider
-// These are the model names from chat.ehd-zr.cbr.ru API
+// These are the model names
 const FALLBACK_REMOTE_MODELS = [
   { id: "Qwen/Qwen3.5-397B-A17B-GPTQ-Int4", name: "Qwen3.5-397B", provider: "remote" as const },
 ];
 
-const REMOTE_MODELS_API_URL = "https://chat.ehd-zr.cbr.ru/api/models";
+const REMOTE_MODELS_API_URL = env.REMOTE_MODELS_API_URL;
 
 interface RemoteModel {
   id: string;

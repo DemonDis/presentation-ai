@@ -284,7 +284,7 @@ export function useLocalModels() {
   };
 }
 
-// Remote models from external API (chat.ehd-zr.cbr.ru)
+// Remote models from external API
 const REMOTE_MODELS_API_URL = "/api/presentation/remote-models";
 
 interface RemoteModelInfo {

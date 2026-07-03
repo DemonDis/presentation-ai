@@ -11,6 +11,8 @@ export const env = createEnv({
 
     OPENAI_API_KEY: z.string().optional(),
     REMOTE_API_KEY: z.string().optional(),
+    REMOTE_MODELS_API_URL: z.string().url().optional(),
+    REMOTE_CHAT_API_BASE_URL: z.string().url().optional(),
     GOOGLE_CUSTOM_SEARCH_API_KEY: z.string().optional(),
     SEARCH_ENGINE_CX: z.string().optional(),
     TOGETHER_AI_API_KEY: z.string().optional(),
@@ -38,6 +40,8 @@ export const env = createEnv({
     NODE_ENV: process.env.NODE_ENV,
     OPENAI_API_KEY: process.env.OPENAI_API_KEY,
     REMOTE_API_KEY: process.env.REMOTE_API_KEY,
+    REMOTE_MODELS_API_URL: process.env.REMOTE_MODELS_API_URL,
+    REMOTE_CHAT_API_BASE_URL: process.env.REMOTE_CHAT_API_BASE_URL,
     GOOGLE_CUSTOM_SEARCH_API_KEY: process.env.GOOGLE_CUSTOM_SEARCH_API_KEY,
     SEARCH_ENGINE_CX: process.env.SEARCH_ENGINE_CX,
     TOGETHER_AI_API_KEY: process.env.TOGETHER_AI_API_KEY,
