@@ -25,62 +25,62 @@ const OPENAI_MODELS = [
   {
     id: "gpt-4o-mini",
     label: "GPT-4o-mini",
-    description: "Fast cloud model for everyday presentation drafts",
+    description: "Быстрая облачная модель для обычных черновиков презентаций",
   },
   {
     id: "gpt-4o",
     label: "GPT-4o",
-    description: "Balanced cloud model for higher quality drafts",
+    description: "Сбалансированная облачная модель для черновиков более высокого качества",
   },
   {
     id: "gpt-4.1-mini",
     label: "GPT-4.1-mini",
-    description: "Efficient cloud model for structured generation",
+    description: "Эффективная облачная модель для структурированной генерации",
   },
   {
     id: "gpt-4.1-nano",
     label: "GPT-4.1-nano",
-    description: "Fastest, lowest-cost GPT-4.1 model",
+    description: "Самая быстрая и дешёвая модель GPT-4.1",
   },
   {
     id: "gpt-4.1",
     label: "GPT-4.1",
-    description: "Stronger cloud model for complex presentations",
+    description: "Мощная облачная модель для сложных презентаций",
   },
   {
     id: "gpt-5.2",
     label: "GPT-5.2",
-    description: "Latest flagship GPT model",
+    description: "Последняя флагманская модель GPT",
   },
   {
     id: "gpt-5.2-chat-latest",
     label: "GPT-5.2 Chat",
-    description: "Latest ChatGPT-style GPT-5.2 model",
+    description: "Последняя модель GPT-5.2 в стиле ChatGPT",
   },
   {
     id: "gpt-5.2-pro",
     label: "GPT-5.2 Pro",
-    description: "More compute for harder problems",
+    description: "Больше вычислительной мощности для сложных задач",
   },
   {
     id: "gpt-5.1",
     label: "GPT-5.1",
-    description: "Flagship GPT model with configurable reasoning",
+    description: "Флагманская модель GPT с настраиваемым рассуждением",
   },
   {
     id: "gpt-5",
     label: "GPT-5",
-    description: "Previous GPT-5 reasoning model",
+    description: "Предыдущая модель рассуждения GPT-5",
   },
   {
     id: "gpt-5-mini",
     label: "GPT-5-mini",
-    description: "Faster, cost-efficient GPT-5 model",
+    description: "Более быстрая и экономичная модель GPT-5",
   },
   {
     id: "gpt-5-nano",
     label: "GPT-5-nano",
-    description: "Fastest, most cost-efficient GPT-5 model",
+    description: "Самая быстрая и экономичная модель GPT-5",
   },
 ] as const;
 
@@ -199,7 +199,7 @@ export function ModelPicker({
     }
 
     return {
-      label: "Select model",
+      label: "Выбрать модель",
       icon: Bot,
     };
   };
@@ -272,7 +272,7 @@ export function ModelPicker({
     <div className="min-w-0">
       {shouldShowLabel && (
         <label className="block text-xs font-medium text-muted-foreground">
-          Text model
+          Текстовая модель
         </label>
       )}
       <Select value={getCurrentModelValue()} onValueChange={handleModelChange}>
@@ -291,16 +291,16 @@ export function ModelPicker({
         <SelectContent className="w-80 max-w-[calc(100vw-1rem)]">
           {(isLoading && !isInitialLoad) || isLoadingRemote ? (
             <SelectGroup>
-              <SelectLabel>Loading Models</SelectLabel>
+              <SelectLabel>Загрузка моделей</SelectLabel>
               <SelectItem value="loading" disabled className="overflow-hidden">
                 <div className="flex min-w-0 max-w-full items-center gap-3">
                   <Loader2 className="h-4 w-4 flex-shrink-0 animate-spin" />
                   <div className="flex min-w-0 flex-1 flex-col overflow-hidden">
                     <span className="truncate text-sm">
-                      Refreshing models...
+                      Обновление моделей...
                     </span>
                     <span className="line-clamp-2 whitespace-normal break-words text-xs leading-snug text-muted-foreground">
-                      Checking for new models
+                      Проверка новых моделей
                     </span>
                   </div>
                 </div>
@@ -444,7 +444,7 @@ export function ModelPicker({
 
           {remoteModelsData && remoteModelsData.length > 0 && (
             <SelectGroup>
-              <SelectLabel>Remote Models</SelectLabel>
+              <SelectLabel>Удалённые модели</SelectLabel>
               {remoteModelsData.map((model) => {
                 const Icon = Bot;
                 const value = `remote-${model.id}`;
