@@ -14,6 +14,7 @@ import {
   getSelectedModel,
   setSelectedModel,
   useLocalModels,
+  useRemoteModels,
 } from "@/hooks/presentation/useLocalModels";
 import { usePresentationState } from "@/states/presentation-state";
 import { Bot, Cpu, Loader2, Monitor } from "lucide-react";
@@ -98,6 +99,7 @@ export function ModelPicker({
     usePresentationState();
 
   const { data: modelsData, isLoading, isInitialLoad } = useLocalModels();
+  const { data: remoteModelsData, isLoading: isLoadingRemote } = useRemoteModels();
   const hasRestoredFromStorage = useRef(false);
 
   useEffect(() => {
@@ -109,7 +111,7 @@ export function ModelPicker({
           modelId: savedModel.modelId || "gpt-4o-mini",
         });
         setModelProvider(
-          savedModel.modelProvider as "openai" | "ollama" | "lmstudio",
+          savedModel.modelProvider as "openai" | "ollama" | "lmstudio" | "remote",
         );
         setModelId(savedModel.modelId);
       }
@@ -158,6 +160,10 @@ export function ModelPicker({
 
     if (modelProvider === "lmstudio") {
       return `lmstudio-${modelId}`;
+    }
+
+    if (modelProvider === "remote") {
+      return `remote-${modelId}`;
     }
 
     return `openai-${getOpenAIModel(modelId).id}`;
@@ -246,6 +252,19 @@ export function ModelPicker({
       setModelProvider("lmstudio");
       setModelId(model);
       setSelectedModel("lmstudio", model);
+      return;
+    }
+
+    if (value.startsWith("remote-")) {
+      const model = value.replace("remote-", "");
+      modelPickerLogger.info("Selected Remote model", {
+        modelProvider: "remote",
+        modelId: model,
+      });
+      setModelProvider("remote" as "openai" | "ollama" | "lmstudio");
+      setModelId(model);
+      setSelectedModel("remote", model);
+      return;
     }
   };
 
@@ -270,7 +289,7 @@ export function ModelPicker({
           </div>
         </SelectTrigger>
         <SelectContent className="w-80 max-w-[calc(100vw-1rem)]">
-          {isLoading && !isInitialLoad && (
+          {(isLoading && !isInitialLoad) || isLoadingRemote ? (
             <SelectGroup>
               <SelectLabel>Loading Models</SelectLabel>
               <SelectItem value="loading" disabled className="overflow-hidden">
@@ -287,7 +306,7 @@ export function ModelPicker({
                 </div>
               </SelectItem>
             </SelectGroup>
-          )}
+          ) : null}
 
           <SelectGroup>
             <SelectLabel>Cloud Models</SelectLabel>
@@ -415,6 +434,36 @@ export function ModelPicker({
                         <span className="line-clamp-2 whitespace-normal break-words text-xs leading-snug text-muted-foreground">
                           {option.description}
                         </span>
+                      </div>
+                    </div>
+                  </SelectItem>
+                );
+              })}
+            </SelectGroup>
+          )}
+
+          {remoteModelsData && remoteModelsData.length > 0 && (
+            <SelectGroup>
+              <SelectLabel>Remote Models (chat.ehd-zr.cbr.ru)</SelectLabel>
+              {remoteModelsData.map((model) => {
+                const Icon = Bot;
+                const value = `remote-${model.id}`;
+
+                return (
+                  <SelectItem
+                    key={model.id}
+                    value={value}
+                    className="overflow-hidden"
+                  >
+                    <div className="flex min-w-0 max-w-full items-center gap-3">
+                      <Icon className="h-4 w-4 flex-shrink-0" />
+                      <div className="flex min-w-0 flex-1 flex-col overflow-hidden">
+                        <span className="truncate text-sm">{model.name}</span>
+                        {model.description ? (
+                          <span className="line-clamp-2 whitespace-normal break-words text-xs leading-snug text-muted-foreground">
+                            {model.description}
+                          </span>
+                        ) : null}
                       </div>
                     </div>
                   </SelectItem>

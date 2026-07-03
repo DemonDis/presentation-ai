@@ -40,7 +40,7 @@ interface PresentationOutlineMessageMetadata {
   numberOfCards: number;
   language: string;
   modelId: string;
-  modelProvider: "openai" | "ollama" | "lmstudio";
+  modelProvider: "openai" | "ollama" | "lmstudio" | "remote";
   webSearch: boolean;
   autoTheme: boolean;
   presentationId: string | null;
@@ -86,14 +86,47 @@ function hasGeneratedOutline(outline: string[]): boolean {
 }
 
 function parseOutlineItems(content: string): string[] {
-  if (!/^#\s+/m.test(content)) {
-    return [];
+  const outlineItems: string[] = [];
+  
+  // Try multiple heading patterns: #, ##, ###, or numbered sections
+  const headingPatterns = [
+    /^#{1,3}\s+(.+)$/gm,  // Markdown headings: #, ##, ###
+    /^(\d+[\.\)]\s*[A-Za-zА-Яа-я0-9]+.*)$/gm,  // Numbered: 1. Title or 1) Title
+    /^([A-Z][A-Za-zА-Яа-я0-9]+.*):$/gm,  // Title with colon
+  ];
+  
+  // First try Markdown headings
+  const markdownMatches = [...content.matchAll(/^#{1,3}\s+(.+)$/gm)];
+  if (markdownMatches.length > 0) {
+    return markdownMatches.map(match => match[0].trim());
   }
-
-  const sections = content.split(/^# /gm).filter(Boolean);
-  return sections.length > 0
-    ? sections.map((section) => `# ${section}`.trim())
-    : [];
+  
+  // Try numbered sections
+  const numberedMatches = [...content.matchAll(/^(\d+[\.\)]\s*[A-Za-zА-Яа-я0-9]+.*)$/gm)];
+  if (numberedMatches.length > 0) {
+    return numberedMatches.map(match => match[0].trim());
+  }
+  
+  // Try to extract bullet points if no headings found
+  const bulletPoints = [...content.matchAll(/^[-*•]\s*(.+)$/gm)];
+  if (bulletPoints.length >= 3) {
+    // Group bullet points into sections
+    const grouped: string[] = [];
+    let currentGroup: string[] = [];
+    for (const point of bulletPoints) {
+      currentGroup.push(point[0].trim());
+      if (currentGroup.length === 3) {
+        grouped.push(currentGroup.join('\n'));
+        currentGroup = [];
+      }
+    }
+    if (currentGroup.length > 0) {
+      grouped.push(currentGroup.join('\n'));
+    }
+    return grouped;
+  }
+  
+  return [];
 }
 
 function usesStockSearchForPresentation(

@@ -27,7 +27,7 @@ interface OutlineMessageMetadata {
   numberOfCards?: number;
   language?: string;
   modelId?: string;
-  modelProvider?: "openai" | "ollama" | "lmstudio";
+  modelProvider?: "openai" | "ollama" | "lmstudio" | "remote";
   webSearch?: boolean;
   autoTheme?: boolean;
   textContent?: "minimal" | "concise" | "detailed" | "extensive";
@@ -332,6 +332,12 @@ export async function POST(req: Request) {
       numberOfCards,
       webSearch,
     });
+    routeLogger.info("Starting agent stream", {
+      requestId,
+      modelProvider,
+      modelId: modelId || "gpt-4o-mini",
+    });
+
     const stream = await agent.stream(
       {
         messages: await toBaseMessages(messages),
@@ -346,6 +352,44 @@ export async function POST(req: Request) {
       modelProvider,
       modelId: modelId || "gpt-4o-mini",
     });
+
+    // Debug: Log stream chunks for remote provider
+    if (modelProvider === "remote") {
+      const originalStream = stream;
+      const debugStream = new ReadableStream({
+        async start(controller) {
+          const reader = originalStream.getReader();
+          try {
+            while (true) {
+              const { done, value } = await reader.read();
+              if (done) {
+                controller.close();
+                break;
+              }
+              // value is either ["values", state] or ["messages", messages]
+              const chunkType = Array.isArray(value) ? value[0] : typeof value;
+              const stateOrMessage = Array.isArray(value) ? value[1] : value;
+              const content = (stateOrMessage as any)?.content;
+              routeLogger.info("Stream chunk received", {
+                requestId,
+                chunkType,
+                hasContent: content !== undefined,
+                contentLength: typeof content === "string" ? content.length : "N/A",
+              });
+              controller.enqueue(value);
+            }
+          } catch (error) {
+            routeLogger.error("Stream error", { requestId, error });
+            controller.error(error);
+          }
+        },
+      });
+      span.event("allweone.api.response_stream_created");
+      return createUIMessageStreamResponse({
+        stream: toUIMessageStream(debugStream),
+      });
+    }
+
     span.event("allweone.api.response_stream_created");
     return createUIMessageStreamResponse({
       stream: toUIMessageStream(stream),

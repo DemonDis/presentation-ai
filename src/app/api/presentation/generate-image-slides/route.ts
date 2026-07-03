@@ -17,7 +17,7 @@ interface ImageSlidesRequest {
   outline: string[];
   language: string;
   modelId?: string;
-  modelProvider?: "openai" | "ollama" | "lmstudio";
+  modelProvider?: "openai" | "ollama" | "lmstudio" | "remote";
   presentationId?: string;
 }
 

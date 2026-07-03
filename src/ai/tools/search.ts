@@ -23,7 +23,17 @@ export const search_tool = tool(
       return JSON.stringify(response);
     } catch (error) {
       console.error("Search error:", error);
-      return "Search failed";
+      
+      // Check for region/country restriction error
+      const errorMessage = error instanceof Error ? error.message : String(error);
+      if (errorMessage.includes("403") && 
+          (errorMessage.includes("Country") || 
+           errorMessage.includes("region") || 
+           errorMessage.includes("territory"))) {
+        return "Web search is not available in your region. Please disable web search in the presentation settings and try again.";
+      }
+      
+      return "Search failed: " + errorMessage;
     }
   },
   {

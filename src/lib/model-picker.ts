@@ -2,7 +2,7 @@ import { env } from "@/env";
 import { createLogger } from "@/lib/observability/logger";
 import { ChatOpenAI } from "@langchain/openai";
 
-type ModelProvider = "openai" | "ollama" | "lmstudio";
+type ModelProvider = "openai" | "ollama" | "lmstudio" | "remote";
 const modelLogger = createLogger("model-picker");
 const OLLAMA_BASE_URL = "http://localhost:11434";
 const OLLAMA_TAGS_URL = `${OLLAMA_BASE_URL}/api/tags`;
@@ -13,6 +13,10 @@ const LM_STUDIO_MODELS_URLS = [
   `${LM_STUDIO_API_BASE_URL}/models`,
   `${LM_STUDIO_BASE_URL}/api/v0/models`,
 ] as const;
+
+// Remote models API (chat.ehd-zr.cbr.ru)
+const REMOTE_MODELS_API_URL = "https://chat.ehd-zr.cbr.ru/api/models";
+const REMOTE_CHAT_API_BASE_URL = "https://chat.ehd-zr.cbr.ru/api/chat";
 
 interface OllamaTagsResponse {
   models?: Array<{ name?: string }>;
@@ -55,7 +59,12 @@ function extractLMStudioModelIds(payload: unknown): string[] {
 }
 
 function isModelProvider(value: string): value is ModelProvider {
-  return value === "openai" || value === "ollama" || value === "lmstudio";
+  return (
+    value === "openai" ||
+    value === "ollama" ||
+    value === "lmstudio" ||
+    value === "remote"
+  );
 }
 
 function resolveModelSelection(
@@ -289,6 +298,14 @@ export function assertModelIsConfigured(
     throw new Error("An LM Studio model must be selected before continuing.");
   }
 
+  if (selection.provider === "remote" && !selectedLocalModel) {
+    modelLogger.error("Model configuration failed", undefined, {
+      provider: selection.provider,
+      reason: "missing_model_id",
+    });
+    throw new Error("A remote model must be selected before continuing.");
+  }
+
   if (selection.provider === "openai" && !env.OPENAI_API_KEY?.trim()) {
     modelLogger.error("Model configuration failed", undefined, {
       provider: selection.provider,
@@ -325,6 +342,15 @@ export async function ensureModelIsReady(
 
   if (selection.provider === "lmstudio") {
     await ensureLMStudioModelIsReady(selection.modelId);
+    return;
+  }
+
+  // Remote models don't need pre-flight checks
+  if (selection.provider === "remote") {
+    modelLogger.info("Remote model selected", {
+      provider: selection.provider,
+      modelId: selection.modelId,
+    });
   }
 }
 
@@ -371,6 +397,27 @@ export function modelPicker(modelProviderOrModel: string, modelId?: string) {
       apiKey: "ollama",
       configuration: {
         baseURL: `${OLLAMA_BASE_URL}/v1`,
+      },
+    });
+  }
+
+  if (selection.provider === "remote") {
+    if (!selection.modelId) {
+      throw new Error("A remote model must be selected before continuing.");
+    }
+
+    modelLogger.info("Creating Remote model client", {
+      provider: selection.provider,
+      modelId: selection.modelId,
+      baseUrl: REMOTE_CHAT_API_BASE_URL,
+    });
+
+    // Remote models use OpenAI-compatible API with custom base URL
+    return new ChatOpenAI({
+      model: selection.modelId,
+      apiKey: "remote", // Placeholder API key for remote endpoint
+      configuration: {
+        baseURL: REMOTE_CHAT_API_BASE_URL,
       },
     });
   }

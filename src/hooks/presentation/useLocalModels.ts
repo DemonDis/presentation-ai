@@ -7,7 +7,7 @@ import { useEffect, useState } from "react";
 interface ModelInfo {
   id: string;
   name: string;
-  provider: "ollama" | "lmstudio";
+  provider: "ollama" | "lmstudio" | "remote";
 }
 
 const localModelLogger = createLogger("client:local-models");
@@ -207,7 +207,10 @@ export function getSelectedModel(): {
   }
 }
 
-export function setSelectedModel(modelProvider: string, modelId: string): void {
+export function setSelectedModel(
+  modelProvider: "openai" | "ollama" | "lmstudio" | "remote",
+  modelId: string,
+): void {
   if (typeof window === "undefined") {
     return;
   }
@@ -278,5 +281,63 @@ export function useLocalModels() {
   return {
     ...query,
     isInitialLoad,
+  };
+}
+
+// Remote models from external API (chat.ehd-zr.cbr.ru)
+const REMOTE_MODELS_API_URL = "/api/presentation/remote-models";
+
+interface RemoteModelInfo {
+  id: string;
+  name: string;
+  provider: "remote";
+  description?: string;
+}
+
+interface RemoteModelsApiResponse {
+  models?: RemoteModelInfo[];
+  error?: string;
+}
+
+async function fetchRemoteModels(): Promise<RemoteModelInfo[]> {
+  try {
+    const response = await fetch(REMOTE_MODELS_API_URL, {
+      cache: "no-store",
+    });
+
+    if (!response.ok) {
+      throw new Error(`Remote models API responded with ${response.status}`);
+    }
+
+    const data = (await response.json()) as RemoteModelsApiResponse;
+    const models = Array.isArray(data.models) ? data.models : [];
+
+    localModelLogger.info("Remote models fetched", {
+      total: models.length,
+    });
+
+    return models;
+  } catch (error) {
+    localModelLogger.warn("Failed to fetch remote models", {
+      error: error instanceof Error ? error.message : String(error),
+    });
+    return [];
+  }
+}
+
+export function useRemoteModels() {
+  const query = useQuery({
+    queryKey: ["remote-models"],
+    queryFn: async () => {
+      localModelLogger.info("Fetching remote models from external API");
+      return await fetchRemoteModels();
+    },
+    staleTime: 10 * 60 * 1000,
+    retry: 2,
+    retryDelay: 1000,
+  });
+
+  return {
+    ...query,
   };
 }
