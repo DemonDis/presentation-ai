@@ -16,7 +16,8 @@ const LM_STUDIO_MODELS_URLS = [
 
 // Remote models API (chat.ehd-zr.cbr.ru)
 const REMOTE_MODELS_API_URL = "https://chat.ehd-zr.cbr.ru/api/models";
-const REMOTE_CHAT_API_BASE_URL = "https://chat.ehd-zr.cbr.ru/api/chat";
+const REMOTE_CHAT_API_BASE_URL = "https://chat.ehd-zr.cbr.ru/api/v1";
+const REMOTE_API_KEY = env.REMOTE_API_KEY ?? "";
 
 interface OllamaTagsResponse {
   models?: Array<{ name?: string }>;
@@ -410,12 +411,15 @@ export function modelPicker(modelProviderOrModel: string, modelId?: string) {
       provider: selection.provider,
       modelId: selection.modelId,
       baseUrl: REMOTE_CHAT_API_BASE_URL,
+      hasApiKey: Boolean(REMOTE_API_KEY),
     });
 
     // Remote models use OpenAI-compatible API with custom base URL
+    // Disable SSL verification for internal API endpoints
+    process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
     return new ChatOpenAI({
       model: selection.modelId,
-      apiKey: "remote", // Placeholder API key for remote endpoint
+      apiKey: REMOTE_API_KEY || "remote",
       configuration: {
         baseURL: REMOTE_CHAT_API_BASE_URL,
       },
