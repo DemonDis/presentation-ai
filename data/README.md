@@ -1,6 +1,6 @@
 # PostgreSQL Docker
 
-Инструкция по запуску PostgreSQL в Docker для проекта Presentation AI.
+Инструкция по запуску PostgreSQL в Docker для проекта Презентация AI.
 
 ## 📁 Структура
 

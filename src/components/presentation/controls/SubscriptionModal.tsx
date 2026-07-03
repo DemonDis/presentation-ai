@@ -57,7 +57,7 @@ export function SubscriptionModal({
       <DialogContent className="z-100 max-w-6xl gap-0 p-0">
         <div className="border-b px-8 pt-8 pb-6">
           <DialogTitle className="text-3xl font-semibold tracking-tight">
-            Upgrade to ALLWEONE® Presentation AI
+            Презентация AI
           </DialogTitle>
           <p className="mt-2 text-muted-foreground">
             Choose the plan that works best for you
