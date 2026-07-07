@@ -35,7 +35,7 @@ export function ThemeTabs() {
               : "text-muted-foreground hover:text-foreground",
           )}
         >
-          My themes
+          Мои темы
         </button>
       </div>
     </div>
