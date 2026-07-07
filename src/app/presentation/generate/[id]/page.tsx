@@ -88,14 +88,14 @@ export default function PresentationGenerateWithIdPage() {
   const isGeneratePresentationDisabled =
     isGeneratingPresentation || isGeneratingOutline;
   const generatePresentationButtonLabel = isGeneratingOutline
-    ? "Generating Outline..."
+    ? "Генерация плана..."
     : isGeneratingPresentation
-      ? "Generating Presentation..."
+      ? "Генерация презентации..."
       : isSavingBeforeGenerate
-        ? "Saving Outline..."
+        ? "Сохранение плана..."
       : hasOutline
-        ? "Generate Presentation"
-        : "Generate Outline";
+        ? "Сгенерировать презентацию"
+        : "Сгенерировать план";
 
   // Use React Query to fetch presentation data
   const { data: presentationData, isLoading: isLoadingPresentation } = useQuery(
@@ -104,7 +104,7 @@ export default function PresentationGenerateWithIdPage() {
       queryFn: async () => {
         const result = await getPresentation(id);
         if (!result.success) {
-          throw new Error(result.message ?? "Failed to load presentation");
+          throw new Error(result.message ?? "Не удалось загрузить презентацию");
         }
         return result.presentation;
       },
@@ -309,7 +309,7 @@ export default function PresentationGenerateWithIdPage() {
     });
 
     if (!result.success) {
-      throw new Error(result.message ?? "Failed to save presentation");
+      throw new Error(result.message ?? "Не удалось сохранить презентацию");
     }
   }
 
@@ -339,7 +339,7 @@ export default function PresentationGenerateWithIdPage() {
       const message =
         error instanceof Error
           ? error.message
-          : "Failed to save the latest outline.";
+          : "Не удалось сохранить последний план.";
       toast.error(message);
       setIsSavingBeforeGenerate(false);
       return;
@@ -367,8 +367,8 @@ export default function PresentationGenerateWithIdPage() {
             <Spinner className="h-10 w-10 text-primary" />
           </div>
           <div className="space-y-2 text-center">
-            <h2 className="text-2xl font-bold">Loading Presentation Outline</h2>
-            <p className="text-muted-foreground">Please wait a moment...</p>
+            <h2 className="text-2xl font-bold">Загрузка плана презентации</h2>
+            <p className="text-muted-foreground">Пожалуйста, подождите...</p>
           </div>
         </div>
       </ThemeBackground>

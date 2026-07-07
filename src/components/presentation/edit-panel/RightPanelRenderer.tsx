@@ -55,35 +55,35 @@ const IMMEDIATE_LOAD_PANELS: RightPanelType[] = ["basicBlocks", "elements"];
 // Panel titles and icons for panels that need our generic header
 const PANEL_INFO = {
   basicBlocks: {
-    title: "Text",
+    title: "Текст",
     icon: <CaseSensitive className="size-4 text-primary" />,
   },
   elements: {
-    title: "Add elements",
+    title: "Добавить элементы",
     icon: <Blocks className="size-4 text-primary" />,
   },
   charts: {
-    title: "Add Charts",
+    title: "Добавить диаграммы",
     icon: <ChartPie className="size-4 text-primary" />,
   },
   diagrams: {
-    title: "Add Diagrams",
+    title: "Добавить схемы",
     icon: <ChartNoAxesCombined className="size-4 text-primary" />,
   },
   embed: {
-    title: "Media Embeds",
+    title: "Медиа-вставки",
     icon: <LinkIcon className="size-4 text-primary" />,
   },
   background: {
-    title: "Background",
+    title: "Фон",
     icon: <ImageIcon className="size-4 text-primary" />,
   },
   layoutEditor: {
-    title: "Edit layout",
+    title: "Редактировать макет",
     icon: <Edit3 className="size-4 text-primary" />,
   },
   iconPicker: {
-    title: "Choose icon",
+    title: "Выбрать иконку",
     icon: <Sparkles className="size-4 text-primary" />,
   },
 } as const;
