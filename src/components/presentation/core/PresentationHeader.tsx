@@ -1,8 +1,9 @@
 "use client";
 
-import { Palette } from "lucide-react";
+import { LogOut, Moon, Palette, Sun } from "lucide-react";
 import * as motion from "motion/react-client";
-import { useSession } from "next-auth/react";
+import { signOut, useSession } from "next-auth/react";
+import { usePresentationTheme } from "@/components/presentation/providers/PresentationThemeProvider";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -189,7 +190,40 @@ export default function PresentationHeader({ title }: PresentationHeaderProps) {
         {/* Present button - Only in presentation page, not outline */}
         {isPresentationPage && <PresentButton />}
 
+        {/* Theme toggle (dark/light) - Only when logged in */}
+        {!isLoggedOut && (
+          <ThemeToggleButton />
+        )}
+
+        {/* Sign out - Only when logged in */}
+        {!isLoggedOut && (
+          <Button
+            variant="ghost"
+            className="h-9 gap-1.5"
+            onClick={() => signOut({ callbackUrl: "/" })}
+          >
+            <LogOut className="size-4" />
+            <span className="sr-only">Sign out</span>
+            <span className="hidden sm:inline">Sign out</span>
+          </Button>
+        )}
       </div>
     </header>
+  );
+}
+
+function ThemeToggleButton() {
+  const { theme, setTheme } = usePresentationTheme();
+
+  return (
+    <Button
+      variant="ghost"
+      className="h-9 gap-1.5"
+      onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+    >
+      <Sun className="size-4 dark:hidden" />
+      <Moon className="hidden size-4 dark:block" />
+      <span className="sr-only">Toggle theme</span>
+    </Button>
   );
 }
