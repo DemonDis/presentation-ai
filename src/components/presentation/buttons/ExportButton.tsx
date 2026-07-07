@@ -61,11 +61,11 @@ export function ExportButton() {
 
       // Show single toast with loader
       const { update, dismiss } = toast({
-        title: "Exporting Presentation",
+        title: "Экспорт презентации",
         description: (
           <div className="flex items-center gap-2">
             <Loader2 className="size-4 animate-spin" />
-            <span>{"Scanning slides..."}</span>
+            <span>{"Сканирование слайдов..."}</span>
           </div>
         ),
         duration: Infinity, // Keep open until we dismiss
@@ -77,7 +77,7 @@ export function ExportButton() {
       if (scanResults.length === 0) {
         raiseError(
           new Error(
-            "Failed to scan slides. Please ensure all slides are visible on the page.",
+            "Не удалось отсканировать слайды. Убедитесь, что все слайды видны на странице.",
           ),
         );
       }
@@ -86,7 +86,7 @@ export function ExportButton() {
         description: (
           <div className="flex items-center gap-2">
             <Loader2 className="size-4 animate-spin" />
-            <span>{"Generating PowerPoint..."}</span>
+            <span>{"Генерация PowerPoint..."}</span>
           </div>
         ),
       });
@@ -101,16 +101,16 @@ export function ExportButton() {
       dismiss();
 
       toast({
-        title: "Export Complete",
+        title: "Экспорт завершён",
         description: (
           <p>
-            {"PowerPoint download has started. If it did not start,"}{" "}
+            {"Загрузка PowerPoint началась. Если она не началась,"}{" "}
             <a
               className="font-medium text-foreground underline underline-offset-4"
               download={result.fileName}
               href={downloadUrl}
             >
-              {"click here"}
+              {"нажмите здесь"}
             </a>
             .
           </p>
@@ -121,11 +121,11 @@ export function ExportButton() {
       setIsExportDialogOpen(false);
     } catch (error) {
       toast({
-        title: "Export Failed",
+        title: "Ошибка экспорта",
         description:
           error instanceof Error
             ? error.message
-            : "There was an error exporting your presentation.",
+            : "Произошла ошибка при экспорте презентации.",
         variant: "destructive",
       });
       console.error("Export error:", error);
@@ -142,28 +142,28 @@ export function ExportButton() {
           size="sm"
           className="relative size-9 px-0 sm:h-9 sm:w-auto sm:gap-1.5 sm:px-3"
         >
-          <span className="sr-only">
-            Export presentation
-          </span>
+            <span className="sr-only">
+              Экспортировать презентацию
+            </span>
           <Download className="size-4 sm:mr-1" />
           <span className="hidden sm:inline">
-            Export
+            Экспорт
           </span>
         </Button>
       </DialogTrigger>
       <DialogContent className="sm:max-w-md">
         <DialogHeader>
           <DialogTitle>
-            Export Presentation
+            Экспорт презентации
           </DialogTitle>
           <DialogDescription>
-            Choose a format to export your presentation.
+            Выберите формат для экспорта презентации.
           </DialogDescription>
         </DialogHeader>
 
         <div className="py-4">
           <Label className="mb-2 block">
-            Export Format
+            Формат экспорта
           </Label>
           <RadioGroup
             value="pptx"
@@ -186,7 +186,7 @@ export function ExportButton() {
                       PowerPoint (.pptx)
                     </span>
                     <p className="text-sm leading-snug text-muted-foreground">
-                      Standard PowerPoint file
+                      Стандартный файл PowerPoint
                     </p>
                   </div>
                 </div>
@@ -202,16 +202,16 @@ export function ExportButton() {
             onClick={() => setIsExportDialogOpen(false)}
             disabled={isExporting}
           >
-            Cancel
+            Отмена
           </Button>
           <Button type="button" onClick={handleExport} disabled={isExporting}>
             {isExporting ? (
               <>
                 <Loader2 className="mr-2 size-4 animate-spin" />
-                Exporting…
+                Экспорт…
               </>
             ) : (
-              "Export to PowerPoint"
+              "Экспорт в PowerPoint"
             )}
           </Button>
         </DialogFooter>

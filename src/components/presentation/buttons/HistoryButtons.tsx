@@ -32,7 +32,7 @@ export function HistoryButtons() {
             </Button>
           </TooltipTrigger>
           <TooltipContent>
-            <p>Undo (Ctrl+Z)</p>
+            <p>Отменить (Ctrl+Z)</p>
           </TooltipContent>
         </Tooltip>
 
@@ -49,7 +49,7 @@ export function HistoryButtons() {
             </Button>
           </TooltipTrigger>
           <TooltipContent>
-            <p>Redo (Ctrl+Shift+Z or Ctrl+Y)</p>
+            <p>Повторить (Ctrl+Shift+Z или Ctrl+Y)</p>
           </TooltipContent>
         </Tooltip>
       </div>

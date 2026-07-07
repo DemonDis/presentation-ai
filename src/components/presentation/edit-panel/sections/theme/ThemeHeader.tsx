@@ -21,7 +21,7 @@ export function ThemePanelHeader() {
         onClick={() => setOpenCreateThemeModal(true)}
         className="bg-purple-600 px-4 py-2 text-sm text-white hover:bg-purple-700"
       >
-        New Theme
+        Новая тема
       </Button>
       <div className="flex items-center gap-2">
         <CreateThemeModal />
@@ -36,8 +36,8 @@ export function ThemePanelHeader() {
           )}
           onClick={() => setShowFavorites(!showFavorites)}
           aria-pressed={showFavorites}
-          aria-label="Favorite themes"
-          title="Favorite themes"
+          aria-label="Избранные темы"
+          title="Избранные темы"
         >
           <Star
             className={cn(

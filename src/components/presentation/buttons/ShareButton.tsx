@@ -20,7 +20,7 @@ export function ShareButton() {
     }
 
     await navigator.clipboard.writeText(shareUrl);
-    toast.success("Presentation link copied");
+    toast.success("Ссылка на презентацию скопирована");
   };
 
   return (
@@ -29,7 +29,7 @@ export function ShareButton() {
       size="icon"
       disabled={!currentPresentationId}
       onClick={() => void copyShareLink()}
-      aria-label={"Copy presentation link"}
+      aria-label={"Копировать ссылку на презентацию"}
     >
       <Share2 className="size-4" />
     </Button>

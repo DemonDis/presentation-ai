@@ -81,7 +81,7 @@ export function PresentButton() {
       disabled={isDisabled}
     >
       <span className="sr-only" translate="no">
-        {isPresenting ? "Exit" : "Present"}
+        {isPresenting ? "Выйти" : "Показ"}
       </span>
       {isLoading ? (
         <>
@@ -90,21 +90,21 @@ export function PresentButton() {
             aria-hidden="true"
           />
           <span className="hidden sm:inline" translate="no">
-            {isPresenting ? "Exiting" : "Presenting"}
+            {isPresenting ? "Выход" : "Подготовка"}
           </span>
         </>
       ) : isPresenting ? (
         <>
           <X className="h-5 w-5 sm:mr-1 sm:h-4 sm:w-4" aria-hidden="true" />
           <span className="hidden sm:inline" translate="no">
-            Exit
+            Выйти
           </span>
         </>
       ) : (
         <>
           <Play className="h-5 w-5 sm:mr-1 sm:h-4 sm:w-4" aria-hidden="true" />
           <span className="hidden sm:inline" translate="no">
-            Present
+            Показ
           </span>
         </>
       )}
