@@ -11,8 +11,8 @@ export const DEFAULT_PRESENTATION_SLIDE_ASPECT_RATIO: NonNullable<
 
 export const PRESENTATION_GENERATION_ASPECT_RATIO_OPTIONS = [
   {
-    label: "Dynamic",
-    shortLabel: "Dynamic",
+    label: "Динамический",
+    shortLabel: "Динамический",
     value: "dynamic",
   },
   {
@@ -31,7 +31,7 @@ export function normalizePresentationGenerationAspectRatio(
 export function getPresentationGenerationAspectRatioLabel(
   value: PresentationGenerationAspectRatio,
 ): string {
-  return value === "16:9" ? "16:9" : "Dynamic";
+  return value === "16:9" ? "16:9" : "Динамический";
 }
 
 export function getSlideAspectRatioForGenerationAspectRatio(

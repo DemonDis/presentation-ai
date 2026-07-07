@@ -235,10 +235,10 @@ export function OutlineTemplateModal({
               )}
               <div className="min-w-0">
                 <CredenzaTitle>
-                  {mode === "global" ? "Select Layouts" : "Select Layout"}
+                  {mode === "global" ? "Выбор макетов" : "Выбор макета"}
                 </CredenzaTitle>
                 <p className="mt-1 text-sm text-muted-foreground">
-                  {effectiveSelection.length}/{selectionLimit} selected
+                  {effectiveSelection.length}/{selectionLimit} выбрано
                 </p>
               </div>
             </div>
@@ -251,11 +251,11 @@ export function OutlineTemplateModal({
                     size="sm"
                     className="h-8"
                   >
-                    Clear All
+                    Очистить всё
                   </Button>
                 )}
                 <Button onClick={handleApply} size="sm" className="h-8">
-                  {mode === "global" ? "Done" : "Apply"}
+                  {mode === "global" ? "Готово" : "Применить"}
                 </Button>
                 <Button
                   onClick={onClose}
@@ -297,7 +297,7 @@ export function OutlineTemplateModal({
                     )}
                   >
                     <LayoutGrid className="size-4" />
-                    <span>All Templates</span>
+                    <span>Все шаблоны</span>
                   </button>
                   {TEMPLATE_CATEGORIES.map((category) => (
                     <button
@@ -364,7 +364,7 @@ export function OutlineTemplateModal({
                   )}
                 >
                   <LayoutGrid className="size-4" />
-                  <span>All Layouts</span>
+                  <span>Все макеты</span>
                 </button>
                 {TEMPLATE_CATEGORIES.map((category) => (
                   <button
@@ -418,7 +418,7 @@ export function OutlineTemplateModal({
                 </Button>
               )}
               <Button onClick={handleApply}>
-                {mode === "global" ? "Done" : "Apply"}
+                {mode === "global" ? "Готово" : "Применить"}
               </Button>
             </div>
           </div>

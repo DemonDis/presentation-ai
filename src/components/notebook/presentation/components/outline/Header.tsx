@@ -38,18 +38,18 @@ import { cn } from "@/lib/utils";
 import { usePresentationState } from "@/states/presentation-state";
 
 const LANGUAGE_OPTIONS = [
-  { label: "English (US)", shortLabel: "English", value: "en-US" },
-  { label: "Spanish", shortLabel: "Spanish", value: "es" },
-  { label: "French", shortLabel: "French", value: "fr" },
-  { label: "German", shortLabel: "German", value: "de" },
-  { label: "Portuguese", shortLabel: "Portuguese", value: "pt" },
-  { label: "Italian", shortLabel: "Italian", value: "it" },
-  { label: "Japanese", shortLabel: "Japanese", value: "ja" },
-  { label: "Korean", shortLabel: "Korean", value: "ko" },
-  { label: "Chinese", shortLabel: "Chinese", value: "zh" },
-  { label: "Russian", shortLabel: "Russian", value: "ru" },
-  { label: "Hindi", shortLabel: "Hindi", value: "hi" },
-  { label: "Arabic", shortLabel: "Arabic", value: "ar" },
+  { label: "Английский (США)", shortLabel: "Английский", value: "en-US" },
+  { label: "Испанский", shortLabel: "Испанский", value: "es" },
+  { label: "Французский", shortLabel: "Французский", value: "fr" },
+  { label: "Немецкий", shortLabel: "Немецкий", value: "de" },
+  { label: "Португальский", shortLabel: "Португальский", value: "pt" },
+  { label: "Итальянский", shortLabel: "Итальянский", value: "it" },
+  { label: "Японский", shortLabel: "Японский", value: "ja" },
+  { label: "Корейский", shortLabel: "Корейский", value: "ko" },
+  { label: "Китайский", shortLabel: "Китайский", value: "zh" },
+  { label: "Русский", shortLabel: "Русский", value: "ru" },
+  { label: "Хинди", shortLabel: "Хинди", value: "hi" },
+  { label: "Арабский", shortLabel: "Арабский", value: "ar" },
 ] as const;
 
 interface HeaderProps {
@@ -102,7 +102,7 @@ export function Header({
 
   function handleRegenerate() {
     if (!prompt) {
-      toast.error("Please enter a presentation topic");
+      toast.error("Укажите тему презентации");
       return;
     }
 
@@ -132,13 +132,13 @@ export function Header({
               )}
             />
             <span className="truncate text-sm font-medium">
-              {prompt || "Untitled presentation"}
+              {prompt || "Презентация без названия"}
             </span>
           </div>
 
           <div className="hidden shrink-0 items-center gap-1.5 sm:flex">
             <Badge variant="secondary" className="font-normal">
-              {numSlides} slides
+              {numSlides} слайдов
             </Badge>
             <Badge variant="secondary" className="font-normal">
               {formatBadgeLabel}
@@ -147,12 +147,12 @@ export function Header({
               {languageBadgeLabel}
             </Badge>
             <Badge variant="secondary" className="font-normal">
-              {webSearchEnabled ? "Search on" : "Search off"}
+              {webSearchEnabled ? "Поиск вкл" : "Поиск выкл"}
             </Badge>
             {attachedFiles.length > 0 ? (
               <Badge variant="outline" className="font-normal text-primary">
                 {attachedFiles.length}{" "}
-                {attachedFiles.length === 1 ? "file" : "files"}
+                {attachedFiles.length === 1 ? "файл" : "файлов"}
               </Badge>
             ) : null}
           </div>
@@ -173,7 +173,7 @@ export function Header({
                 isGeneratingOutline && "animate-spin",
               )}
             />
-            <span className="hidden sm:inline">Regenerate</span>
+            <span className="hidden sm:inline">Заново</span>
           </Button>
         </button>
       </CollapsibleTrigger>
@@ -183,7 +183,7 @@ export function Header({
           <div className="space-y-4">
             <div className="flex flex-wrap gap-1.5 sm:hidden">
               <Badge variant="secondary" className="font-normal">
-                {numSlides} slides
+                {numSlides} слайдов
               </Badge>
               <Badge variant="secondary" className="font-normal">
                 {formatBadgeLabel}
@@ -192,12 +192,12 @@ export function Header({
                 {languageBadgeLabel}
               </Badge>
               <Badge variant="secondary" className="font-normal">
-                {webSearchEnabled ? "Search on" : "Search off"}
+                {webSearchEnabled ? "Поиск вкл" : "Поиск выкл"}
               </Badge>
               {attachedFiles.length > 0 ? (
                 <Badge variant="outline" className="font-normal text-primary">
                   {attachedFiles.length}{" "}
-                  {attachedFiles.length === 1 ? "file" : "files"}
+                  {attachedFiles.length === 1 ? "файл" : "файлов"}
                 </Badge>
               ) : null}
             </div>
@@ -207,7 +207,7 @@ export function Header({
                 htmlFor="outline-prompt"
                 className="text-xs font-medium text-muted-foreground"
               >
-                Prompt
+                Запрос
               </label>
               <Textarea
                 id="outline-prompt"
@@ -215,7 +215,7 @@ export function Header({
                 onChange={(event) => setPresentationInput(event.target.value)}
                 disabled={isGeneratingOutline}
                 rows={3}
-                placeholder="Describe the presentation you want to generate..."
+                placeholder="Опишите презентацию, которую хотите создать..."
                 className="min-h-20 resize-none rounded-xl border-border/50 bg-background px-3.5 py-2.5 text-sm shadow-none focus-visible:ring-2 focus-visible:ring-primary/30"
               />
             </div>
@@ -227,7 +227,7 @@ export function Header({
                   className="flex items-center gap-1.5 text-xs font-medium text-muted-foreground"
                 >
                   <Layers className="size-3.5" />
-                  Slides
+                  Слайды
                 </label>
                 <Select
                   value={String(numSlides)}
@@ -246,7 +246,7 @@ export function Header({
                           key={slideCount}
                           value={String(slideCount)}
                         >
-                          {slideCount} {slideCount === 1 ? "slide" : "slides"}
+                          {slideCount} {slideCount === 1 ? "слайд" : "слайдов"}
                         </SelectItem>
                       ),
                     )}
@@ -259,7 +259,7 @@ export function Header({
                   htmlFor="outline-aspect-ratio"
                   className="text-xs font-medium text-muted-foreground"
                 >
-                  Aspect ratio
+                  Соотношение сторон
                 </label>
                 <Select
                   value={generationAspectRatio}
@@ -293,7 +293,7 @@ export function Header({
                   className="flex items-center gap-1.5 text-xs font-medium text-muted-foreground"
                 >
                   <Languages className="size-3.5" />
-                  Language
+                  Язык
                 </label>
                 <Select value={languageSelectValue} onValueChange={setLanguage}>
                   <SelectTrigger
@@ -321,11 +321,11 @@ export function Header({
                   className="flex items-center gap-1.5 text-xs font-medium text-muted-foreground"
                 >
                   <Search className="size-3.5" />
-                  Web search
+                  Поиск в интернете
                 </label>
                 <div className="flex h-9 items-center justify-between rounded-lg border bg-background px-3">
                   <span className="text-sm text-muted-foreground">
-                    {webSearchEnabled ? "Enabled" : "Disabled"}
+                    {webSearchEnabled ? "Включён" : "Выключен"}
                   </span>
                   <Switch
                     id="outline-web-search"
@@ -340,12 +340,12 @@ export function Header({
               <div className="space-y-2">
                 <div className="flex items-center justify-between">
                   <span className="text-xs font-medium text-muted-foreground">
-                    Attached files
+                    Прикреплённые файлы
                   </span>
                   {selectedChunks.length > 0 ? (
                     <span className="text-xs text-muted-foreground">
                       {selectedChunks.length}{" "}
-                      {selectedChunks.length === 1 ? "selection" : "selections"}
+                      {selectedChunks.length === 1 ? "выборка" : "выборок"}
                     </span>
                   ) : null}
                 </div>
@@ -379,7 +379,7 @@ export function Header({
                             ? "cursor-pointer border-primary/30 bg-primary/5 hover:bg-primary/10"
                             : "border-border bg-muted/40",
                         )}
-                        title={processed ? "File processed" : file.name}
+                        title={processed ? "Файл обработан" : file.name}
                       >
                         {count > 0 ? (
                           <span className="flex items-center gap-0.5 text-primary">

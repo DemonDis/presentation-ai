@@ -204,7 +204,7 @@ export default function PresentationHeader({ title }: PresentationHeaderProps) {
           >
             <LogOut className="size-4" />
             <span className="sr-only">Sign out</span>
-            <span className="hidden sm:inline">Sign out</span>
+            <span className="hidden sm:inline">Выход</span>
           </Button>
         )}
       </div>
@@ -223,7 +223,7 @@ function ThemeToggleButton() {
     >
       <Sun className="size-4 dark:hidden" />
       <Moon className="hidden size-4 dark:block" />
-      <span className="sr-only">Toggle theme</span>
+      <span className="sr-only">Тема</span>
     </Button>
   );
 }

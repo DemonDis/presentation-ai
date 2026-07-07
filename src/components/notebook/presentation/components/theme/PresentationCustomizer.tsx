@@ -12,37 +12,37 @@ import {
 import { usePresentationState } from "@/states/presentation-state";
 
 const CONTENT_OPTIONS = [
-  { id: "minimal", label: "Minimal", lines: 2 },
-  { id: "concise", label: "Concise", lines: 3 },
-  { id: "detailed", label: "Detailed", lines: 3 },
-  { id: "extensive", label: "Extensive", lines: 3 },
+  { id: "minimal", label: "Минимальный", lines: 2 },
+  { id: "concise", label: "Краткий", lines: 3 },
+  { id: "detailed", label: "Подробный", lines: 3 },
+  { id: "extensive", label: "Обширный", lines: 3 },
 ] as const;
 
 const TONE_OPTIONS = [
-  { id: "auto", label: "Auto" },
-  { id: "general", label: "General" },
-  { id: "persuasive", label: "Persuasive" },
-  { id: "inspiring", label: "Inspiring" },
-  { id: "instructive", label: "Instructive" },
-  { id: "engaging", label: "Engaging" },
+  { id: "auto", label: "Авто" },
+  { id: "general", label: "Общий" },
+  { id: "persuasive", label: "Убедительный" },
+  { id: "inspiring", label: "Вдохновляющий" },
+  { id: "instructive", label: "Обучающий" },
+  { id: "engaging", label: "Увлекательный" },
 ] as const;
 
 const AUDIENCE_OPTIONS = [
-  { id: "auto", label: "Auto" },
-  { id: "general", label: "General" },
-  { id: "business", label: "Business" },
-  { id: "investor", label: "Investor" },
-  { id: "teacher", label: "Teacher" },
-  { id: "student", label: "Student" },
+  { id: "auto", label: "Авто" },
+  { id: "general", label: "Общая" },
+  { id: "business", label: "Бизнес" },
+  { id: "investor", label: "Инвестор" },
+  { id: "teacher", label: "Преподаватель" },
+  { id: "student", label: "Студент" },
 ] as const;
 
 const SCENARIO_OPTIONS = [
-  { id: "auto", label: "Auto" },
-  { id: "general", label: "General" },
-  { id: "analysis-report", label: "Analysis Report" },
-  { id: "teaching-training", label: "Teaching" },
-  { id: "promotional-materials", label: "Promotional" },
-  { id: "public-speeches", label: "Public Speeches" },
+  { id: "auto", label: "Авто" },
+  { id: "general", label: "Общий" },
+  { id: "analysis-report", label: "Аналитический отчёт" },
+  { id: "teaching-training", label: "Обучение" },
+  { id: "promotional-materials", label: "Продвижение" },
+  { id: "public-speeches", label: "Публичные выступления" },
 ] as const;
 
 export function PresentationCustomizer() {
@@ -64,12 +64,12 @@ export function PresentationCustomizer() {
         <div className="mb-4 flex items-center gap-2">
           <List className="size-5 text-primary" />
           <h2 className="text-xl font-semibold text-foreground">
-            Text Content
+            Содержание текста
           </h2>
         </div>
 
         <p className="mb-4 text-sm text-muted-foreground">
-          Amount of text per card
+          Объём текста на карточке
         </p>
 
         <div className="grid grid-cols-2 gap-3 md:grid-cols-4">
@@ -111,11 +111,11 @@ export function PresentationCustomizer() {
               htmlFor="presentation-tone"
               className="mb-3 block text-sm font-medium text-foreground"
             >
-              Tone
+              Тон
             </label>
             <Select value={tone} onValueChange={setTone}>
               <SelectTrigger id="presentation-tone">
-                <SelectValue placeholder="Select tone" />
+                <SelectValue placeholder="Выберите тон" />
               </SelectTrigger>
               <SelectContent>
                 {TONE_OPTIONS.map((option) => (
@@ -133,11 +133,11 @@ export function PresentationCustomizer() {
               htmlFor="presentation-audience"
               className="mb-3 block text-sm font-medium text-foreground"
             >
-              Audience
+              Аудитория
             </label>
             <Select value={audience} onValueChange={setAudience}>
               <SelectTrigger id="presentation-audience">
-                <SelectValue placeholder="Select audience" />
+                <SelectValue placeholder="Выберите аудиторию" />
               </SelectTrigger>
               <SelectContent>
                 {AUDIENCE_OPTIONS.map((option) => (
@@ -155,11 +155,11 @@ export function PresentationCustomizer() {
               htmlFor="presentation-scenario"
               className="mb-3 block text-sm font-medium text-foreground"
             >
-              Scenario
+              Сценарий
             </label>
             <Select value={scenario} onValueChange={setScenario}>
               <SelectTrigger id="presentation-scenario">
-                <SelectValue placeholder="Select scenario" />
+                <SelectValue placeholder="Выберите сценарий" />
               </SelectTrigger>
               <SelectContent>
                 {SCENARIO_OPTIONS.map((option) => (

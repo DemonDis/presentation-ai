@@ -36,9 +36,9 @@ export function ThemeSettings() {
             : PRESENTATION_AUTO_THEME_ID,
           {
             ...themeDataToUse,
-            name: themeDataToUse.name || "Custom Theme",
+            name: themeDataToUse.name || "Своя тема",
             description:
-              themeDataToUse.description || "Custom presentation theme",
+              themeDataToUse.description || "Своя тема презентации",
           },
         ],
       ]
@@ -52,23 +52,23 @@ export function ThemeSettings() {
   return (
     <div className="mb-32! space-y-5 rounded-2xl border border-border/60 bg-muted/35 p-4 sm:p-6">
       <div className="space-y-1">
-        <h2 className="text-lg font-semibold">Customize Theme</h2>
+        <h2 className="text-lg font-semibold">Настройка темы</h2>
         <p className="text-sm text-muted-foreground">
-          Pick a visual direction and image source before rendering slides.
+          Выберите визуальный стиль и источник изображений перед созданием слайдов.
         </p>
       </div>
 
       <div className="space-y-6">
         <div className="space-y-4">
           <div className="flex items-center justify-between gap-3">
-            <Label className="text-sm font-medium">Theme & Layout</Label>
+            <Label className="text-sm font-medium">Тема и макет</Label>
             <div className="flex items-center gap-2">
               <ThemeModal>
                 <Button
                   variant="link"
                   className="h-auto p-0 text-sm font-medium whitespace-nowrap"
                 >
-                  More Themes
+                  Больше тем
                 </Button>
               </ThemeModal>
             </div>
@@ -82,7 +82,7 @@ export function ThemeSettings() {
                   isSelected={theme === key}
                   showEllipsis={false}
                   showFavoriteButton={false}
-                  personalizeLabel="Personalize"
+                  personalizeLabel="Настроить"
                   onSelect={() =>
                     setTheme(
                       key,

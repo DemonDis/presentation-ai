@@ -176,7 +176,7 @@ export function OutlineList() {
 
   const handleAddCard = useCallback(() => {
     const newId = crypto.randomUUID();
-    const nextItems = [...items, { id: newId, title: "New Card" }];
+    const nextItems = [...items, { id: newId, title: "Новая карточка" }];
     setItems(nextItems);
     syncOutline(nextItems);
   }, [items, syncOutline]);
@@ -275,11 +275,11 @@ export function OutlineList() {
   return (
     <div className="space-y-4">
       <div className="flex items-center justify-between">
-        <h2 className="text-sm text-foreground">Outline</h2>
+        <h2 className="text-sm text-foreground">Структура</h2>
         <div className="flex items-center gap-2">
           {isGeneratingOutline && items.length > 0 && (
             <span className="animate-pulse text-xs text-muted-foreground">
-              Generating&hellip;
+              Генерация&hellip;
             </span>
           )}
           <Button
@@ -292,7 +292,7 @@ export function OutlineList() {
             className="h-7 gap-1.5 px-2 text-xs"
           >
             <LayoutGrid className="size-3.5" />
-            Layouts
+            Макеты
             {selectedSlideTemplates.length > 0 && (
               <Badge
                 variant="secondary"
@@ -314,11 +314,11 @@ export function OutlineList() {
         className="flex w-full items-center justify-center gap-2 rounded-md bg-muted/50 py-3 text-muted-foreground transition-colors hover:bg-muted disabled:opacity-50"
       >
         <Plus size={20} />
-        Add card
+        Добавить карточку
       </button>
 
       <div className="flex justify-between text-sm text-muted-foreground">
-        <span>{items.length} cards total</span>
+        <span>{items.length} карточек всего</span>
         <span>
           {items.reduce((acc, item) => acc + item.title.length, 0)}/20000
         </span>
