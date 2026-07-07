@@ -19,7 +19,7 @@ export function WidthSection() {
         className="flex items-center gap-2 text-sm font-semibold text-foreground"
       >
         <MdOutlineWidthFull className="size-4 text-muted-foreground" />
-        Card Width
+        Ширина карточки
       </Label>
       <ToggleGroup
         id="card-width"

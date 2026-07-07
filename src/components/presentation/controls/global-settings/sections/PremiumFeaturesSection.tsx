@@ -20,7 +20,7 @@ export function PremiumFeaturesSection() {
         onOpenChange={setSubscriptionModalOpen}
       />
       <div className="space-y-3">
-        <Label className="text-sm font-semibold">Animations</Label>
+        <Label className="text-sm font-semibold">Анимации</Label>
         <div
           className="flex cursor-pointer items-center justify-between rounded-lg border p-3 hover:bg-accent/50"
           onClick={handlePremiumFeatureClick}
@@ -34,7 +34,7 @@ export function PremiumFeaturesSection() {
           }}
         >
           <div className="flex items-center gap-2">
-            <span className="text-sm">Enable animations</span>
+            <span className="text-sm">Включить анимации</span>
             <span className="flex items-center gap-1 rounded-full bg-linear-to-r from-amber-500 to-orange-500 px-2 py-0.5 text-xs font-semibold text-white">
               <span>👑</span> PRO
             </span>
@@ -53,7 +53,7 @@ export function PremiumFeaturesSection() {
       </div>
 
       <div className="space-y-3">
-        <Label className="text-sm font-semibold">Branding</Label>
+        <Label className="text-sm font-semibold">Брендинг</Label>
         <div
           className="flex cursor-pointer items-center justify-between rounded-lg border p-3 hover:bg-accent/50"
           onClick={handlePremiumFeatureClick}
@@ -67,7 +67,7 @@ export function PremiumFeaturesSection() {
           }}
         >
           <div className="flex items-center gap-2">
-            <span className="text-sm">Remove ALLWEONE® branding</span>
+            <span className="text-sm">Убрать брендирование ALLWEONE®</span>
             <span className="flex items-center gap-1 rounded-full bg-linear-to-r from-amber-500 to-orange-500 px-2 py-0.5 text-xs font-semibold text-white">
               <span>👑</span> PRO
             </span>

@@ -152,7 +152,7 @@ export function FontsSection() {
     <div className="h-max space-y-4">
       <div className="space-y-3">
         <label className="text-xs font-semibold text-muted-foreground uppercase">
-          Current Font
+          Текущий шрифт
         </label>
         <div className="flex items-center justify-between rounded-lg border p-3">
           <div className="space-y-1">
@@ -166,12 +166,12 @@ export function FontsSection() {
           <Dialog open={open} onOpenChange={setOpen}>
             <DialogTrigger asChild>
               <Button size="sm">
-                <Plus className="mr-2 h-4 w-4" /> Create New Pair
+                <Plus className="mr-2 h-4 w-4" /> Создать новую пару
               </Button>
             </DialogTrigger>
             <DialogContent>
               <DialogHeader>
-                <DialogTitle>Create new font pair</DialogTitle>
+                <DialogTitle>Создание новой пары шрифтов</DialogTitle>
               </DialogHeader>
               <CreateFontPairForm
                 onClose={() => setOpen(false)}
@@ -209,7 +209,7 @@ export function FontsSection() {
 
       <div className="space-y-3">
         <label className="text-xs font-semibold text-muted-foreground uppercase">
-          Font Combinations
+          Комбинации шрифтов
         </label>
         <div className="space-y-2">
           {filteredPairs.map((combo) => {

@@ -25,7 +25,7 @@ export function GlobalSettings() {
       <div className="flex items-center justify-between border-b p-3 backdrop-blur-sm supports-backdrop-filter:bg-background/60">
         <div className="flex items-center gap-2">
           <Settings className="size-4 text-primary" />
-          <h2 className="text-sm font-semibold tracking-wide">Page Setup</h2>
+          <h2 className="text-sm font-semibold tracking-wide">Настройки страницы</h2>
         </div>
         <Button
           variant="ghost"
@@ -43,15 +43,15 @@ export function GlobalSettings() {
           <TabsList className="w-full">
             <TabsTrigger value="cards" className="flex-1 gap-1.5">
               <LayoutGridIcon className="size-4" />
-              Cards
+              Карточки
             </TabsTrigger>
             <TabsTrigger value="theme" className="flex-1 gap-1.5">
               <TypeIcon className="size-4" />
-              Theme
+              Тема
             </TabsTrigger>
             <TabsTrigger value="background" className="flex-1 gap-1.5">
               <ImageIcon className="size-4" />
-              Background
+              Фон
             </TabsTrigger>
           </TabsList>
 

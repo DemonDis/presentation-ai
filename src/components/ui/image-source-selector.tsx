@@ -49,7 +49,7 @@ export function ImageSourceSelector({
   return (
     <div className={className}>
       {showLabel && (
-        <Label className="mb-2 block text-sm font-medium">Image Source</Label>
+        <Label className="mb-2 block text-sm font-medium">Источник изображений</Label>
       )}
       <Select
         value={
@@ -82,18 +82,18 @@ export function ImageSourceSelector({
         }}
       >
         <SelectTrigger>
-          <SelectValue placeholder="Select image generation method" />
+          <SelectValue placeholder="Выберите способ генерации изображений" />
         </SelectTrigger>
         <SelectContent>
           <SelectGroup>
             <SelectItem value="automatic" className="font-medium">
-              Automatic
+              Автоматически
             </SelectItem>
           </SelectGroup>
           <SelectGroup>
             <SelectLabel className="flex items-center gap-1 text-primary/80">
               <Wand2 size={10} />
-              AI Generation
+              Генерация ИИ
             </SelectLabel>
             {imageModels.map((model) => (
               <SelectItem key={model.value} value={model.value}>
@@ -104,18 +104,18 @@ export function ImageSourceSelector({
           <SelectGroup>
             <SelectLabel className="flex items-center gap-1 text-primary/80">
               <Image size={10} />
-              Stock & Web Images
+              Стоковые и веб-изображения
             </SelectLabel>
             <SelectItem value="stock-unsplash">Unsplash</SelectItem>
             <SelectItem value="stock-pixabay">Pixabay</SelectItem>
-            <SelectItem value="stock-google">Web Search</SelectItem>
+            <SelectItem value="stock-google">Поиск в интернете</SelectItem>
           </SelectGroup>
           <SelectGroup>
             <SelectLabel className="flex items-center gap-1 text-primary/80">
               <Clapperboard size={10} />
-              Animated
+              Анимация
             </SelectLabel>
-            <SelectItem value="gif">GIFs from Giphy</SelectItem>
+            <SelectItem value="gif">GIF из Giphy</SelectItem>
           </SelectGroup>
         </SelectContent>
       </Select>

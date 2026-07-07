@@ -19,7 +19,7 @@ export function AlignmentSection() {
         className="flex items-center gap-2 text-sm font-semibold text-foreground"
       >
         <AlignCenter className="size-4 text-muted-foreground" />
-        Content Alignment
+        Выравнивание содержимого
       </Label>
       <ToggleGroup
         id="content-alignment"
@@ -40,7 +40,7 @@ export function AlignmentSection() {
             currentAlignment === "start" &&
               "border-primary bg-primary text-primary-foreground",
           )}
-          title="Align start"
+          title="Выровнять вверх"
         >
           <ArrowUpFromLine className="size-4" />
         </ToggleGroupItem>
@@ -53,7 +53,7 @@ export function AlignmentSection() {
             currentAlignment === "center" &&
               "border-primary bg-primary text-primary-foreground",
           )}
-          title="Align center"
+          title="Выровнять по центру"
         >
           <FoldVertical className="size-4" />
         </ToggleGroupItem>
@@ -66,7 +66,7 @@ export function AlignmentSection() {
             currentAlignment === "end" &&
               "border-primary bg-primary text-primary-foreground",
           )}
-          title="Align end"
+          title="Выровнять вниз"
         >
           <ArrowUpFromLine className="size-4 rotate-180" />
         </ToggleGroupItem>

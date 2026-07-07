@@ -25,9 +25,9 @@ export function FormatsSection() {
   const aspectOptions = useMemo(() => {
     if (currentFormatCategory === "presentation") {
       return [
-        { value: "fluid", label: "Default", sub: "Fluid", icon: "monitor" },
-        { value: "16:9", label: "Traditional", sub: "16:9", icon: "monitor" },
-        { value: "tall", label: "Tall", sub: "85vh", icon: "smartphone" },
+        { value: "fluid", label: "Стандартный", sub: "Fluid", icon: "monitor" },
+        { value: "16:9", label: "Традиционный", sub: "16:9", icon: "monitor" },
+        { value: "tall", label: "Высокий", sub: "85vh", icon: "smartphone" },
       ];
     }
     if (currentFormatCategory === "webpage") {
@@ -35,12 +35,12 @@ export function FormatsSection() {
         {
           value: "fluid",
           label: "Fluid",
-          sub: "Responsive width",
+          sub: "Адаптивная ширина",
           icon: "globe",
         },
         {
           value: "16:9",
-          label: "16:9 (wide section)",
+          label: "16:9 (широкий формат)",
           sub: "16:9",
           icon: "monitor",
         },
@@ -49,9 +49,9 @@ export function FormatsSection() {
     }
     if (currentFormatCategory === "social") {
       return [
-        { value: "1:1", label: "Square", sub: "1:1", icon: "monitor" },
-        { value: "4:5", label: "Portrait", sub: "4:5", icon: "smartphone" },
-        { value: "9:16", label: "Story", sub: "9:16", icon: "smartphone" },
+        { value: "1:1", label: "Квадратный", sub: "1:1", icon: "monitor" },
+        { value: "4:5", label: "Портретный", sub: "4:5", icon: "smartphone" },
+        { value: "9:16", label: "История", sub: "9:16", icon: "smartphone" },
       ];
     }
     // document
@@ -124,15 +124,15 @@ export function FormatsSection() {
           }}
         >
           <SelectTrigger className="rounded-full">
-            <SelectValue placeholder="Choose format" />
+            <SelectValue placeholder="Выберите формат" />
           </SelectTrigger>
           <SelectContent>
             <SelectGroup>
-              <SelectLabel>Format</SelectLabel>
-              <SelectItem value="presentation">Presentation</SelectItem>
+              <SelectLabel>Формат</SelectLabel>
+              <SelectItem value="presentation">Презентация</SelectItem>
               {/* <SelectItem value="webpage">Webpage</SelectItem> */}
-              <SelectItem value="document">Document</SelectItem>
-              <SelectItem value="social">Social</SelectItem>
+              <SelectItem value="document">Документ</SelectItem>
+              <SelectItem value="social">Социальные сети</SelectItem>
             </SelectGroup>
           </SelectContent>
         </Select>

@@ -54,7 +54,7 @@ export function PresentationMenu({
     useMutation({
       mutationFn: async () => {
         if (!currentPresentationId) {
-          toast.error("Current presentation is not available");
+          toast.error("Текущая презентация недоступна");
           throw new Error("CURRENT_PRESENTATION_ID_MISSING");
         }
 
@@ -70,7 +70,7 @@ export function PresentationMenu({
         toast.error(data.message);
       },
       onError: () => {
-        toast.error("Failed to duplicate presentation");
+        toast.error("Не удалось дублировать презентацию");
       },
     });
 
@@ -83,7 +83,7 @@ export function PresentationMenu({
       const language = usePresentationState.getState().language;
 
       return createBlankPresentation(
-        "Untitled Presentation",
+        "Презентация без названия",
         theme ??
           (localStorage.getItem("theme") === "dark" ? "ebony" : "mystique"),
         language,
@@ -99,7 +99,7 @@ export function PresentationMenu({
       toast.error(data.message);
     },
     onError: () => {
-      toast.error("Failed to create presentation");
+      toast.error("Не удалось создать презентацию");
     },
   });
 
@@ -118,7 +118,7 @@ export function PresentationMenu({
         <Button
           variant="ghost"
           size="icon"
-          aria-label="Open presentation menu"
+          aria-label="Открыть меню презентации"
           className="rounded-full"
         >
           <Menu className="h-5 w-5" />
@@ -126,7 +126,7 @@ export function PresentationMenu({
       </DropdownMenuTrigger>
       <DropdownMenuContent className="w-64 p-2">
         <div className="px-2 py-1.5 text-xs font-medium tracking-[0.08em] text-muted-foreground uppercase">
-          File
+          Файл
         </div>
         <DropdownMenuItem
           disabled={isCreatingBlank}
@@ -134,12 +134,12 @@ export function PresentationMenu({
           className="rounded-md"
         >
           <Plus className="mr-2 h-4 w-4" />
-          New Presentation
+          Новая презентация
         </DropdownMenuItem>
         {!readOnly ? (
           <DropdownMenuItem onClick={focusTitleInput} className="rounded-md">
             <FileEdit className="mr-2 h-4 w-4" />
-            Rename
+            Переименовать
           </DropdownMenuItem>
         ) : null}
         <DropdownMenuItem
@@ -148,14 +148,14 @@ export function PresentationMenu({
           className="rounded-md"
         >
           <Copy className="mr-2 h-4 w-4" />
-          {readOnly ? "Clone to My Account" : "Duplicate"}
+          {readOnly ? "Клонировать в мой аккаунт" : "Дублировать"}
         </DropdownMenuItem>
 
         {!readOnly ? (
           <>
             <DropdownMenuSeparator />
             <div className="px-2 py-1.5 text-xs font-medium tracking-[0.08em] text-muted-foreground uppercase">
-              Edit
+              Правка
             </div>
             <DropdownMenuItem
               disabled={!canUndo}
@@ -163,7 +163,7 @@ export function PresentationMenu({
               className="rounded-md"
             >
               <Undo className="mr-2 h-4 w-4" />
-              <span className="flex-1">Undo</span>
+              <span className="flex-1">Отменить</span>
               <span className="text-xs text-muted-foreground">Ctrl+Z</span>
             </DropdownMenuItem>
             <DropdownMenuItem
@@ -172,33 +172,33 @@ export function PresentationMenu({
               className="rounded-md"
             >
               <Redo className="mr-2 h-4 w-4" />
-              <span className="flex-1">Redo</span>
+              <span className="flex-1">Повторить</span>
               <span className="text-xs text-muted-foreground">Ctrl+Y</span>
             </DropdownMenuItem>
             <DropdownMenuSeparator />
             <div className="px-2 py-1.5 text-xs font-medium tracking-[0.08em] text-muted-foreground uppercase">
-              Workspace
+              Рабочее пространство
             </div>
             <DropdownMenuItem
               onClick={() => setActiveRightPanel("globalSettings")}
               className="rounded-md"
             >
               <Settings className="mr-2 h-4 w-4" />
-              Page Setup
+              Настройки страницы
             </DropdownMenuItem>
             <DropdownMenuItem
               onClick={() => setActiveRightPanel("theme")}
               className="rounded-md"
             >
               <Palette className="mr-2 h-4 w-4" />
-              Theme Panel
+              Панель темы
             </DropdownMenuItem>
           </>
         ) : null}
 
         <DropdownMenuSeparator />
         <div className="px-2 py-1.5 text-xs font-medium tracking-[0.08em] text-muted-foreground uppercase">
-          View
+          Вид
         </div>
         {!readOnly ? (
           <DropdownMenuItem
@@ -211,7 +211,7 @@ export function PresentationMenu({
             className="rounded-md"
           >
             <FolderOpen className="mr-2 h-4 w-4" />
-            Back to prompt
+            Назад к запросу
           </DropdownMenuItem>
         ) : null}
         <DropdownMenuItem
@@ -219,7 +219,7 @@ export function PresentationMenu({
           className="rounded-md"
         >
           <FolderOpen className="mr-2 h-4 w-4" />
-          All Presentations
+          Все презентации
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>

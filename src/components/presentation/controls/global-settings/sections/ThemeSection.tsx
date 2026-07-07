@@ -14,13 +14,13 @@ export function ThemeSection() {
             value="themes"
             className="flex-1 rounded-none border-b-2 border-transparent px-4 py-3 data-[state=active]:border-primary data-[state=active]:bg-transparent"
           >
-            Themes
+            Темы
           </TabsTrigger>
           <TabsTrigger
             value="fonts"
             className="flex-1 rounded-none border-b-2 border-transparent px-4 py-3 data-[state=active]:border-primary data-[state=active]:bg-transparent"
           >
-            Fonts
+            Шрифты
           </TabsTrigger>
         </TabsList>
 

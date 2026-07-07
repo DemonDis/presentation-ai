@@ -19,7 +19,7 @@ export function TypographySizeSection() {
         className="flex items-center gap-2 text-sm font-semibold text-foreground"
       >
         <RiFontSize className="size-4 text-muted-foreground" />
-        Font Size
+        Размер шрифта
       </Label>
 
       <ToggleGroup

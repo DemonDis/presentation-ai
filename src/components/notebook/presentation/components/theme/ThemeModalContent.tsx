@@ -64,13 +64,13 @@ export function ThemeModalContent({
   return (
     <div className="flex min-h-0 w-full flex-1 flex-col overflow-hidden border-border bg-background lg:basis-[40%] lg:border-r">
       <div className="flex shrink-0 items-center justify-between border-b border-border px-2">
-        <h2 className="p-4 text-lg font-semibold">Themes</h2>
+        <h2 className="p-4 text-lg font-semibold">Темы</h2>
         <div className="flex items-center gap-2">
           <Button
             size="icon"
             variant="ghost"
             onClick={onClose}
-            aria-label="Close theme modal"
+            aria-label="Закрыть окно тем"
           >
             <X className="size-4" />
           </Button>
@@ -95,7 +95,7 @@ export function ThemeModalContent({
               value="explore"
               className="rounded-none border-b-2 border-transparent px-0 py-2 data-[state=active]:border-primary data-[state=active]:bg-transparent data-[state=active]:shadow-none"
             >
-              My themes
+              Мои темы
             </TabsTrigger>
           </TabsList>
         </div>
@@ -123,7 +123,7 @@ export function ThemeModalContent({
             <div className="space-y-6">
               <div className="space-y-3">
                 <h3 className="text-xs font-medium tracking-wider text-muted-foreground uppercase">
-                  My Themes
+                  Мои темы
                 </h3>
                 {isLoadingUserThemes ? (
                   <div className="grid grid-cols-1 gap-3 min-[420px]:grid-cols-2 xl:grid-cols-3">
@@ -154,7 +154,7 @@ export function ThemeModalContent({
                   </div>
                 ) : (
                   <div className="py-4 text-sm text-muted-foreground italic">
-                    You haven&apos;t created any themes yet.
+                    Вы ещё не создали ни одной темы.
                   </div>
                 )}
               </div>
@@ -170,7 +170,7 @@ export function ThemeModalContent({
           className="w-full"
           disabled={!selectedThemeId}
         >
-          Apply Theme
+          Применить тему
         </Button>
       </div>
     </div>

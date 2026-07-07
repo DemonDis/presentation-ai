@@ -93,7 +93,7 @@ export function PageBackgroundSection() {
     <div className="space-y-3">
       <div className="flex items-center justify-between">
         <h3 className="text-sm font-semibold text-foreground">
-          Page background
+          Фон страницы
         </h3>
         <Button
           type="button"
@@ -103,7 +103,7 @@ export function PageBackgroundSection() {
           onClick={() => applyBackground(null)}
         >
           <RotateCcw className="mr-1 h-3.5 w-3.5" />
-          Reset
+          Сбросить
         </Button>
       </div>
       <CompactBackgroundSelector
