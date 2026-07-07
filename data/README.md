@@ -22,13 +22,17 @@ cd data
 docker-compose up -d
 ```
 
+После запуска будут доступны:
+- **PostgreSQL** на `localhost:5432`
+- **pgAdmin** на `http://localhost:5050` (логин: `admin@admin.com`, пароль: `admin`)
+
 ### 2. Ручной запуск (альтернатива)
 
 ```bash
 cd data
 docker build -t presentation-postgres .
 docker run -d \
-  --name presentation-db \
+  --name presentation-ai-postgres \
   -p 5432:5432 \
   -v postgres_data:/var/lib/postgresql/data \
   -v ./init.sql:/docker-entrypoint-initdb.d/init.sql \
@@ -73,7 +77,7 @@ DATABASE_URL="postgresql://postgres:postgres@localhost:5432/presentation_ai"
 
 ## 📋 Полезные команды
 
-### Запуск контейнера (из корня проекта)
+### Запуск контейнеров (из корня проекта)
 
 ```bash
 cd data
@@ -81,35 +85,35 @@ docker-compose up -d
 cd ..
 ```
 
-### Остановка контейнера
+### Остановка контейнеров
 
 ```bash
 cd data
 docker-compose down
 ```
 
-### Проверка статуса контейнера
+### Проверка статуса
 
 ```bash
-docker ps -a | grep presentation-db
+docker ps -a | grep presentation-ai
 ```
 
 ### Просмотр логов
 
 ```bash
-docker logs presentation-db
+docker logs presentation-ai-postgres
 # или
 docker-compose logs -f
 ```
 
-### Удаление контейнера и данных
+### Удаление контейнеров и данных
 
 ```bash
 cd data
 docker-compose down -v
 ```
 
-### Перезапуск контейнера
+### Перезапуск контейнеров
 
 ```bash
 docker-compose restart
@@ -120,7 +124,7 @@ docker-compose restart
 ### Через psql
 
 ```bash
-docker exec -it presentation-db psql -U postgres -d presentation_ai
+docker exec -i presentation-ai-postgres psql -U postgres -d presentation_ai < data/init.sql
 ```
 
 ### Через Prisma Studio
@@ -167,6 +171,31 @@ VALUES (
 );
 ```
 
+## 🖥️ pgAdmin
+
+В Docker Compose добавлен сервис pgAdmin для управления базой данных через веб-интерфейс.
+
+| Параметр | Значение |
+|----------|----------|
+| **URL** | `http://localhost:5050` |
+| **Email** | `admin@admin.com` |
+| **Пароль** | `admin` |
+
+### Подключение к PostgreSQL в pgAdmin
+
+1. Открой `http://localhost:5050`, войди под `admin@admin.com` / `admin`
+2. Нажми **Add New Server**
+3. На вкладке **General** укажи имя (например, `Presentation AI`)
+4. На вкладке **Connection**:
+   - **Host**: `postgres` (имя сервиса в Docker-сети)
+   - **Port**: `5432`
+   - **Maintenance database**: `presentation_ai`
+   - **Username**: `postgres`
+   - **Password**: `postgres`
+5. Нажми **Save**
+
+> Если подключение из другого контейнера, используй хост `postgres`. Для подключения с хоста — `localhost`.
+
 ### Добавление пользователей из init.sql
 
 ```bash
@@ -180,3 +209,4 @@ cat data/init.sql | docker exec -i presentation-ai-postgres psql -U postgres -d 
 - Для полного сброса данных выполните `docker-compose down -v`
 - Порт 5432 должен быть свободен на вашем компьютере
 - Скрипт `init.sql` создает таблицы и начальных пользователей только при первом запуске
+- **Astra Linux**: на некоторых версиях Astra Linux `docker-proxy` может некорректно работать с протоколом PostgreSQL. В этом случае используется bridge-сеть `app_network` — контейнеры общаются напрямую, минуя docker-proxy. Если подключение с хоста не работает, проверь настройки сетевого экрана.
