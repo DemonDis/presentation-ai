@@ -6,6 +6,7 @@ await import("./src/env.js");
 
 /** @type {import("next").NextConfig} */
 const config = {
+  allowedDevOrigins: ["192.168.101.140"],
   images: {
     remotePatterns: [
       {
