@@ -64,7 +64,7 @@ export function CompactColorGrid({
           />
           <Button variant="outline" size="sm" className="h-9 px-3 text-xs">
             <Palette className="mr-2 size-3.5" />
-            Picker
+            Палитра
           </Button>
         </div>
       </div>

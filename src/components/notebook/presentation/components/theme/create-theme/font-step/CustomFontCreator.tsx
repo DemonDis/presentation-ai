@@ -36,7 +36,7 @@ export function CustomFontCreator({
     <>
       <div className="space-y-4 rounded-lg border bg-muted/30 p-4">
         <FontPickerField
-          label="Heading Font"
+          label="Шрифт заголовков"
           target="heading"
           control={control}
           setValue={setValue}
@@ -46,7 +46,7 @@ export function CustomFontCreator({
         />
 
         <FontPickerField
-          label="Body Font"
+          label="Шрифт основного текста"
           target="body"
           control={control}
           setValue={setValue}
@@ -61,7 +61,7 @@ export function CustomFontCreator({
           onClick={onCancel}
           className="flex items-center gap-2 rounded-md bg-primary px-4 py-2 text-sm text-primary-foreground hover:bg-primary/90 disabled:opacity-50"
         >
-          Cancel
+          Отмена
         </Button>
 
         <Button
@@ -70,7 +70,7 @@ export function CustomFontCreator({
           className="flex items-center gap-2 rounded-md bg-primary px-4 py-2 text-sm text-primary-foreground hover:bg-primary/90 disabled:opacity-50"
         >
           <Save className="size-4" />
-          {isSaving ? "Saving..." : "Save Font Pair"}
+          {isSaving ? "Сохранение..." : "Сохранить пару шрифтов"}
         </Button>
       </div>
     </>

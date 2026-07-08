@@ -17,10 +17,10 @@ export function CreateThemeHeader({
 }: CreateThemeHeaderProps) {
   const getStepTitle = (): string => {
     const titles: Record<CreateThemeStep, string> = {
-      colors: "Colors",
-      fonts: "Fonts",
-      design: "Design",
-      save: "Save & Publish",
+      colors: "Цвета",
+      fonts: "Шрифты",
+      design: "Дизайн",
+      save: "Сохранение и публикация",
     };
     return titles[currentStep];
   };

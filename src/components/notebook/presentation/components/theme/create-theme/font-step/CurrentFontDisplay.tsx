@@ -16,7 +16,7 @@ export function CurrentFontDisplay({
   return (
     <div className="space-y-3">
       <span className="text-xs font-semibold text-muted-foreground uppercase">
-        Current Font
+        Текущий шрифт
       </span>
       <div className="flex items-center justify-between rounded-lg border p-3">
         <div className="space-y-1">
@@ -31,7 +31,7 @@ export function CurrentFontDisplay({
           className="flex items-center gap-1.5 rounded-md bg-primary px-3 py-1.5 text-sm text-primary-foreground hover:bg-primary/90"
         >
           <Plus className="size-3.5" />
-          Create New Pair
+          Создать новую пару
         </button>
       </div>
     </div>

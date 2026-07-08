@@ -36,7 +36,7 @@ export function ColorsStep({
     <div className="flex h-full flex-1 flex-col">
       <div className="border-b border-border p-6">
         <p className="mb-4 text-center text-sm text-muted-foreground">
-          Choose your theme and background colors
+          Выберите цвета темы и фона
         </p>
         <div className="flex gap-2">
           <button
@@ -49,7 +49,7 @@ export function ColorsStep({
             )}
           >
             <Heart className="h-4 w-4" />
-            ALLWEONE®
+            Предустановленные
           </button>
           <button
             onClick={() => setMode("customize")}
@@ -61,7 +61,7 @@ export function ColorsStep({
             )}
           >
             <Edit2 className="h-4 w-4" />
-            Customize
+            Настроить
           </button>
         </div>
       </div>

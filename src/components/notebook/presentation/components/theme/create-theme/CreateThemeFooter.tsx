@@ -38,17 +38,17 @@ export function CreateThemeFooter({
 }: CreateThemeFooterProps) {
   const showQuickSave = (isCustomizing || isEditing) && currentStep !== "save";
   const showSaveSplitButton = isCustomizing && currentStep !== "save";
-  const saveLabel = isEditing && !isCustomizing ? "Save Edits" : "Save";
+  const saveLabel = isEditing && !isCustomizing ? "Сохранить правки" : "Сохранить";
 
   // Get the text for the continue/next button
   const getContinueButtonText = () => {
     if (currentStep === "save") {
       if (isCustomizing) {
-        return "Save & Create New";
+        return "Сохранить и создать новую";
       }
-      return isEditing ? "Save Edits" : "Publish Theme";
+      return isEditing ? "Сохранить правки" : "Опубликовать тему";
     }
-    return isCustomizing ? "Next" : "Continue";
+    return isCustomizing ? "Далее" : "Продолжить";
   };
 
   return (
@@ -74,7 +74,7 @@ export function CreateThemeFooter({
                     type="button"
                     disabled={isSubmitting}
                     className="bg-blue-600 px-2 text-white hover:bg-blue-700"
-                    aria-label="More save options"
+                    aria-label="Другие способы сохранения"
                   >
                     <ChevronDown className="size-4" />
                   </Button>
@@ -82,21 +82,21 @@ export function CreateThemeFooter({
                 <DropdownMenuContent align="end" sideOffset={4}>
                   <DropdownMenuItem onClick={onSave} disabled={isSubmitting}>
                     <Save className="mr-2 size-4" />
-                    Save
+                    Сохранить
                   </DropdownMenuItem>
                   <DropdownMenuItem
                     onClick={onSaveAndCreateNew}
                     disabled={isSubmitting}
                   >
                     <Copy className="mr-2 size-4" />
-                    Save & Create New
+                    Сохранить и создать новую
                   </DropdownMenuItem>
                   <DropdownMenuItem
                     onClick={onResetCustomization}
                     disabled={isSubmitting || !onResetCustomization}
                   >
                     <RotateCcw className="mr-2 size-4" />
-                    Reset Customization
+                    Сбросить кастомизацию
                   </DropdownMenuItem>
                 </DropdownMenuContent>
               </DropdownMenu>

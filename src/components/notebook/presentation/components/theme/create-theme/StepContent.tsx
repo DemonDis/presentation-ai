@@ -62,10 +62,10 @@ export function StepContent({
       <div className="space-y-6 p-8">
         <div className="rounded-lg border-2 border-border bg-card p-8 shadow-lg">
           <h2 className="mb-2 text-2xl font-bold text-foreground">
-            Name Your Theme
+            Назовите тему
           </h2>
           <p className="mb-6 text-sm text-muted-foreground">
-            Give your theme a memorable name.
+            Придумайте запоминающееся название для темы.
           </p>
 
           <div className="mb-6">
@@ -73,7 +73,7 @@ export function StepContent({
               htmlFor="theme-name"
               className="mb-2 block text-sm font-semibold text-foreground"
             >
-              Theme Name
+              Название темы
             </Label>
             <Controller
               name="name"
@@ -82,7 +82,7 @@ export function StepContent({
                 <Input
                   id="theme-name"
                   {...field}
-                  placeholder="Enter a name for your theme"
+                  placeholder="Введите название темы"
                   className="w-full rounded-lg border-2 border-border bg-background px-4 py-3 text-foreground transition-all outline-none focus:border-blue-600 focus:ring-2 focus:ring-blue-600/20"
                 />
               )}
@@ -92,7 +92,7 @@ export function StepContent({
           {!isCustomizing && (
             <div className="mb-6">
               <Label className="mb-3 block text-sm font-semibold text-foreground">
-                Theme Mode
+                Режим темы
               </Label>
               <Controller
                 name="mode"
@@ -124,10 +124,10 @@ export function StepContent({
                         </div>
                         <div className="flex-1">
                           <h3 className="mb-1 font-semibold text-foreground">
-                            Light Mode
+                            Светлый режим
                           </h3>
                           <p className="text-sm text-muted-foreground">
-                            Optimized for light backgrounds
+                            Оптимизирован для светлого фона
                           </p>
                         </div>
                       </div>
@@ -158,10 +158,10 @@ export function StepContent({
                         </div>
                         <div className="flex-1">
                           <h3 className="mb-1 font-semibold text-foreground">
-                            Dark Mode
+                            Тёмный режим
                           </h3>
                           <p className="text-sm text-muted-foreground">
-                            Optimized for dark backgrounds
+                            Оптимизирован для тёмного фона
                           </p>
                         </div>
                       </div>

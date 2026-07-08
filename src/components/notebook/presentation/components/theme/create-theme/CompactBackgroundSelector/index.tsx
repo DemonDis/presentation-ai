@@ -86,31 +86,31 @@ export function CompactBackgroundSelector({
         onValueChange={(v) => handleTypeChange(v as BackgroundType)}
       >
         <SelectTrigger className="h-10 w-full border-input bg-background">
-          <SelectValue placeholder="Select background type" />
+          <SelectValue placeholder="Выберите тип фона" />
         </SelectTrigger>
         <SelectContent>
           <SelectItem value="none">
             <div className="flex items-center gap-2">
               <Ban className="size-4 text-muted-foreground" />
-              <span>None</span>
+              <span>Нет</span>
             </div>
           </SelectItem>
           <SelectItem value="solid">
             <div className="flex items-center gap-2">
               <PaintBucket className="size-4 text-muted-foreground" />
-              <span>Solid Color</span>
+              <span>Однотонный</span>
             </div>
           </SelectItem>
           <SelectItem value="gradient">
             <div className="flex items-center gap-2">
               <Palette className="size-4 text-muted-foreground" />
-              <span>Gradient</span>
+              <span>Градиент</span>
             </div>
           </SelectItem>
           <SelectItem value="image">
             <div className="flex items-center gap-2">
               <ImageIcon className="size-4 text-muted-foreground" />
-              <span>Image</span>
+              <span>Изображение</span>
             </div>
           </SelectItem>
         </SelectContent>

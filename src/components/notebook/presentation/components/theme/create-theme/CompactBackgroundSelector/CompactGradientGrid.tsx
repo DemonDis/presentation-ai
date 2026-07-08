@@ -49,7 +49,7 @@ export function CompactGradientGrid({
           onClick={() => onPick(p)}
           className="group relative aspect-video w-full rounded-lg border border-border/50 transition-all duration-200 hover:scale-[1.02] hover:border-primary hover:shadow-md"
           style={{ background: p.css }}
-          aria-label={`Gradient preset ${i + 1}`}
+          aria-label={`Градиент ${i + 1}`}
           title={p.css}
         >
           <div className="absolute inset-0 rounded-lg ring ring-black/5 ring-inset" />

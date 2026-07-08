@@ -84,14 +84,14 @@ export function CreateThemeModal({
     }
 
     if (editingTheme) {
-      // Get the base name, falling back to themeData name or "Custom Theme"
+      // Get the base name, falling back to themeData name or "Пользовательская тема"
       const baseName =
-        editingTheme.name || editingTheme.themeData?.name || "Custom Theme";
+        editingTheme.name || editingTheme.themeData?.name || "Пользовательская тема";
 
       if (isCustomizing) {
         // When customizing, use the theme data and prefill name with "Copy of {theme name}"
         // Only prepend "Copy of" if it's not already there
-        const name = baseName.startsWith("Copy of ")
+        const name = baseName.startsWith("Копия ")
           ? baseName
           : `Copy of ${baseName}`;
 
@@ -157,16 +157,16 @@ export function CreateThemeModal({
       const fonts = themeStyleData.fonts as ThemeFormValues["fonts"];
 
       if (fonts.headingUrl && !fonts.headingUrl.match(/^https?:\/\/.+/)) {
-        toast.error("Heading font URL is invalid", {
-          description: "Please check the font URL or remove it.",
+        toast.error("Некорректный URL шрифта заголовков", {
+          description: "Проверьте URL шрифта или удалите его.",
         });
         setIsSubmitting(false);
         return;
       }
 
       if (fonts.bodyUrl && !fonts.bodyUrl.match(/^https?:\/\/.+/)) {
-        toast.error("Body font URL is invalid", {
-          description: "Please check the font URL or remove it.",
+        toast.error("Некорректный URL основного шрифта", {
+          description: "Проверьте URL шрифта или удалите его.",
         });
         setIsSubmitting(false);
         return;
@@ -188,7 +188,7 @@ export function CreateThemeModal({
       } else {
         if (isCustomizing) {
           if (!currentPresentationId) {
-            toast.error("No presentation selected");
+            toast.error("Не выбрана презентация");
             setIsSubmitting(false);
             return;
           }
@@ -200,7 +200,7 @@ export function CreateThemeModal({
             builtInTheme?.name ||
             editingTheme?.themeData?.name ||
             String(currentThemeId) ||
-            "Custom Theme";
+            "Пользовательская тема";
 
           // Use the user's input if provided, otherwise use "Copy of {original}"
           const themeName = name || `Copy of ${originalThemeName}`;
@@ -259,11 +259,11 @@ export function CreateThemeModal({
         toast.success(
           editingTheme && !isCustomizing
             ? editingTheme.isAdmin
-              ? "System theme updated successfully!"
-              : "Theme updated successfully!"
+              ? "Системная тема обновлена!"
+              : "Тема обновлена!"
             : isCustomizing
-              ? "Customization saved successfully!"
-              : "Theme created successfully!",
+              ? "Кастомизация сохранена!"
+              : "Тема создана!",
         );
 
         // Invalidate queries to refresh the list
@@ -282,10 +282,10 @@ export function CreateThemeModal({
 
         handleClose();
       } else {
-        toast.error(result.message || "Failed to save theme");
+        toast.error(result.message || "Не удалось сохранить тему");
       }
     } catch {
-      toast.error("An unexpected error occurred while saving the theme");
+      toast.error("Произошла неожиданная ошибка при сохранении темы");
     } finally {
       setIsSubmitting(false);
     }
@@ -301,7 +301,7 @@ export function CreateThemeModal({
   // Handler for "Save" - save customization directly to the current presentation
   const handleSaveCustomization = useCallback(async () => {
     if (!currentPresentationId) {
-      toast.error("No presentation selected to customize");
+      toast.error("Не выбрана презентация для кастомизации");
       return;
     }
 
@@ -321,16 +321,16 @@ export function CreateThemeModal({
       const fonts = themeStyleData.fonts as ThemeFormValues["fonts"];
 
       if (fonts.headingUrl && !fonts.headingUrl.match(/^https?:\/\/.+/)) {
-        toast.error("Heading font URL is invalid", {
-          description: "Please check the font URL or remove it.",
+        toast.error("Некорректный URL шрифта заголовков", {
+          description: "Проверьте URL шрифта или удалите его.",
         });
         setIsSubmitting(false);
         return;
       }
 
       if (fonts.bodyUrl && !fonts.bodyUrl.match(/^https?:\/\/.+/)) {
-        toast.error("Body font URL is invalid", {
-          description: "Please check the font URL or remove it.",
+        toast.error("Некорректный URL основного шрифта", {
+          description: "Проверьте URL шрифта или удалите его.",
         });
         setIsSubmitting(false);
         return;
@@ -340,7 +340,7 @@ export function CreateThemeModal({
       const currentThemeId = usePresentationState.getState().theme;
       const builtInTheme = themes[currentThemeId as keyof typeof themes];
       const originalThemeName =
-        builtInTheme?.name || editingTheme?.themeData?.name || "Custom Theme";
+        builtInTheme?.name || editingTheme?.themeData?.name || "Пользовательская тема";
 
       const customThemeData = {
         ...themeStyleData,
@@ -389,13 +389,13 @@ export function CreateThemeModal({
       });
 
       if (result.success) {
-        toast.success("Customization saved successfully!");
+        toast.success("Кастомизация сохранена!");
         handleClose();
       } else {
-        toast.error(result.message || "Failed to save customization");
+        toast.error(result.message || "Не удалось сохранить кастомизацию");
       }
     } catch {
-      toast.error("An unexpected error occurred while saving");
+      toast.error("Произошла неожиданная ошибка при сохранении");
     } finally {
       setIsSubmitting(false);
     }
@@ -418,7 +418,7 @@ export function CreateThemeModal({
 
   const handleResetCustomization = useCallback(async () => {
     if (!currentPresentationId) {
-      toast.error("No presentation selected to reset");
+      toast.error("Не выбрана презентация для сброса");
       return;
     }
 
@@ -443,7 +443,7 @@ export function CreateThemeModal({
           themeBase: "blank",
           ...resetThemeData,
           description: resetThemeData.description || "",
-          name: resetThemeData.name || editingTheme?.name || "Custom Theme",
+          name: resetThemeData.name || editingTheme?.name || "Пользовательская тема",
         });
       }
 
@@ -474,13 +474,13 @@ export function CreateThemeModal({
       });
 
       if (result.success) {
-        toast.success("Customization reset successfully!");
+        toast.success("Кастомизация сброшена!");
         handleClose();
       } else {
-        toast.error(result.message || "Failed to reset customization");
+        toast.error(result.message || "Не удалось сбросить кастомизацию");
       }
     } catch {
-      toast.error("An unexpected error occurred while resetting");
+      toast.error("Произошла неожиданная ошибка при сбросе");
     } finally {
       setIsSubmitting(false);
     }
@@ -495,7 +495,7 @@ export function CreateThemeModal({
   // Handler for "Save & Create New" - create a new theme copy and apply it
   const handleSaveAndCreateNew = useCallback(async () => {
     if (!currentPresentationId) {
-      toast.error("No presentation selected");
+      toast.error("Не выбрана презентация");
       return;
     }
 
@@ -514,16 +514,16 @@ export function CreateThemeModal({
       const fonts = themeStyleData.fonts as ThemeFormValues["fonts"];
 
       if (fonts.headingUrl && !fonts.headingUrl.match(/^https?:\/\/.+/)) {
-        toast.error("Heading font URL is invalid", {
-          description: "Please check the font URL or remove it.",
+        toast.error("Некорректный URL шрифта заголовков", {
+          description: "Проверьте URL шрифта или удалите его.",
         });
         setIsSubmitting(false);
         return;
       }
 
       if (fonts.bodyUrl && !fonts.bodyUrl.match(/^https?:\/\/.+/)) {
-        toast.error("Body font URL is invalid", {
-          description: "Please check the font URL or remove it.",
+        toast.error("Некорректный URL основного шрифта", {
+          description: "Проверьте URL шрифта или удалите его.",
         });
         setIsSubmitting(false);
         return;
@@ -536,7 +536,7 @@ export function CreateThemeModal({
         builtInTheme?.name ||
         editingTheme?.themeData?.name ||
         String(currentThemeId) ||
-        "Custom Theme";
+        "Пользовательская тема";
 
       // Use the user's input if provided, otherwise use "Copy of {original}"
       const themeName = name || `Copy of ${originalThemeName}`;
@@ -568,7 +568,7 @@ export function CreateThemeModal({
         });
 
         if (result.success) {
-          toast.success("New theme created and applied!");
+          toast.success("Новая тема создана и применена!");
 
           // Invalidate queries to refresh the theme list
           queryClient.invalidateQueries({
@@ -583,13 +583,13 @@ export function CreateThemeModal({
 
           handleClose();
         } else {
-          toast.error(result.message || "Failed to apply new theme");
+          toast.error(result.message || "Не удалось применить новую тему");
         }
       } else {
-        toast.error(createResult.message || "Failed to create new theme");
+        toast.error(createResult.message || "Не удалось создать новую тему");
       }
     } catch {
-      toast.error("An unexpected error occurred");
+      toast.error("Произошла неожиданная ошибка");
     } finally {
       setIsSubmitting(false);
     }
@@ -654,7 +654,7 @@ export function CreateThemeModal({
         className="z-50 h-dvh max-h-none w-dvw max-w-none border-none p-0"
       >
         <VisuallyHidden>
-          <CredenzaTitle>Create Theme</CredenzaTitle>
+          <CredenzaTitle>Создание темы</CredenzaTitle>
         </VisuallyHidden>
         <div className="flex h-full flex-col lg:flex-row">
           {/* Left Panel - Editor */}

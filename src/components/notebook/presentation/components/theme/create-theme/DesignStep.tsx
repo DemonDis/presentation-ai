@@ -16,36 +16,36 @@ const designStyles: {
 }[] = [
   {
     id: "standard",
-    name: "Standard",
-    description: "Small border radius with minimal shadow",
+    name: "Стандартный",
+    description: "Небольшой радиус скругления с минимальной тенью",
     preview: "rounded-lg shadow",
     innerPreview: "rounded-md shadow",
   },
   {
     id: "flat",
-    name: "Flat",
-    description: "No shadow and no border radius",
+    name: "Плоский",
+    description: "Без тени и без скругления",
     preview: "rounded-none shadow-none",
     innerPreview: "rounded-none shadow-none",
   },
   {
     id: "outline",
-    name: "Outline",
-    description: "Outline-like effect using shadow",
+    name: "Контурный",
+    description: "Эффект контура с помощью тени",
     preview: "rounded-none shadow-[0_0_0_2px_rgba(37,99,235,1)]",
     innerPreview: "rounded-none shadow-[0_0_0_2px_rgba(37,99,235,1)]",
   },
   {
     id: "blocky",
-    name: "Blocky",
-    description: "3D effect using unblurred box shadow",
+    name: "Блочный",
+    description: "3D-эффект с неразмытой тенью",
     preview: "rounded-none shadow-[4px_4px_0_0_rgba(0,0,0,0.2)]",
     innerPreview: "rounded-none shadow-[3px_3px_0_0_rgba(0,0,0,0.2)]",
   },
   {
     id: "rounded",
-    name: "Rounded",
-    description: "Just rounded with gentle shadows",
+    name: "Скруглённый",
+    description: "Сильное скругление с мягкими тенями",
     preview: "rounded-3xl shadow",
     innerPreview: "rounded-full shadow",
   },
@@ -153,7 +153,7 @@ export function DesignStep({ setValue, control }: DesignStepProps) {
         <div className="text-center">
           <Shapes className="mx-auto mb-4 size-12 text-blue-600" />
           <h3 className="mb-2 text-xl font-semibold text-foreground">
-            Choose a style for your content
+            Выберите стиль для контента
           </h3>
         </div>
       </div>

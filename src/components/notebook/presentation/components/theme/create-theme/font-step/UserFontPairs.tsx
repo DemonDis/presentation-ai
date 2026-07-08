@@ -69,14 +69,14 @@ export function UserFontPairs({
       const result = await deleteFontPair(id);
 
       if (result.success) {
-        toast.success("Font pair deleted");
+        toast.success("Пара шрифтов удалена");
         queryClient.invalidateQueries({ queryKey: ["userFontPairs"] });
       } else {
-        toast.error(result.message || "Failed to delete font pair");
+        toast.error(result.message || "Не удалось удалить пару шрифтов");
       }
     } catch {
       try {
-        toast.error("An error occurred while deleting");
+        toast.error("Произошла ошибка при удалении");
       } catch (reactDoctorCatchError) {
         setDeletingId(null);
         throw reactDoctorCatchError;
@@ -93,7 +93,7 @@ export function UserFontPairs({
   return (
     <div className="space-y-3">
       <span className="text-xs font-semibold text-muted-foreground uppercase">
-        Your Font Pairs
+        Ваши пары шрифтов
       </span>
       <div className="space-y-2">
         {isLoading ? (
@@ -154,10 +154,10 @@ export function UserFontPairs({
                         "animate-pulse text-destructive opacity-100",
                       "focus:opacity-100 focus:outline-none",
                     )}
-                    title="Delete font pair"
+                    title="Удалить пару шрифтов"
                   >
                     <Trash2 className="size-4" />
-                    <span className="sr-only">Delete</span>
+                    <span className="sr-only">Удалить</span>
                   </button>
                 </div>
               </div>

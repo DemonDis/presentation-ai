@@ -49,7 +49,7 @@ export function PreviewSection({
                 )}
                 type="button"
               >
-                {tab === "test" ? "Test page" : "Current page"}
+                {tab === "test" ? "Тестовая страница" : "Текущая страница"}
               </button>
             ))}
           </div>
@@ -76,8 +76,8 @@ export function PreviewSection({
               <div className="rounded-lg bg-background p-8 text-center shadow-lg">
                 <p className="text-muted-foreground">
                   {previewTab === "current"
-                    ? "No slides available. Create some slides first."
-                    : "No test slides available."}
+                    ? "Нет доступных слайдов. Сначала создайте слайды."
+                    : "Нет тестовых слайдов."}
                 </p>
               </div>
             )}

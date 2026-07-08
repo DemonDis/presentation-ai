@@ -26,7 +26,7 @@ export function usePreviewData({
   const previewThemeData: ThemeProperties = useMemo(
     () =>
       ({
-        name: values.name || "Preview Theme",
+        name: values.name || "Предпросмотр темы",
         description: values.description || "",
         colors: values.colors,
         fonts: values.fonts as ThemeProperties["fonts"],

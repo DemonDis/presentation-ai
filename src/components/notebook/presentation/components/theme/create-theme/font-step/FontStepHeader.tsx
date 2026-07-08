@@ -7,10 +7,10 @@ export function FontStepHeader() {
       <div className="text-center">
         <h2 className="mb-2 flex items-center justify-center gap-2 text-2xl font-bold text-foreground">
           <Type className="size-6" />
-          Fonts
+          Шрифты
         </h2>
         <p className="text-sm text-muted-foreground">
-          Choose from our font pairings, or create your own
+          Выберите из готовых пар шрифтов или создайте свою
         </p>
       </div>
     </div>

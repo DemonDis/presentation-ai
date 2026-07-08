@@ -39,7 +39,7 @@ export default function ThemeCard({
               color: theme.colors.text,
             }}
           >
-            This is a theme
+            Это тема
           </div>
           <div
             className={cn("mb-2 text-center text-[10px] leading-tight")}
@@ -47,14 +47,14 @@ export default function ThemeCard({
               color: theme.colors.text,
             }}
           >
-            Body text with{" "}
+            Основной текст с{" "}
             <span
               className={cn("underline")}
               style={{
                 color: theme.colors.accent,
               }}
             >
-              link
+              ссылкой
             </span>
           </div>
           <div className={cn("mx-auto h-1.5 w-1/2 rounded")} />

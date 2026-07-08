@@ -32,7 +32,7 @@ export function CompactUploadZone({
       }}
     >
       <input
-        aria-label="compact upload zone control"
+        aria-label="компактная зона загрузки"
         ref={inputRef}
         type="file"
         accept="image/*"
@@ -46,7 +46,7 @@ export function CompactUploadZone({
         <div className="flex flex-col items-center gap-2">
           <Loader2 className="size-6 animate-spin text-primary" />
           <span className="text-xs font-medium text-muted-foreground">
-            Uploading… {progress}%
+            Загрузка… {progress}%
           </span>
         </div>
       ) : (
@@ -56,10 +56,10 @@ export function CompactUploadZone({
           </div>
           <div className="space-y-0.5">
             <p className="text-xs font-medium text-foreground">
-              Click to upload
+              Нажмите для загрузки
             </p>
             <p className="text-[10px] text-muted-foreground">
-              SVG, PNG, JPG or GIF
+              SVG, PNG, JPG или GIF
             </p>
           </div>
         </>

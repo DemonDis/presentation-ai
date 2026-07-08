@@ -82,7 +82,7 @@ export const colorThemes: ColorTheme[] =
         {
           id: "mystique",
           name: "Mystique",
-          description: "Default theme",
+          description: "Тема по умолчанию",
           colors: fallbackColors,
           fonts: fallbackFonts,
           borderRadius: fallbackBorderRaidus,

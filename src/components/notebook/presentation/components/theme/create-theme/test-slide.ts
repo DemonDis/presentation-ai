@@ -15,17 +15,17 @@ export const testSlides: PlateSlide[] = [
             children: [
               {
                 type: "p",
-                children: [{ text: "Hello 👋", bold: true }],
+                children: [{ text: "Привет 👋", bold: true }],
               },
               {
                 type: "h1",
-                children: [{ text: "Welcome to ALLWEONE" }],
+                children: [{ text: "Добро пожаловать" }],
               },
               {
                 type: "p",
                 children: [
                   {
-                    text: "Create beautiful, AI-powered presentations in minutes. Customize your theme with fonts, colors, and layouts.",
+                    text: "Создавайте красивые AI-презентации за минуты. Настройте тему с помощью шрифтов, цветов и макетов.",
                   },
                 ],
               },
@@ -33,12 +33,12 @@ export const testSlides: PlateSlide[] = [
                 type: "p",
                 children: [
                   {
-                    text: "Your accent color will be used for links.",
+                    text: "Ваш акцентный цвет будет использоваться для ссылок.",
                     color: "var(--presentation-accent)",
                     underline: true,
                   },
                   {
-                    text: " It will also be used for layouts and buttons.",
+                    text: " Он также будет использоваться для макетов и кнопок.",
                   },
                 ],
               },
@@ -46,7 +46,7 @@ export const testSlides: PlateSlide[] = [
                 type: "p",
                 children: [
                   {
-                    text: "Here are your buttons:",
+                    text: "Вот ваши кнопки:",
                     bold: true,
                   },
                 ],
@@ -61,7 +61,7 @@ export const testSlides: PlateSlide[] = [
                       {
                         type: "button",
                         variant: "filled",
-                        children: [{ text: "Primary button" }],
+                        children: [{ text: "Основная кнопка" }],
                       },
                     ],
                   },
@@ -71,7 +71,7 @@ export const testSlides: PlateSlide[] = [
                       {
                         type: "button",
                         variant: "outline",
-                        children: [{ text: "Secondary button" }],
+                        children: [{ text: "Вторичная кнопка" }],
                       },
                     ],
                   },
@@ -91,13 +91,13 @@ export const testSlides: PlateSlide[] = [
     content: [
       {
         type: "h1",
-        children: [{ text: "Fonts" }],
+        children: [{ text: "Шрифты" }],
       },
       {
         type: "p",
         children: [
           {
-            text: "ALLWEONE comes with pre-defined sizes of typography that work best for legibility. Feel free to choose font families for your headings and body font.",
+            text: "Проект поставляется с предопределёнными размерами типографики, которые обеспечивают наилучшую читаемость. Вы можете выбрать гарнитуры для заголовков и основного текста.",
           },
         ],
       },
@@ -105,29 +105,29 @@ export const testSlides: PlateSlide[] = [
         type: "p",
         children: [
           {
-            text: "You can choose a solid default color for your text. For headings, you can also choose a gradient color.",
+            text: "Вы можете выбрать однотонный цвет для текста. Для заголовков также можно выбрать градиентный цвет.",
           },
         ],
       },
       {
         type: "h1",
-        children: [{ text: "Title font" }],
+        children: [{ text: "Заголовочный шрифт" }],
       },
       {
         type: "h1",
-        children: [{ text: "Heading 1" }],
+        children: [{ text: "Заголовок 1" }],
       },
       {
         type: "h2",
-        children: [{ text: "Heading 2" }],
+        children: [{ text: "Заголовок 2" }],
       },
       {
         type: "h3",
-        children: [{ text: "Heading 3" }],
+        children: [{ text: "Заголовок 3" }],
       },
       {
         type: "h4",
-        children: [{ text: "Heading 4" }],
+        children: [{ text: "Заголовок 4" }],
       },
     ],
   },
@@ -139,11 +139,11 @@ export const testSlides: PlateSlide[] = [
     content: [
       {
         type: "h1",
-        children: [{ text: "Smart layouts" }],
+        children: [{ text: "Умные макеты" }],
       },
       {
         type: "h3",
-        children: [{ text: "Timeline" }],
+        children: [{ text: "Таймлайн" }],
       },
       {
         type: "timeline",
@@ -153,11 +153,11 @@ export const testSlides: PlateSlide[] = [
           {
             type: "timeline-item",
             children: [
-              { type: "h3", children: [{ text: "AI-Powered Creation" }] },
+              { type: "h3", children: [{ text: "Создание с помощью ИИ" }] },
               {
                 type: "p",
                 children: [
-                  { text: "Generate presentations with AI assistance" },
+                  { text: "Создавайте презентации с помощью ИИ" },
                 ],
               },
             ],
@@ -165,12 +165,12 @@ export const testSlides: PlateSlide[] = [
           {
             type: "timeline-item",
             children: [
-              { type: "h3", children: [{ text: "Custom Themes" }] },
+              { type: "h3", children: [{ text: "Пользовательские темы" }] },
               {
                 type: "p",
                 children: [
                   {
-                    text: "Personalize your presentations with custom fonts and colors",
+                    text: "Персонализируйте презентации своими шрифтами и цветами",
                   },
                 ],
               },
@@ -179,12 +179,12 @@ export const testSlides: PlateSlide[] = [
           {
             type: "timeline-item",
             children: [
-              { type: "h3", children: [{ text: "Smart Layouts" }] },
+              { type: "h3", children: [{ text: "Умные макеты" }] },
               {
                 type: "p",
                 children: [
                   {
-                    text: "Use intelligent layouts that adapt to your content",
+                    text: "Используйте интеллектуальные макеты, адаптирующиеся под ваш контент",
                   },
                 ],
               },
@@ -194,7 +194,7 @@ export const testSlides: PlateSlide[] = [
       },
       {
         type: "h3",
-        children: [{ text: "Pyramid" }],
+        children: [{ text: "Пирамида" }],
       },
       {
         type: "pyramid",
@@ -202,21 +202,21 @@ export const testSlides: PlateSlide[] = [
           {
             type: "pyramid-item",
             children: [
-              { type: "h3", children: [{ text: "Easy to Use" }] },
+              { type: "h3", children: [{ text: "Простота использования" }] },
               {
                 type: "p",
-                children: [{ text: "Intuitive interface for everyone" }],
+                children: [{ text: "Интуитивный интерфейс для всех" }],
               },
             ],
           },
           {
             type: "pyramid-item",
             children: [
-              { type: "h3", children: [{ text: "Fully Customizable" }] },
+              { type: "h3", children: [{ text: "Полная настройка" }] },
               {
                 type: "p",
                 children: [
-                  { text: "Adjust layouts and styles to match your brand" },
+                  { text: "Настраивайте макеты и стили под свой бренд" },
                 ],
               },
             ],
@@ -224,12 +224,12 @@ export const testSlides: PlateSlide[] = [
           {
             type: "pyramid-item",
             children: [
-              { type: "h3", children: [{ text: "Professional Results" }] },
+              { type: "h3", children: [{ text: "Профессиональный результат" }] },
               {
                 type: "p",
                 children: [
                   {
-                    text: "Create stunning presentations that impress your audience",
+                    text: "Создавайте впечатляющие презентации, которые поражают аудиторию",
                   },
                 ],
               },

@@ -12,13 +12,13 @@ import {
 import { type FontPickerFieldProps } from "./types";
 
 const FONT_WEIGHTS = [
-  { value: 300, label: "Light (300)" },
-  { value: 400, label: "Regular (400)" },
-  { value: 500, label: "Medium (500)" },
-  { value: 600, label: "Semi Bold (600)" },
-  { value: 700, label: "Bold (700)" },
-  { value: 800, label: "Extra Bold (800)" },
-  { value: 900, label: "Black (900)" },
+  { value: 300, label: "Светлый (300)" },
+  { value: 400, label: "Обычный (400)" },
+  { value: 500, label: "Средний (500)" },
+  { value: 600, label: "Полужирный (600)" },
+  { value: 700, label: "Жирный (700)" },
+  { value: 800, label: "Сверхжирный (800)" },
+  { value: 900, label: "Чёрный (900)" },
 ] as const;
 
 export function FontPickerField({
@@ -57,7 +57,7 @@ export function FontPickerField({
           className="flex items-center gap-1 rounded-md bg-primary px-2 py-1 text-xs text-primary-foreground hover:bg-primary/90 disabled:opacity-50"
         >
           <Upload className="size-3" />
-          {isUploading ? "Uploading..." : "Upload"}
+          {isUploading ? "Загрузка..." : "Загрузить"}
         </button>
       </div>
 
@@ -73,14 +73,14 @@ export function FontPickerField({
               {currentFamily}
             </p>
             <p className="text-xs text-muted-foreground">
-              Custom uploaded font
+              Пользовательский шрифт
             </p>
           </div>
           <button
             type="button"
             onClick={handleRemoveCustomFont}
             className="rounded p-1 transition-colors hover:bg-muted"
-            title="Remove custom font"
+            title="Удалить шрифт"
           >
             <X className="size-4" />
           </button>
@@ -121,7 +121,7 @@ export function FontPickerField({
             onValueChange={(val) => field.onChange(Number(val))}
           >
             <SelectTrigger className="w-full appearance-none rounded-lg border border-border bg-background px-3 py-2 text-sm transition-colors hover:bg-muted">
-              <SelectValue placeholder="Font Weight" />
+              <SelectValue placeholder="Насыщенность" />
             </SelectTrigger>
             <SelectContent className="z-10002">
               {FONT_WEIGHTS.map(({ value, label }) => (

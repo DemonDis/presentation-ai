@@ -87,7 +87,7 @@ export function CompactImageSelector({
           className="text-xs data-[state=active]:bg-background data-[state=active]:shadow"
         >
           <Upload className="mr-1.5 size-3" />
-          Upload
+          Загрузить
         </TabsTrigger>
         <TabsTrigger
           value="ai"
@@ -101,7 +101,7 @@ export function CompactImageSelector({
           className="text-xs data-[state=active]:bg-background data-[state=active]:shadow"
         >
           <ImageLucide className="mr-1.5 size-3" />
-          Search
+          Поиск
         </TabsTrigger>
       </TabsList>
 
@@ -110,7 +110,7 @@ export function CompactImageSelector({
           <div className="space-y-3">
             <div className="space-y-2">
               <Label className="text-xs font-medium text-muted-foreground">
-                Image URL
+                URL изображения
               </Label>
               <Input
                 placeholder="https://example.com/image.jpg"
@@ -125,7 +125,7 @@ export function CompactImageSelector({
                 <span className="w-full border-t border-border/50" />
               </div>
               <div className="relative flex justify-center text-xs uppercase">
-                <span className="bg-card px-2 text-muted-foreground">Or</span>
+                <span className="bg-card px-2 text-muted-foreground">Или</span>
               </div>
             </div>
 
@@ -141,7 +141,7 @@ export function CompactImageSelector({
                 className="h-9 w-full text-xs font-medium"
                 onClick={handleApplyImageUrl}
               >
-                Apply Image
+                Применить изображение
               </Button>
             )}
           </div>

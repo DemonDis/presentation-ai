@@ -17,7 +17,7 @@ export function FontCombinationsList({
   return (
     <div className="space-y-3">
       <span className="text-xs font-semibold text-muted-foreground uppercase">
-        Font Combinations
+        Комбинации шрифтов
       </span>
       <div className="space-y-2">
         {fontPairs.map((pair) => {

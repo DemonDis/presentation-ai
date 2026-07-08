@@ -43,15 +43,15 @@ export function ColorSettingsPanel({
     <div className="space-y-6">
       {/* Theme Palette Section */}
       <section className="space-y-4">
-        <h3 className="text-sm font-semibold text-foreground">Theme palette</h3>
+        <h3 className="text-sm font-semibold text-foreground">Палитра темы</h3>
         <ColorInputField
-          label="Primary Color"
+          label="Основной цвет"
           color={colors.primary}
           onChange={(color) => onColorChange("primary", color)}
           defaultColor={defaultColors.primary ?? DEFAULT_THEME_COLORS.primary}
         />
         <ColorInputField
-          label="Secondary Colors (optional)"
+          label="Дополнительный цвет (опционально)"
           color={colors.accent}
           onChange={(color) => onColorChange("accent", color)}
           defaultColor={defaultColors.accent ?? DEFAULT_THEME_COLORS.accent}
@@ -60,15 +60,15 @@ export function ColorSettingsPanel({
 
       {/* Text Section */}
       <section className="space-y-4">
-        <h3 className="text-sm font-semibold text-foreground">Text</h3>
+        <h3 className="text-sm font-semibold text-foreground">Текст</h3>
         <ColorInputField
-          label="Heading color"
+          label="Цвет заголовков"
           color={colors.heading}
           onChange={(color) => onColorChange("heading", color)}
           defaultColor={defaultColors.heading ?? DEFAULT_THEME_COLORS.heading}
         />
         <ColorInputField
-          label="Body color"
+          label="Цвет основного текста"
           color={colors.text}
           onChange={(color) => onColorChange("text", color)}
           defaultColor={defaultColors.text ?? DEFAULT_THEME_COLORS.text}
@@ -77,9 +77,9 @@ export function ColorSettingsPanel({
 
       {/* Smart Layout Section (optional) */}
       <section className="space-y-4">
-        <h3 className="text-sm font-semibold text-foreground">Smart Layout</h3>
+        <h3 className="text-sm font-semibold text-foreground">Умная раскладка</h3>
         <ColorInputField
-          label="Smart layout "
+          label="Умная раскладка "
           color={colors.smartLayout}
           onChange={(color) => onColorChange("smartLayout", color)}
           defaultColor={
@@ -90,9 +90,9 @@ export function ColorSettingsPanel({
 
       {/* Background Section */}
       <section className="space-y-4">
-        <h3 className="text-sm font-semibold text-foreground">Background</h3>
+        <h3 className="text-sm font-semibold text-foreground">Фон</h3>
         <ColorInputField
-          label="Content Background"
+          label="Фон контента"
           color={colors.cardBackground}
           onChange={(color) => onColorChange("cardBackground", color)}
           defaultColor={
@@ -102,7 +102,7 @@ export function ColorSettingsPanel({
 
         <div className="space-y-2">
           <label className="text-sm text-muted-foreground">
-            Slide background
+            Фон слайда
           </label>
 
           <ColorInputField
@@ -122,7 +122,7 @@ export function ColorSettingsPanel({
 
         <div className="space-y-3">
           <label className="text-sm text-muted-foreground">
-            Page background
+            Фон страницы
           </label>
 
           <CompactBackgroundSelector
@@ -225,7 +225,7 @@ function ColorInputField({
           type="button"
           onClick={handleReset}
           className="shrink-0 p-2 text-muted-foreground transition-colors hover:text-foreground"
-          title="Reset to default"
+          title="Сбросить на умолчания"
         >
           <RotateCcw className="size-4" />
         </button>

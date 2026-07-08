@@ -15,10 +15,10 @@ const steps: Array<{
   label: string;
   icon: typeof Palette;
 }> = [
-  { id: "colors", label: "Colors", icon: Palette },
-  { id: "fonts", label: "Fonts", icon: Type },
-  { id: "design", label: "Design", icon: Shapes },
-  { id: "save", label: "Save", icon: Check },
+  { id: "colors", label: "Цвета", icon: Palette },
+  { id: "fonts", label: "Шрифты", icon: Type },
+  { id: "design", label: "Дизайн", icon: Shapes },
+  { id: "save", label: "Сохранение", icon: Check },
 ];
 
 export function CreateThemeStepper({

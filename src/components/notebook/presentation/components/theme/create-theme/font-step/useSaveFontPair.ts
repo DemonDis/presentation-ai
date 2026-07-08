@@ -19,7 +19,7 @@ export function useSaveFontPair(onSuccess?: () => void) {
     const { heading, body, headingUrl, bodyUrl } = data;
 
     if (!heading || !body) {
-      toast.error("Please select both heading and body fonts");
+      toast.error("Выберите шрифт заголовков и основной шрифт");
       return false;
     }
 
@@ -33,17 +33,17 @@ export function useSaveFontPair(onSuccess?: () => void) {
       });
 
       if (result.success) {
-        toast.success("Font pair saved successfully");
+        toast.success("Пара шрифтов сохранена");
         await queryClient.invalidateQueries({ queryKey: ["userFontPairs"] });
         onSuccess?.();
         return true;
       } else {
-        toast.error(result.message || "Failed to save font pair");
+        toast.error(result.message || "Не удалось сохранить пару шрифтов");
         return false;
       }
     } catch (error) {
       console.error("Error saving font pair:", error);
-      toast.error("Failed to save font pair");
+      toast.error("Не удалось сохранить пару шрифтов");
       return false;
     } finally {
       setIsSaving(false);

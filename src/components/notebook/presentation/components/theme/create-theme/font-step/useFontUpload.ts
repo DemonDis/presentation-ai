@@ -38,7 +38,7 @@ export function useFontUpload({ setValue, control }: UseFontUploadOptions) {
       if (!file) return;
 
       if (file.size > 2 * 1024 * 1024) {
-        toast.error("Font file must be smaller than 2MB");
+        toast.error("Файл шрифта должен быть меньше 2 МБ");
         return;
       }
 
@@ -62,15 +62,15 @@ export function useFontUpload({ setValue, control }: UseFontUploadOptions) {
           // Load the font immediately using FontFace API
           try {
             await loadCustomFont(serverData.familyName, ufsUrl, 400);
-            toast.success("Font uploaded and loaded successfully");
+            toast.success("Шрифт загружен и применён");
           } catch (fontLoadError) {
             console.error("Font uploaded but failed to load:", fontLoadError);
-            toast.success("Font uploaded successfully");
+            toast.success("Шрифт успешно загружен");
           }
         }
       } catch (error) {
         console.error("Font upload failed:", error);
-        toast.error("Upload failed");
+        toast.error("Ошибка загрузки");
       } finally {
         if (target === "heading") setIsUploadingHeading(false);
         else setIsUploadingBody(false);
