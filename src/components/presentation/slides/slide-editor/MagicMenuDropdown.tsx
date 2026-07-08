@@ -27,7 +27,7 @@ import { useSlideEditorContext } from "./SlideEditorContext";
 
 const makeVisualAction: MagicAction = {
   icon: ImageIcon,
-  label: "Make visual",
+  label: "Визуализировать",
   prompt:
     "Redesign this card to be more visual and presentation-ready. Convert dense text into a stronger visual hierarchy while preserving the meaning.",
 };
@@ -58,24 +58,24 @@ export function MagicMenuDropdown() {
   const writingActions: MagicAction[] = [
     {
       icon: PenTool,
-      label: "Improve writing",
+      label: "Улучшить текст",
       prompt:
         "Improve the writing on this card. Make it sharper, clearer, and more executive-ready while preserving the original meaning.",
     },
     {
       icon: Check,
-      label: "Fix spelling",
+      label: "Исправить орфографию",
       prompt:
         "Fix spelling, grammar, punctuation, and awkward phrasing on this card without changing the meaning or layout.",
     },
     {
       icon: Globe,
-      label: "Translate",
+      label: "Перевести",
       prompt: `Translate this card into the presentation language (${language}). Preserve the slide structure and meaning.`,
     },
     {
       icon: ArrowDown,
-      label: "Simplify",
+      label: "Упростить",
       prompt:
         "Simplify this card. Use shorter sentences and clearer wording while keeping the same core points.",
     },
@@ -104,17 +104,17 @@ export function MagicMenuDropdown() {
             <div className="flex size-7 items-center justify-center rounded-full bg-primary text-primary-foreground">
               <Sparkles className="size-3.5" />
             </div>
-            <h3 className="text-sm font-semibold">Edit this card</h3>
+            <h3 className="text-sm font-semibold">Редактировать карточку</h3>
           </div>
 
           <div className="flex items-center gap-2 rounded-lg border border-white/15 bg-white/6 p-2 shadow-inner transition-colors focus-within:border-primary/70">
             <input
-              aria-label="magic menu dropdown control"
+              aria-label="волшебное меню редактирования"
               type="text"
               value={aiInput}
               onChange={(e) => setAiInput(e.target.value)}
               onKeyDown={handleAiKeyDown}
-              placeholder="How would you like to edit this card?"
+              placeholder="Как вы хотите изменить эту карточку?"
               className="min-w-0 flex-1 bg-transparent px-1 text-sm text-white outline-none placeholder:text-neutral-500"
             />
             <button
@@ -145,7 +145,7 @@ export function MagicMenuDropdown() {
           >
             <span className="flex items-center gap-2 text-sm font-semibold">
               <Sparkles className="size-4 text-primary" />
-              Try new layout
+              Попробовать новый макет
             </span>
             <ArrowRight className="size-4 text-neutral-500" />
           </button>
@@ -154,7 +154,7 @@ export function MagicMenuDropdown() {
 
           <div className="mt-3 mb-4">
             <h4 className="mb-2 px-1 text-[0.68rem] font-semibold text-neutral-500 uppercase">
-              Writing
+              Текст
             </h4>
             <div className="mb-2 grid grid-cols-2 gap-2">
               {writingActions.map((action) => (
@@ -169,7 +169,7 @@ export function MagicMenuDropdown() {
 
           <div>
             <h4 className="mb-2 px-1 text-[0.68rem] font-semibold text-neutral-500 uppercase">
-              Image
+              Изображение
             </h4>
             <div className="grid grid-cols-2 gap-2">
               <MagicActionButton
@@ -188,7 +188,7 @@ export function MagicMenuDropdown() {
                 }}
               >
                 <Plus className="size-4" />
-                Add image
+                Добавить изображение
               </button>
             </div>
           </div>

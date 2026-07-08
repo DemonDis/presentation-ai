@@ -41,47 +41,47 @@ interface SharedGenerateControlsProps {
 }
 
 const ART_STYLES = [
-  { id: "none", label: "None", value: "" },
+  { id: "none", label: "Нет", value: "" },
   {
     id: "photorealistic",
-    label: "Photorealistic",
+    label: "Фотореализм",
     value: "photorealistic, highly detailed, 8k",
   },
   {
     id: "illustration",
-    label: "Illustration",
+    label: "Иллюстрация",
     value: "illustration, vector art, flat style",
   },
   {
     id: "3d-render",
-    label: "3D Render",
+    label: "3D рендер",
     value: "3d render, unreal engine 5, octane render",
   },
-  { id: "abstract", label: "Abstract", value: "abstract, artistic, colorful" },
+  { id: "abstract", label: "Абстракция", value: "abstract, artistic, colorful" },
   {
     id: "watercolor",
-    label: "Watercolor",
+    label: "Акварель",
     value: "watercolor painting, artistic, soft colors",
   },
   {
     id: "cyberpunk",
-    label: "Cyberpunk",
+    label: "Киберпанк",
     value: "cyberpunk, neon lights, futuristic",
   },
-  { id: "anime", label: "Anime", value: "anime style, studio ghibli, vibrant" },
+  { id: "anime", label: "Аниме", value: "anime style, studio ghibli, vibrant" },
   {
     id: "oil-painting",
-    label: "Oil Painting",
+    label: "Масло",
     value: "oil painting, textured, canvas",
   },
 ];
 
 const ASPECT_RATIOS = [
-  { label: "1:1 (Square)", value: "1:1" },
-  { label: "4:3 (Standard)", value: "4:3" },
-  { label: "3:4 (Portrait)", value: "3:4" },
-  { label: "16:9 (Widescreen)", value: "16:9" },
-  { label: "9:16 (Mobile)", value: "9:16" },
+  { label: "1:1 (Квадрат)", value: "1:1" },
+  { label: "4:3 (Стандарт)", value: "4:3" },
+  { label: "3:4 (Портрет)", value: "3:4" },
+  { label: "16:9 (Широкий)", value: "16:9" },
+  { label: "9:16 (Мобильный)", value: "9:16" },
 ];
 
 const IMAGE_COUNTS = [1, 2, 3, 4];
@@ -181,11 +181,11 @@ export function SharedGenerateControls({
         setGeneratedImageCache(fullPrompt, successfulImages);
         onImagesGenerated?.(successfulImages);
       } else {
-        setLocalError(firstError ?? "Failed to generate images");
+        setLocalError(firstError ?? "Не удалось сгенерировать изображения");
       }
     } catch (error) {
       setLocalError(
-        error instanceof Error ? error.message : "Failed to generate image",
+        error instanceof Error ? error.message : "Не удалось сгенерировать изображение",
       );
     } finally {
       setIsGenerating(false);
@@ -204,10 +204,10 @@ export function SharedGenerateControls({
       {/* Prompt Section */}
       <div className="space-y-3">
         <Label className="text-sm font-medium">
-          Prompt
+          Описание
         </Label>
         <Textarea
-          placeholder="Describe the image you want to create..."
+          placeholder="Опишите изображение, которое хотите создать..."
           className="min-h-20 resize-none text-base"
           value={newPrompt}
           onChange={(e) => setNewPrompt(e.target.value)}
@@ -224,12 +224,12 @@ export function SharedGenerateControls({
           {isGenerating ? (
             <>
               <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-              Generating...
+              Генерация...
             </>
           ) : (
             <>
               <Sparkles className="mr-2 h-4 w-4" />
-              Generate
+              Сгенерировать
             </>
           )}
         </Button>
@@ -242,10 +242,10 @@ export function SharedGenerateControls({
             <div className="flex h-48 animate-in flex-col items-center justify-center rounded-lg border bg-muted/30 duration-300 zoom-in-95 fade-in">
               <Loader2 className="mb-4 h-8 w-8 animate-spin text-primary" />
               <p className="animate-pulse text-center text-sm text-muted-foreground">
-                Dreaming up your image...
+                Создаём изображение...
                 <br />
                 <span className="text-xs opacity-70">
-                  This typically takes 5-10 seconds
+                  Обычно это занимает 5–10 секунд
                 </span>
               </p>
             </div>
@@ -295,14 +295,14 @@ export function SharedGenerateControls({
       {/* Settings Section - Push down */}
       <div className="space-y-4 pt-1">
         <h4 className="text-xs font-semibold tracking-wider text-muted-foreground uppercase">
-          Style & Settings
+          Стиль и настройки
         </h4>
 
         <div className="grid grid-cols-2 gap-4">
           {/* Art Style */}
           <div className="col-span-2 space-y-2">
             <Label className="text-xs font-medium text-muted-foreground">
-              Art style
+              Стиль
             </Label>
             <div className="grid grid-cols-3 gap-2">
               {ART_STYLES.slice(0, 6).map((style) => (
@@ -322,7 +322,7 @@ export function SharedGenerateControls({
               ))}
               <Select value={selectedStyle} onValueChange={setSelectedStyle}>
                 <SelectTrigger className="h-8 text-xs">
-                  <SelectValue placeholder="More" />
+                  <SelectValue placeholder="Ещё" />
                 </SelectTrigger>
                 <SelectContent>
                   {ART_STYLES.map((style) => (
@@ -338,7 +338,7 @@ export function SharedGenerateControls({
           {/* Aspect Ratio */}
           <div className="space-y-2">
             <Label className="text-xs font-medium text-muted-foreground">
-              Aspect ratio
+              Соотношение сторон
             </Label>
             <Select
               value={aspectRatio}
@@ -360,7 +360,7 @@ export function SharedGenerateControls({
           {/* Image Count */}
           <div className="space-y-2">
             <Label className="text-xs font-medium text-muted-foreground">
-              Image count
+              Количество
             </Label>
             <Select
               value={imageCount.toString()}
@@ -382,7 +382,7 @@ export function SharedGenerateControls({
           {/* Model */}
           <div className="col-span-2 space-y-2">
             <Label className="text-xs font-medium text-muted-foreground">
-              Model
+              Модель
             </Label>
             <Select
               value={imageModel}

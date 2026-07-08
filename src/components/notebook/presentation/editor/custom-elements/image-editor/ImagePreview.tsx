@@ -178,9 +178,9 @@ export function ImagePreview({
           <ImageIcon className="h-8 w-8 text-muted-foreground/50" />
         </div>
         <div className="space-y-1">
-          <h3 className="font-medium">No image selected</h3>
+          <h3 className="font-medium">Изображение не выбрано</h3>
           <p className="mx-auto max-w-xs text-sm text-muted-foreground">
-            Generate a new image or search for one to get started.
+            Сгенерируйте новое изображение или найдите его.
           </p>
         </div>
       </div>
@@ -215,7 +215,7 @@ export function ImagePreview({
           {/** biome-ignore lint/performance/noImgElement: This is a valid use case */}
           <img
             src={element.url}
-            alt={element.query ?? "Presentation image"}
+            alt={element.query ?? "Изображение презентации"}
             loading="lazy"
             decoding="async"
             className="h-full w-full transition-transform duration-75"
@@ -250,7 +250,7 @@ export function ImagePreview({
             size="icon"
             className="h-8 w-8 rounded-full"
             onClick={handleDownload}
-            title="Download Image"
+            title="Скачать изображение"
           >
             <Download className="h-4 w-4" />
           </Button>
@@ -305,7 +305,7 @@ export function ImagePreview({
                     objectFit: newFit,
                   });
                 }}
-                title="Toggle Fit/Cover"
+                title="Режим вписать/заполнить"
               >
                 <Scan className="h-4 w-4" />
               </Button>

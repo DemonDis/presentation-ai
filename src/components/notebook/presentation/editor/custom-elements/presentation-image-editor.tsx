@@ -176,7 +176,7 @@ export const PresentationImageEditor = ({
       >
         {/* Header */}
         <SheetHeader className="flex flex-row items-center justify-between space-y-0 border-b px-4 py-2">
-          <SheetTitle>Image Studio</SheetTitle>
+          <SheetTitle>Редактор изображений</SheetTitle>
 
           <SheetClose asChild>
             <Button variant="ghost" className="size-8! rounded-full p-0">
@@ -199,15 +199,15 @@ export const PresentationImageEditor = ({
               </TabsTrigger>
               <TabsTrigger value="your-images" className="text-xs">
                 <Images className="mr-2 h-3.5 w-3.5" />
-                Yours
+                Мои
               </TabsTrigger>
               <TabsTrigger value="search" className="text-xs">
                 <Search className="mr-2 h-3.5 w-3.5" />
-                Search
+                Поиск
               </TabsTrigger>
               <TabsTrigger value="embed" className="text-xs">
                 <Globe className="mr-2 h-3.5 w-3.5" />
-                Embed
+                Встроить
               </TabsTrigger>
             </TabsList>
           </div>
@@ -222,9 +222,9 @@ export const PresentationImageEditor = ({
               className="mt-0 flex h-full flex-col data-[state=inactive]:hidden"
             >
               <div className="flex-none space-y-1 px-6 py-4">
-                <h3 className="leading-none font-medium">Generate Image</h3>
+                <h3 className="leading-none font-medium">Создать изображение</h3>
                 <p className="text-sm text-muted-foreground">
-                  Create unique images using AI.
+                  Создавайте уникальные изображения с помощью ИИ.
                 </p>
               </div>
               <div className="min-h-0 flex-1 overflow-y-auto px-6 pb-6">
@@ -243,9 +243,9 @@ export const PresentationImageEditor = ({
               className="mt-0 flex h-full flex-col data-[state=inactive]:hidden"
             >
               <div className="flex-none space-y-1 px-6 py-4">
-                <h3 className="leading-none font-medium">Your Images</h3>
+                <h3 className="leading-none font-medium">Ваши изображения</h3>
                 <p className="text-sm text-muted-foreground">
-                  Select from your generated images.
+                  Выберите из сгенерированных изображений.
                 </p>
               </div>
               <div className="flex min-h-0 flex-1 flex-col overflow-hidden px-6 pb-6">
@@ -262,9 +262,9 @@ export const PresentationImageEditor = ({
               className="mt-0 flex h-full flex-col data-[state=inactive]:hidden"
             >
               <div className="flex-none space-y-1 px-6 py-4">
-                <h3 className="leading-none font-medium">Search Images</h3>
+                <h3 className="leading-none font-medium">Поиск изображений</h3>
                 <p className="text-sm text-muted-foreground">
-                  Find images from Unsplash or Pixabay.
+                  Найдите изображения через Unsplash или Pixabay.
                 </p>
               </div>
               <div className="flex min-h-0 flex-1 flex-col overflow-hidden px-6 pb-6">
@@ -283,9 +283,9 @@ export const PresentationImageEditor = ({
               <ScrollArea className="h-full">
                 <div className="space-y-6 p-6">
                   <div className="space-y-1">
-                    <h3 className="leading-none font-medium">Embed Content</h3>
+                    <h3 className="leading-none font-medium">Встроить контент</h3>
                     <p className="text-sm text-muted-foreground">
-                      Embed videos, tweets, or other content.
+                      Встраивайте видео, твиты и другой контент.
                     </p>
                   </div>
                   <EmbedControls

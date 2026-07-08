@@ -50,21 +50,21 @@ const TAB_OPTIONS: {
 }[] = [
   {
     value: "generate",
-    label: "AI Generate",
+    label: "AI Генерация",
     icon: <ImageIcon className="size-4" />,
   },
   {
     value: "your-images",
-    label: "Uploaded Images",
+    label: "Загруженные",
     icon: <Images className="size-4" />,
   },
   {
     value: "generated-images",
-    label: "Generated Images",
+    label: "Сгенерированные",
     icon: <Sparkles className="size-4" />,
   },
-  { value: "search", label: "Search", icon: <Search className="size-4" /> },
-  { value: "gif", label: "GIFs", icon: <Clapperboard className="size-4" /> },
+  { value: "search", label: "Поиск", icon: <Search className="size-4" /> },
+  { value: "gif", label: "GIF", icon: <Clapperboard className="size-4" /> },
 ];
 
 export function PresentationImageEditorPanel() {
@@ -132,7 +132,7 @@ export function PresentationImageEditorPanel() {
   const { uploadFile, isUploading, progress } = useUploadFile({
     onUploadComplete: (file) => {
       if (!file.ufsUrl) {
-        toast.error("Uploaded image URL was not returned");
+        toast.error("URL загруженного изображения не получен");
         return;
       }
 
@@ -160,7 +160,7 @@ export function PresentationImageEditorPanel() {
       });
     },
     onUploadError: (error) => {
-      toast.error("Failed to upload image");
+      toast.error("Не удалось загрузить изображение");
       console.error(error);
     },
   });
@@ -272,7 +272,7 @@ export function PresentationImageEditorPanel() {
             onClick={() => setIsCropModalOpen(true)}
           >
             <Scissors className="size-4" />
-            Crop
+            Обрезка
           </Button>
         </div>
       </div>
@@ -285,9 +285,9 @@ export function PresentationImageEditorPanel() {
         return (
           <div className="flex h-full flex-col">
             <div className="flex-none space-y-1 px-6 py-4">
-              <h3 className="leading-none font-medium">Generate Image</h3>
+              <h3 className="leading-none font-medium">Создать изображение</h3>
               <p className="text-sm text-muted-foreground">
-                Create unique images using AI.
+                Создавайте уникальные изображения с помощью ИИ.
               </p>
             </div>
             <div className="min-h-0 flex-1 space-y-5 overflow-y-auto px-6 pb-6">
@@ -306,9 +306,9 @@ export function PresentationImageEditorPanel() {
           <div className="flex h-full flex-col">
             <div className="flex flex-none items-start justify-between gap-3 px-6 py-4">
               <div className="min-w-0 space-y-1">
-                <h3 className="leading-none font-medium">Uploaded Images</h3>
+                <h3 className="leading-none font-medium">Загруженные изображения</h3>
                 <p className="text-sm text-muted-foreground">
-                  Select from your uploaded images.
+                  Выберите из загруженных изображений.
                 </p>
               </div>
               <Button
@@ -326,7 +326,7 @@ export function PresentationImageEditorPanel() {
                 ) : (
                   <>
                     <Upload className="size-4" />
-                    Upload
+                    Загрузить
                   </>
                 )}
               </Button>
@@ -344,9 +344,9 @@ export function PresentationImageEditorPanel() {
         return (
           <div className="flex h-full flex-col">
             <div className="flex-none space-y-1 px-6 py-4">
-              <h3 className="leading-none font-medium">Generated Images</h3>
+              <h3 className="leading-none font-medium">Сгенерированные изображения</h3>
               <p className="text-sm text-muted-foreground">
-                Select from your AI-generated images.
+                Выберите из сгенерированных ИИ изображений.
               </p>
             </div>
             <div className="flex min-h-0 flex-1 flex-col overflow-hidden px-6 pb-6">
@@ -362,9 +362,9 @@ export function PresentationImageEditorPanel() {
         return (
           <div className="flex h-full flex-col">
             <div className="flex-none space-y-1 px-6 py-4">
-              <h3 className="leading-none font-medium">Search Images</h3>
+              <h3 className="leading-none font-medium">Поиск изображений</h3>
               <p className="text-sm text-muted-foreground">
-                Find images from Unsplash, Pixabay, or live web results.
+                Найдите изображения через Unsplash, Pixabay или веб-поиск.
               </p>
             </div>
             <div className="flex min-h-0 flex-1 flex-col overflow-hidden px-6 pb-6">
@@ -384,9 +384,9 @@ export function PresentationImageEditorPanel() {
         return (
           <div className="flex h-full flex-col">
             <div className="flex-none space-y-1 px-6 py-4">
-              <h3 className="leading-none font-medium">Search GIFs</h3>
+              <h3 className="leading-none font-medium">Поиск GIF</h3>
               <p className="text-sm text-muted-foreground">
-                Find animated GIFs from Giphy.
+                Найдите анимированные GIF через Giphy.
               </p>
             </div>
             <div className="flex min-h-0 flex-1 flex-col overflow-hidden px-6 pb-6">
@@ -406,7 +406,7 @@ export function PresentationImageEditorPanel() {
     <div className="flex size-full flex-col border-l bg-background">
       {/* Header */}
       <div className="flex items-center justify-between border-b px-4 py-2">
-        <h2 className="text-sm font-semibold">Image Editor</h2>
+        <h2 className="text-sm font-semibold">Редактор изображений</h2>
         <Button
           variant="ghost"
           size="icon"
@@ -419,7 +419,7 @@ export function PresentationImageEditorPanel() {
 
       {/* Hidden file input */}
       <input
-        aria-label="presentation image editor panel control"
+        aria-label="панель редактора изображений"
         ref={fileInputRef}
         type="file"
         accept="image/*"

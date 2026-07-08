@@ -49,22 +49,22 @@ const TAB_OPTIONS: {
 }[] = [
   {
     value: "generate",
-    label: "AI Generate",
+    label: "AI Генерация",
     icon: <ImageIcon className="size-4" />,
   },
   {
     value: "your-images",
-    label: "Uploaded Images",
+    label: "Загруженные",
     icon: <Images className="size-4" />,
   },
   {
     value: "generated-images",
-    label: "Generated Images",
+    label: "Сгенерированные",
     icon: <Sparkles className="size-4" />,
   },
-  { value: "search", label: "Search", icon: <Search className="size-4" /> },
-  { value: "gif", label: "GIFs", icon: <Clapperboard className="size-4" /> },
-  { value: "embed", label: "Embed", icon: <Globe className="size-4" /> },
+  { value: "search", label: "Поиск", icon: <Search className="size-4" /> },
+  { value: "gif", label: "GIF", icon: <Clapperboard className="size-4" /> },
+  { value: "embed", label: "Встраивание", icon: <Globe className="size-4" /> },
 ];
 
 export function ImageEditorPanel() {
@@ -240,9 +240,9 @@ export function ImageEditorPanel() {
         return (
           <div className="flex h-full flex-col">
             <div className="flex-none space-y-1 px-6 py-4">
-              <h3 className="leading-none font-medium">Generate Image</h3>
+              <h3 className="leading-none font-medium">Создать изображение</h3>
               <p className="text-sm text-muted-foreground">
-                Create unique images using AI.
+                Создавайте уникальные изображения с помощью ИИ.
               </p>
             </div>
             <div className="min-h-0 flex-1 overflow-y-auto px-6 pb-6">
@@ -260,9 +260,9 @@ export function ImageEditorPanel() {
         return (
           <div className="flex h-full flex-col">
             <div className="flex-none space-y-1 px-6 py-4">
-              <h3 className="leading-none font-medium">Uploaded Images</h3>
+              <h3 className="leading-none font-medium">Загруженные изображения</h3>
               <p className="text-sm text-muted-foreground">
-                Select from your uploaded images.
+                Выберите из загруженных изображений.
               </p>
             </div>
             <div className="flex min-h-0 flex-1 flex-col overflow-hidden px-6 pb-6">
@@ -278,9 +278,9 @@ export function ImageEditorPanel() {
         return (
           <div className="flex h-full flex-col">
             <div className="flex-none space-y-1 px-6 py-4">
-              <h3 className="leading-none font-medium">Generated Images</h3>
+              <h3 className="leading-none font-medium">Сгенерированные изображения</h3>
               <p className="text-sm text-muted-foreground">
-                Select from your AI-generated images.
+                Выберите из сгенерированных ИИ изображений.
               </p>
             </div>
             <div className="flex min-h-0 flex-1 flex-col overflow-hidden px-6 pb-6">
@@ -296,9 +296,9 @@ export function ImageEditorPanel() {
         return (
           <div className="flex h-full flex-col">
             <div className="flex-none space-y-1 px-6 py-4">
-              <h3 className="leading-none font-medium">Search Images</h3>
+              <h3 className="leading-none font-medium">Поиск изображений</h3>
               <p className="text-sm text-muted-foreground">
-                Find images from Unsplash, Pixabay, or live web results.
+                Найдите изображения через Unsplash, Pixabay или веб-поиск.
               </p>
             </div>
             <div className="flex min-h-0 flex-1 flex-col overflow-hidden px-6 pb-6">
@@ -316,9 +316,9 @@ export function ImageEditorPanel() {
         return (
           <div className="flex h-full flex-col">
             <div className="flex-none space-y-1 px-6 py-4">
-              <h3 className="leading-none font-medium">Search GIFs</h3>
+              <h3 className="leading-none font-medium">Поиск GIF</h3>
               <p className="text-sm text-muted-foreground">
-                Find animated GIFs from Giphy.
+                Найдите анимированные GIF через Giphy.
               </p>
             </div>
             <div className="flex min-h-0 flex-1 flex-col overflow-hidden px-6 pb-6">
@@ -335,9 +335,9 @@ export function ImageEditorPanel() {
           <ScrollArea className="h-full">
             <div className="space-y-6 p-6">
               <div className="space-y-1">
-                <h3 className="leading-none font-medium">Embed Content</h3>
+                <h3 className="leading-none font-medium">Встроить контент</h3>
                 <p className="text-sm text-muted-foreground">
-                  Embed videos, tweets, or other content.
+                  Встраивайте видео, твиты и другой контент.
                 </p>
               </div>
               <EmbedControls
@@ -367,9 +367,9 @@ export function ImageEditorPanel() {
         return (
           <div className="flex h-full flex-col">
             <div className="flex-none space-y-1 px-6 py-4">
-              <h3 className="leading-none font-medium">Edit Chart</h3>
+              <h3 className="leading-none font-medium">Редактировать диаграмму</h3>
               <p className="text-sm text-muted-foreground">
-                Customize your chart data and appearance.
+                Настройте данные и внешний вид диаграммы.
               </p>
             </div>
             <div className="min-h-0 flex-1 overflow-hidden">
@@ -386,7 +386,7 @@ export function ImageEditorPanel() {
     <div className="flex size-full flex-col border-l bg-background">
       {/* Header */}
       <div className="flex items-center justify-between border-b px-4 py-2">
-        <h2 className="text-sm font-semibold">Image Studio</h2>
+        <h2 className="text-sm font-semibold">Редактор изображений</h2>
         <Button
           variant="ghost"
           size="icon"
