@@ -14,7 +14,7 @@ export const themes = {
   // ==================== DAKTILO / NOIR ====================
   daktilo: {
     name: "Daktilo",
-    description: "Modern and clean",
+    description: "Современный и чистый",
     mode: "light",
     colors: {
       primary: "#3B82F6",
@@ -51,7 +51,7 @@ export const themes = {
 
   noir: {
     name: "Noir",
-    description: "Sleek film noir aesthetic",
+    description: "Эстетика нуар",
     mode: "dark",
     colors: {
       primary: "#60A5FA",
@@ -89,7 +89,7 @@ export const themes = {
   // ==================== CORNFLOWER / INDIGO ====================
   cornflower: {
     name: "Cornflower",
-    description: "Professional and bold",
+    description: "Профессиональная и смелая",
     mode: "light",
     colors: {
       primary: "#4F46E5",
@@ -126,7 +126,7 @@ export const themes = {
 
   indigo: {
     name: "Indigo",
-    description: "Deep and immersive",
+    description: "Глубокая и атмосферная",
     mode: "dark",
     colors: {
       primary: "#818CF8",
@@ -164,7 +164,7 @@ export const themes = {
   // ==================== ORBIT / COSMOS ====================
   orbit: {
     name: "Orbit",
-    description: "Futuristic and dynamic",
+    description: "Футуристичная и динамичная",
     mode: "light",
     colors: {
       primary: "#312E81",
@@ -201,7 +201,7 @@ export const themes = {
 
   cosmos: {
     name: "Cosmos",
-    description: "Deep space exploration",
+    description: "Глубокий космос",
     mode: "dark",
     colors: {
       primary: "#818CF8",
@@ -239,7 +239,7 @@ export const themes = {
   // ==================== PIANO / EBONY ====================
   piano: {
     name: "Piano",
-    description: "Classic and elegant",
+    description: "Классическая и элегантная",
     mode: "light",
     colors: {
       primary: "#1F2937",
@@ -276,7 +276,7 @@ export const themes = {
 
   ebony: {
     name: "Ebony",
-    description: "Refined dark elegance",
+    description: "Изысканная тёмная элегантность",
     mode: "dark",
     colors: {
       primary: "#E5E7EB",
@@ -314,7 +314,7 @@ export const themes = {
   // ==================== MYSTIQUE / PHANTOM ====================
   mystique: {
     name: "Mystique",
-    description: "Mysterious and sophisticated",
+    description: "Загадочная и утончённая",
     mode: "light",
     colors: {
       primary: "#7C3AED",
@@ -351,7 +351,7 @@ export const themes = {
 
   phantom: {
     name: "Phantom",
-    description: "Ethereal and haunting",
+    description: "Эфирная и завораживающая",
     mode: "dark",
     colors: {
       primary: "#A78BFA",
@@ -389,7 +389,7 @@ export const themes = {
   // ==================== ALLWEONE / NEON ====================
   allweoneLight: {
     name: "Allweone",
-    description: "Clean and high contrast",
+    description: "Чистая и контрастная",
     mode: "light",
     colors: {
       primary: "#06B6D4",
@@ -426,7 +426,7 @@ export const themes = {
 
   allweoneDark: {
     name: "Allweone",
-    description: "Cyberpunk glow",
+    description: "Киберпанк свечение",
     mode: "dark",
     colors: {
       primary: "#22D3EE",
@@ -464,7 +464,7 @@ export const themes = {
   // ==================== CRIMSON / EMBER ====================
   crimson: {
     name: "Crimson",
-    description: "Bold and passionate",
+    description: "Смелая и страстная",
     mode: "light",
     colors: {
       primary: "#DC2626",
@@ -501,7 +501,7 @@ export const themes = {
 
   ember: {
     name: "Ember",
-    description: "Smoldering intensity",
+    description: "Тлеющая интенсивность",
     mode: "dark",
     colors: {
       primary: "#F87171",
@@ -539,7 +539,7 @@ export const themes = {
   // ==================== SUNSET / DUSK ====================
   sunset: {
     name: "Sunset",
-    description: "Warm and inviting",
+    description: "Тёплая и приветливая",
     mode: "light",
     colors: {
       primary: "#EA580C",
@@ -576,7 +576,7 @@ export const themes = {
 
   dusk: {
     name: "Dusk",
-    description: "Twilight tranquility",
+    description: "Сумеречное спокойствие",
     mode: "dark",
     colors: {
       primary: "#FB923C",
@@ -614,7 +614,7 @@ export const themes = {
   // ==================== FOREST / CANOPY ====================
   forest: {
     name: "Forest",
-    description: "Natural and serene",
+    description: "Природная и безмятежная",
     mode: "light",
     colors: {
       primary: "#059669",
@@ -651,7 +651,7 @@ export const themes = {
 
   canopy: {
     name: "Canopy",
-    description: "Deep forest sanctuary",
+    description: "Лесное убежище",
     mode: "dark",
     colors: {
       primary: "#34D399",
@@ -687,7 +687,7 @@ export const themes = {
   },
   aurora: {
     name: "Aurora",
-    description: "Northern lights at dawn",
+    description: "Северное сияние на рассвете",
     mode: "light",
     colors: {
       primary: "#06B6D4",
@@ -719,7 +719,7 @@ export const themes = {
 
   borealis: {
     name: "Borealis",
-    description: "Northern lights at midnight",
+    description: "Северное сияние в полночь",
     mode: "dark",
     colors: {
       primary: "#22D3EE",
@@ -752,7 +752,7 @@ export const themes = {
   // ==================== SAKURA / MIDNIGHT ====================
   sakura: {
     name: "Sakura",
-    description: "Cherry blossom spring",
+    description: "Весна цветущей сакуры",
     mode: "light",
     colors: {
       primary: "#EC4899",
@@ -784,7 +784,7 @@ export const themes = {
 
   midnight: {
     name: "Midnight",
-    description: "Moonlit cherry blossoms",
+    description: "Сакура в лунном свете",
     mode: "dark",
     colors: {
       primary: "#F472B6",
@@ -817,7 +817,7 @@ export const themes = {
   // ==================== OCEAN / ABYSS ====================
   ocean: {
     name: "Ocean",
-    description: "Sunlit tropical waters",
+    description: "Солнечные тропические воды",
     mode: "light",
     colors: {
       primary: "#0284C7",
@@ -849,7 +849,7 @@ export const themes = {
 
   abyss: {
     name: "Abyss",
-    description: "Deep sea mysteries",
+    description: "Тайны глубокого моря",
     mode: "dark",
     colors: {
       primary: "#38BDF8",
@@ -882,7 +882,7 @@ export const themes = {
   // ==================== SAND / OBSIDIAN ====================
   sand: {
     name: "Sand",
-    description: "Warm desert dunes",
+    description: "Тёплые пустынные дюны",
     mode: "light",
     colors: {
       primary: "#A16207",
@@ -914,7 +914,7 @@ export const themes = {
 
   obsidian: {
     name: "Obsidian",
-    description: "Volcanic glass night",
+    description: "Вулканическая ночь",
     mode: "dark",
     colors: {
       primary: "#FACC15",
@@ -947,7 +947,7 @@ export const themes = {
   // ==================== MINT / JADE ====================
   mint: {
     name: "Mint",
-    description: "Fresh and cool",
+    description: "Свежая и прохладная",
     mode: "light",
     colors: {
       primary: "#10B981",
@@ -979,7 +979,7 @@ export const themes = {
 
   jade: {
     name: "Jade",
-    description: "Precious stone depths",
+    description: "Глубины драгоценного камня",
     mode: "dark",
     colors: {
       primary: "#34D399",
@@ -1012,7 +1012,7 @@ export const themes = {
   // ==================== ROSE / WINE ====================
   rose: {
     name: "Rose",
-    description: "Soft romantic petals",
+    description: "Мягкие романтичные лепестки",
     mode: "light",
     colors: {
       primary: "#E11D48",
@@ -1044,7 +1044,7 @@ export const themes = {
 
   wine: {
     name: "Wine",
-    description: "Rich burgundy elegance",
+    description: "Богатая бордовая элегантность",
     mode: "dark",
     colors: {
       primary: "#FB7185",
@@ -1077,7 +1077,7 @@ export const themes = {
   // ==================== ARCTIC / GLACIER ====================
   arctic: {
     name: "Arctic",
-    description: "Crisp icy morning",
+    description: "Свежее ледяное утро",
     mode: "light",
     colors: {
       primary: "#6366F1",
@@ -1109,7 +1109,7 @@ export const themes = {
 
   glacier: {
     name: "Glacier",
-    description: "Frozen twilight depths",
+    description: "Замерзшие сумеречные глубины",
     mode: "dark",
     colors: {
       primary: "#A5B4FC",
@@ -1142,7 +1142,7 @@ export const themes = {
   // ==================== HONEY / AMBER ====================
   honey: {
     name: "Honey",
-    description: "Golden sweetness",
+    description: "Золотая сладость",
     mode: "light",
     colors: {
       primary: "#D97706",
@@ -1174,7 +1174,7 @@ export const themes = {
 
   amber: {
     name: "Amber",
-    description: "Fossilized warmth",
+    description: "Окаменевшее тепло",
     mode: "dark",
     colors: {
       primary: "#FBBF24",
@@ -1207,7 +1207,7 @@ export const themes = {
   // ==================== CORAL / MAGMA ====================
   coral: {
     name: "Coral",
-    description: "Vibrant reef life",
+    description: "Яркая жизнь рифа",
     mode: "light",
     colors: {
       primary: "#F97316",
@@ -1239,7 +1239,7 @@ export const themes = {
 
   magma: {
     name: "Magma",
-    description: "Molten volcanic fire",
+    description: "Расплавленный вулканический огонь",
     mode: "dark",
     colors: {
       primary: "#FB923C",
@@ -1272,7 +1272,7 @@ export const themes = {
   // ==================== LAVENDER / VELVET ====================
   lavender: {
     name: "Lavender",
-    description: "Calming purple fields",
+    description: "Успокаивающие лавандовые поля",
     mode: "light",
     colors: {
       primary: "#9333EA",
@@ -1304,7 +1304,7 @@ export const themes = {
 
   velvet: {
     name: "Velvet",
-    description: "Luxurious purple night",
+    description: "Роскошная пурпурная ночь",
     mode: "dark",
     colors: {
       primary: "#C084FC",
@@ -1370,13 +1370,13 @@ async function main() {
         },
       });
 
-      console.log(`✓ Seeded theme: ${customTheme.name} (${themeKey})`);
+      console.log(`✓ Тема импортирована: ${customTheme.name} (${themeKey})`);
     } catch (error) {
-      console.error(`✗ Failed to seed theme ${themeKey}:`, error);
+      console.error(`✗ Ошибка импорта темы ${themeKey}:`, error);
     }
   }
 
-  console.log("\nTheme seeding completed!");
+  console.log("\nИмпорт тем завершён!");
 }
 
 main()

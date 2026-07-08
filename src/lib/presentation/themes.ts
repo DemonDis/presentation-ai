@@ -131,7 +131,7 @@ export const themes: { [key in ThemeName]: ThemeProperties } = {
   // ==================== DAKTILO / NOIR ====================
   daktilo: {
     name: "Daktilo",
-    description: "Modern and clean",
+    description: "Современный и чистый",
     mode: "light",
     colors: {
       primary: "#3B82F6",
@@ -168,7 +168,7 @@ export const themes: { [key in ThemeName]: ThemeProperties } = {
 
   noir: {
     name: "Noir",
-    description: "Sleek film noir aesthetic",
+    description: "Эстетика нуар",
     mode: "dark",
     colors: {
       primary: "#60A5FA",
@@ -224,12 +224,12 @@ export const themes: { [key in ThemeName]: ThemeProperties } = {
     transitions: { default: "all 0.3s cubic-bezier(0.4, 0, 0.2, 1)" },
     borderRadius: { card: "0.5rem", slide: "0.5rem", button: "0.375rem" },
     name: "Cornflower",
-    description: "Professional and bold",
+    description: "Профессиональная и смелая",
   },
 
   indigo: {
     name: "Indigo",
-    description: "Deep and immersive",
+    description: "Глубокая и атмосферная",
     mode: "dark",
     colors: {
       primary: "#818CF8",
@@ -267,7 +267,7 @@ export const themes: { [key in ThemeName]: ThemeProperties } = {
   // ==================== ORBIT / COSMOS ====================
   orbit: {
     name: "Orbit",
-    description: "Futuristic and dynamic",
+    description: "Футуристичная и динамичная",
     mode: "light",
     colors: {
       primary: "#312E81",
@@ -303,7 +303,7 @@ export const themes: { [key in ThemeName]: ThemeProperties } = {
 
   cosmos: {
     name: "Cosmos",
-    description: "Deep space exploration",
+    description: "Глубокий космос",
     mode: "dark",
     colors: {
       primary: "#818CF8",
@@ -340,7 +340,7 @@ export const themes: { [key in ThemeName]: ThemeProperties } = {
   // ==================== PIANO / EBONY ====================
   piano: {
     name: "Piano",
-    description: "Classic and elegant",
+    description: "Классическая и элегантная",
     mode: "light",
     colors: {
       primary: "#1F2937",
@@ -376,7 +376,7 @@ export const themes: { [key in ThemeName]: ThemeProperties } = {
 
   ebony: {
     name: "Ebony",
-    description: "Refined dark elegance",
+    description: "Изысканная тёмная элегантность",
     mode: "dark",
     colors: {
       primary: "#E5E7EB",
@@ -413,7 +413,7 @@ export const themes: { [key in ThemeName]: ThemeProperties } = {
   // ==================== MYSTIQUE / PHANTOM ====================
   mystique: {
     name: "Mystique",
-    description: "Mysterious and sophisticated",
+    description: "Загадочная и утончённая",
     mode: "light",
     colors: {
       primary: "#7C3AED",
@@ -450,7 +450,7 @@ export const themes: { [key in ThemeName]: ThemeProperties } = {
 
   phantom: {
     name: "Phantom",
-    description: "Ethereal and haunting",
+    description: "Эфирная и завораживающая",
     mode: "dark",
     colors: {
       primary: "#A78BFA",
@@ -488,7 +488,7 @@ export const themes: { [key in ThemeName]: ThemeProperties } = {
   // ==================== ALLWEONE ====================
   allweoneLight: {
     name: "Allweone",
-    description: "Clean and high contrast",
+    description: "Чистая и контрастная",
     mode: "light",
     colors: {
       primary: "#06B6D4",
@@ -524,7 +524,7 @@ export const themes: { [key in ThemeName]: ThemeProperties } = {
 
   allweoneDark: {
     name: "Allweone",
-    description: "Cyberpunk glow",
+    description: "Киберпанк свечение",
     mode: "dark",
     colors: {
       primary: "#22D3EE",
@@ -562,7 +562,7 @@ export const themes: { [key in ThemeName]: ThemeProperties } = {
   // ==================== CRIMSON / EMBER ====================
   crimson: {
     name: "Crimson",
-    description: "Bold and passionate",
+    description: "Смелая и страстная",
     mode: "light",
     colors: {
       primary: "#DC2626",
@@ -598,7 +598,7 @@ export const themes: { [key in ThemeName]: ThemeProperties } = {
 
   ember: {
     name: "Ember",
-    description: "Smoldering intensity",
+    description: "Тлеющая интенсивность",
     mode: "dark",
     colors: {
       primary: "#F87171",
@@ -635,7 +635,7 @@ export const themes: { [key in ThemeName]: ThemeProperties } = {
   // ==================== SUNSET / DUSK ====================
   sunset: {
     name: "Sunset",
-    description: "Warm and inviting",
+    description: "Тёплая и приветливая",
     mode: "light",
     colors: {
       primary: "#EA580C",
@@ -672,7 +672,7 @@ export const themes: { [key in ThemeName]: ThemeProperties } = {
 
   dusk: {
     name: "Dusk",
-    description: "Twilight tranquility",
+    description: "Сумеречное спокойствие",
     mode: "dark",
     colors: {
       primary: "#FB923C",
@@ -709,7 +709,7 @@ export const themes: { [key in ThemeName]: ThemeProperties } = {
   // ==================== FOREST / CANOPY ====================
   forest: {
     name: "Forest",
-    description: "Natural and serene",
+    description: "Природная и безмятежная",
     mode: "light",
     colors: {
       primary: "#059669",
@@ -745,7 +745,7 @@ export const themes: { [key in ThemeName]: ThemeProperties } = {
 
   canopy: {
     name: "Canopy",
-    description: "Deep forest sanctuary",
+    description: "Лесное убежище",
     mode: "dark",
     colors: {
       primary: "#34D399",
@@ -782,7 +782,7 @@ export const themes: { [key in ThemeName]: ThemeProperties } = {
   // ==================== AURORA / BOREALIS ====================
   aurora: {
     name: "Aurora",
-    description: "Northern lights at dawn",
+    description: "Северное сияние на рассвете",
     mode: "light",
     colors: {
       primary: "#06B6D4",
@@ -818,7 +818,7 @@ export const themes: { [key in ThemeName]: ThemeProperties } = {
 
   borealis: {
     name: "Borealis",
-    description: "Northern lights at midnight",
+    description: "Северное сияние в полночь",
     mode: "dark",
     colors: {
       primary: "#22D3EE",
@@ -856,7 +856,7 @@ export const themes: { [key in ThemeName]: ThemeProperties } = {
   // ==================== SAKURA / MIDNIGHT ====================
   sakura: {
     name: "Sakura",
-    description: "Cherry blossom spring",
+    description: "Весна цветущей сакуры",
     mode: "light",
     colors: {
       primary: "#EC4899",
@@ -893,7 +893,7 @@ export const themes: { [key in ThemeName]: ThemeProperties } = {
 
   midnight: {
     name: "Midnight",
-    description: "Moonlit cherry blossoms",
+    description: "Сакура в лунном свете",
     mode: "dark",
     colors: {
       primary: "#F472B6",
@@ -931,7 +931,7 @@ export const themes: { [key in ThemeName]: ThemeProperties } = {
   // ==================== OCEAN / ABYSS ====================
   ocean: {
     name: "Ocean",
-    description: "Sunlit tropical waters",
+    description: "Солнечные тропические воды",
     mode: "light",
     colors: {
       primary: "#0284C7",
@@ -969,7 +969,7 @@ export const themes: { [key in ThemeName]: ThemeProperties } = {
 
   abyss: {
     name: "Abyss",
-    description: "Deep sea mysteries",
+    description: "Тайны глубокого моря",
     mode: "dark",
     colors: {
       primary: "#38BDF8",
@@ -1007,7 +1007,7 @@ export const themes: { [key in ThemeName]: ThemeProperties } = {
   // ==================== SAND / OBSIDIAN ====================
   sand: {
     name: "Sand",
-    description: "Warm desert dunes",
+    description: "Тёплые пустынные дюны",
     mode: "light",
     colors: {
       primary: "#A16207",
@@ -1043,7 +1043,7 @@ export const themes: { [key in ThemeName]: ThemeProperties } = {
 
   obsidian: {
     name: "Obsidian",
-    description: "Volcanic glass night",
+    description: "Вулканическая ночь",
     mode: "dark",
     colors: {
       primary: "#FACC15",
@@ -1080,7 +1080,7 @@ export const themes: { [key in ThemeName]: ThemeProperties } = {
   // ==================== MINT / JADE ====================
   mint: {
     name: "Mint",
-    description: "Fresh and cool",
+    description: "Свежая и прохладная",
     mode: "light",
     colors: {
       primary: "#10B981",
@@ -1117,7 +1117,7 @@ export const themes: { [key in ThemeName]: ThemeProperties } = {
 
   jade: {
     name: "Jade",
-    description: "Precious stone depths",
+    description: "Глубины драгоценного камня",
     mode: "dark",
     colors: {
       primary: "#34D399",
@@ -1155,7 +1155,7 @@ export const themes: { [key in ThemeName]: ThemeProperties } = {
   // ==================== ROSE / WINE ====================
   rose: {
     name: "Rose",
-    description: "Soft romantic petals",
+    description: "Мягкие романтичные лепестки",
     mode: "light",
     colors: {
       primary: "#E11D48",
@@ -1192,7 +1192,7 @@ export const themes: { [key in ThemeName]: ThemeProperties } = {
 
   wine: {
     name: "Wine",
-    description: "Rich burgundy elegance",
+    description: "Богатая бордовая элегантность",
     mode: "dark",
     colors: {
       primary: "#FB7185",
@@ -1230,7 +1230,7 @@ export const themes: { [key in ThemeName]: ThemeProperties } = {
   // ==================== ARCTIC / GLACIER ====================
   arctic: {
     name: "Arctic",
-    description: "Crisp icy morning",
+    description: "Свежее ледяное утро",
     mode: "light",
     colors: {
       primary: "#6366F1",
@@ -1268,7 +1268,7 @@ export const themes: { [key in ThemeName]: ThemeProperties } = {
 
   glacier: {
     name: "Glacier",
-    description: "Frozen twilight depths",
+    description: "Замерзшие сумеречные глубины",
     mode: "dark",
     colors: {
       primary: "#A5B4FC",
@@ -1306,7 +1306,7 @@ export const themes: { [key in ThemeName]: ThemeProperties } = {
   // ==================== HONEY / AMBER ====================
   honey: {
     name: "Honey",
-    description: "Golden sweetness",
+    description: "Золотая сладость",
     mode: "light",
     colors: {
       primary: "#D97706",
@@ -1344,7 +1344,7 @@ export const themes: { [key in ThemeName]: ThemeProperties } = {
 
   amber: {
     name: "Amber",
-    description: "Fossilized warmth",
+    description: "Окаменевшее тепло",
     mode: "dark",
     colors: {
       primary: "#FBBF24",
@@ -1381,7 +1381,7 @@ export const themes: { [key in ThemeName]: ThemeProperties } = {
   // ==================== CORAL / MAGMA ====================
   coral: {
     name: "Coral",
-    description: "Vibrant reef life",
+    description: "Яркая жизнь рифа",
     mode: "light",
     colors: {
       primary: "#F97316",
@@ -1418,7 +1418,7 @@ export const themes: { [key in ThemeName]: ThemeProperties } = {
 
   magma: {
     name: "Magma",
-    description: "Molten volcanic fire",
+    description: "Расплавленный вулканический огонь",
     mode: "dark",
     colors: {
       primary: "#FB923C",
@@ -1456,7 +1456,7 @@ export const themes: { [key in ThemeName]: ThemeProperties } = {
   // ==================== LAVENDER / VELVET ====================
   lavender: {
     name: "Lavender",
-    description: "Calming purple fields",
+    description: "Успокаивающие лавандовые поля",
     mode: "light",
     colors: {
       primary: "#9333EA",
@@ -1493,7 +1493,7 @@ export const themes: { [key in ThemeName]: ThemeProperties } = {
 
   velvet: {
     name: "Velvet",
-    description: "Luxurious purple night",
+    description: "Роскошная пурпурная ночь",
     mode: "dark",
     colors: {
       primary: "#C084FC",
