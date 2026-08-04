@@ -6,30 +6,30 @@ import { presentationAiThemePropertiesSchema } from "@/lib/presentation/theme-sc
 import { themes } from "@/lib/presentation/themes";
 import { search_tool } from "../search";
 
-const COMPONENT_INSTRUCTIONS = `Component instructions:
-- Match component geometry to SECTION layout: vertical root images need horizontal/wide components, and left/right root images need vertical or compact components.
-- Do not pair CYCLE with layout="vertical".
-- Use compact text in dense visual components. SNAKE, CIRCULAR-GRID, CONNECTED-CIRCLES, and SLOPE items need very short labels.
-- SLOPE items must use <H4> only and must not include <P>.
-- Use <TITLE> only for the first slide, a newly created title slide, or an introduction slide.
-- For most first/title slides, include <TITLE>, <CONTRIBUTOR />, and a supporting visual image. The contributor block self-populates with the creator name; omit it only when a stronger creative concept needs the space.
-- Treat <LABEL>, <BLOCKQUOTE>, <QUOTE>, <CALLOUT>, and <CODE> as normal content blocks that can be used anywhere headings and paragraphs can be used, including inside COLUMNS. But don't overuse them.
-- Use COLUMNS only for balanced lanes. Every column item must have parallel content, similar text length, and the same heading level; do not mix an H1-style item with H3/H4-style items in sibling columns.
-- Keep columns visually balanced even when they include images, charts, infographics, or nested supported content.`;
+const COMPONENT_INSTRUCTIONS = `Инструкции по компонентам:
+- Соответствуйте геометрии компонента макету SECTION: для вертикального корневого изображения нужны горизонтальные/широкие компоненты, а для левого/правого корневого изображения — вертикальные или компактные компоненты.
+- Не сочетайте CYCLE с layout="vertical".
+- Используйте компактный текст в плотных визуальных компонентах. Элементы SNAKE, CIRCULAR-GRID, CONNECTED-CIRCLES и SLOPE требуют очень коротких подписей.
+- Элементы SLOPE должны использовать только <H4> и не должны содержать <P>.
+- Используйте <TITLE> только для первого слайда, вновь созданного титульного слайда или вступительного слайда.
+- Для большинства первых/титульных слайдов включайте <TITLE>, <CONTRIBUTOR /> и вспомогательное визуальное изображение. Блок с контрибьютором заполняется автоматически именем автора; опускайте его только тогда, когда более сильная творческая концепция требует этого места.
+- Относитесь к <LABEL>, <BLOCKQUOTE>, <QUOTE>, <CALLOUT> и <CODE> как к обычным блокам контента, которые можно использовать везде, где можно использовать заголовки и абзацы, включая внутри COLUMNS. Но не злоупотребляйте ими.
+- Используйте COLUMNS только для сбалансированных колонок. Каждый элемент колонки должен иметь параллельное содержание, схожую длину текста и одинаковый уровень заголовка; не смешивайте элемент уровня H1 с элементами уровня H3/H4 в соседних колонках.
+- Поддерживайте визуальную сбалансированность колонок, даже когда они включают изображения, диаграммы, инфографику или вложенный поддерживаемый контент.`;
 
-// Schema for scope specification
+// Схема спецификации области действия
 const ScopeSchema = z
   .enum(["all"])
   .optional()
   .describe(
-    "Scope of the action: 'all' for all slides. Defaults to 'all' if not specified. This property and slideIds property are mutually exclusive. If you provide both, the slideIds property will be ignored.",
+    "Область действия: 'all' для всех слайдов. По умолчанию 'all', если не указано. Это свойство и свойство slideIds взаимоисключающие. Если вы укажете оба, свойство slideIds будет проигнорировано.",
   );
 
 const slideIdsSchema = z
   .array(z.string())
   .optional()
   .describe(
-    "Specific slide ids to apply the action to. If provided, overrides scope. This property and scope property are mutually exclusive. If you provide both, this property will be ignored. So be very careful.",
+    "Конкретные id слайдов, к которым применить действие. Если указано, переопределяет scope. Это свойство и свойство scope взаимоисключающие. Если вы укажете оба, это свойство будет проигнорировано. Поэтому будьте очень внимательны.",
   );
 
 const builtInThemeSchema = z.enum(
@@ -39,33 +39,33 @@ const builtInThemeSchema = z.enum(
 const edit_slide_properties = tool(
   async (props) => {
     const { slideIds: _slideIds, scope: _scope, ...rest } = props;
-    return `Updated ${Object.keys(rest).join(", ")} successfully to ${Object.values(rest).join(", ")}`;
+    return `Успешно обновлено: ${Object.keys(rest).join(", ")} → ${Object.values(rest).join(", ")}`;
   },
   {
     name: "edit_slide_properties",
-    description: "You can use this tool to edit the properties of a slide",
+    description: "Этот инструмент можно использовать для изменения свойств слайда",
     schema: z.object({
       scope: ScopeSchema,
       slideIds: slideIdsSchema,
       bgColor: z
         .string()
         .describe(
-          "The background color of the slide, use 'reset' to reset the background color",
+          "Цвет фона слайда. Используйте 'reset', чтобы сбросить цвет фона",
         )
         .optional(),
       alignment: z
         .enum(["start", "center", "end", "reset"])
-        .describe("The content alignment of the slide")
+        .describe("Выравнивание содержимого слайда")
         .optional(),
       layoutType: z
         .enum(["left", "right", "vertical", "background", "reset"])
         .describe(
-          "Determines where the accent / root image appears in the slide, left means the image is on the left, right means the image is on the right, vertical means the image is on the top, background means the image is the background of the slide",
+          "Определяет, где в слайде располагается акцентное / корневое изображение: left — изображение слева, right — изображение справа, vertical — изображение сверху, background — изображение является фоном слайда",
         )
         .optional(),
       width: z
         .enum(["S", "M", "L", "reset"])
-        .describe("The width of the slide")
+        .describe("Ширина слайда")
         .optional(),
     }),
   },
@@ -75,38 +75,38 @@ const replace_image = tool(
   async (props) => {
     const { slideIds: _slideIds, scope: _scope, ...rest } = props;
     if (rest.imageUrl) {
-      return `Image url replaced successfully`;
+      return `URL изображения успешно заменён`;
     } else if (rest.imagePrompt) {
-      return `Image successfully generated from the given prompt`;
+      return `Изображение успешно сгенерировано по заданному промпту`;
     }
-    return `No image url or image prompt provided`;
+    return `Не указан ни URL изображения, ни промпт для изображения`;
   },
   {
     name: "replace_image",
     description:
-      "You can use this tool to replace the root image of a slide. If the user also asked for slide text, layout, or content changes, call create_slide or regenerate_slide first, wait for that content tool to complete, and only then call replace_image.",
+      "Этот инструмент можно использовать для замены корневого изображения слайда. Если пользователь также запросил изменения текста, макета или содержимого слайда, сначала вызовите create_slide или regenerate_slide, дождитесь завершения этого инструмента контента, и только затем вызывайте replace_image.",
     schema: z.object({
       slideIds: slideIdsSchema,
       scope: ScopeSchema,
       imageUrl: z
         .string()
-        .describe("The URL of the image to replace")
+        .describe("URL изображения для замены")
         .optional(),
       imagePrompt: z
         .string()
         .describe(
-          "Image request for the replacement. Use a detailed descriptive prompt only when the selected image source is AI generation. For Unsplash, Pixabay, Google, web, or stock image search, use a short English keyword query with 2-5 concrete words, such as 'team collaboration' or 'solar panels roof'.",
+          "Запрос изображения для замены. Используйте подробный описательный промпт только когда выбранным источником изображения является генерация ИИ. Для поиска на Unsplash, Pixabay, Google, в вебе или по стоковым изображениям используйте короткий англоязычный запрос из 2-5 конкретных слов, например 'team collaboration' или 'solar panels roof'.",
         )
         .optional(),
       imageSource: z
         .enum(["ai", "stock", "gif"])
         .describe(
-          "How the imagePrompt should be resolved. Use 'stock' for Unsplash/Pixabay/Google/web image search, 'gif' for animated GIFs, and 'ai' for detailed generated-image prompts.",
+          "Как должен разрешаться imagePrompt. Используйте 'stock' для поиска изображений на Unsplash/Pixabay/Google/в вебе, 'gif' для анимированных GIF, а 'ai' для подробных промптов генерируемых изображений.",
         )
         .optional(),
       stockImageProvider: z
         .enum(["unsplash", "pixabay", "google"])
-        .describe("Preferred stock provider when imageSource is 'stock'.")
+        .describe("Предпочтительный стоковый провайдер, когда imageSource равно 'stock'.")
         .optional(),
     }),
   },
@@ -115,34 +115,34 @@ const replace_image = tool(
 const change_theme = tool(
   async (props) => {
     const { theme } = props;
-    return `Theme changed successfully to ${theme}`;
+    return `Тема успешно изменена на ${theme}`;
   },
   {
     name: "change_theme",
     description:
-      "Apply an existing built-in presentation theme. Use create_custom_theme when the user asks for custom fonts, custom colors, brand styling, or a new theme.",
+      "Применить существующую встроенную тему презентации. Используйте create_custom_theme, когда пользователь просит о нестандартных шрифтах, нестандартных цветах, фирменном стиле или новой теме.",
     schema: z.object({
-      theme: builtInThemeSchema.describe("The built-in theme id to apply"),
+      theme: builtInThemeSchema.describe("Id встроенной темы для применения"),
     }),
   },
 );
 
 const create_custom_theme = tool(
   async (props) => {
-    return `Custom theme "${props.themeData.name ?? "Custom theme"}" created and applied successfully`;
+    return `Пользовательская тема "${props.themeData.name ?? "Пользовательская тема"}" создана и применена успешно`;
   },
   {
     name: "create_custom_theme",
     description:
-      "Create and apply a custom presentation theme. Use this for custom visual identity, brand styling, font changes, palettes, or backgrounds. Only provide colors, fonts, and background values that are relevant to the request; omitted values are kept from the current theme.",
+      "Создать и применить пользовательскую тему презентации. Используйте это для нестандартной визуальной идентичности, фирменного стиля, смены шрифтов, палитр или фонов. Указывайте только те значения цветов, шрифтов и фона, которые относятся к запросу; не указанные значения сохраняются из текущей темы.",
     schema: z.object({
       isPublic: z
         .boolean()
         .optional()
         .default(false)
-        .describe("Whether the new custom theme should be public"),
+        .describe("Должна ли новая пользовательская тема быть публичной"),
       themeData: presentationAiThemePropertiesSchema.describe(
-        "Partial custom theme data. Only include colors, fonts, and background values. Use real, well-known font family names that fit the brand and requirement. Do not invent font names. smartLayout is the fill color for SVG layout elements such as pyramids, pie charts, staircases, cycles, timelines, and diagrams; choose it as a close companion or deliberate variant of primary, not as the cardBackground. cardBackground is the readable text container surface. Do not include animation, transitions, shadows, border radius, or masks.",
+        "Частичные данные пользовательской темы. Указывайте только значения цветов, шрифтов и фона. Используйте реальные, известные названия семейств шрифтов, соответствующие бренду и требованию. Не выдумывайте названия шрифтов. smartLayout — это цвет заливки для SVG-элементов макета, таких как пирамиды, круговые диаграммы, лестницы, циклы, таймлайны и диаграммы; выбирайте его как близкий компаньон или намеренный вариант primary, а не как cardBackground. cardBackground — это читаемая поверхность контейнера текста. Не включайте анимацию, переходы, тени, скругления углов или маски.",
       ),
     }),
   },
@@ -150,56 +150,56 @@ const create_custom_theme = tool(
 
 const update_custom_theme = tool(
   async (props) => {
-    return `Custom theme "${props.themeData.name ?? "Custom theme"}" updated and applied successfully`;
+    return `Пользовательская тема "${props.themeData.name ?? "Пользовательская тема"}" обновлена и применена успешно`;
   },
   {
     name: "update_custom_theme",
     description:
-      "Update the currently selected custom presentation theme and apply it. If the current theme is built-in, the app will create a new custom theme from this data instead. Only provide colors, fonts, and background values that should change; omitted values are kept from the current theme.",
+      "Обновить текущую выбранную пользовательскую тему презентации и применить её. Если текущая тема встроенная, приложение вместо этого создаст новую пользовательскую тему на основе этих данных. Указывайте только те значения цветов, шрифтов и фона, которые должны измениться; не указанные значения сохраняются из текущей темы.",
     schema: z.object({
       isPublic: z
         .boolean()
         .optional()
         .default(false)
-        .describe("Whether the custom theme should be public"),
+        .describe("Должна ли пользовательская тема быть публичной"),
       themeData: presentationAiThemePropertiesSchema.describe(
-        "Partial replacement theme data. Only include colors, fonts, and background values. Use real, well-known font family names that fit the brand and requirement. Do not invent font names. smartLayout is the fill color for SVG layout elements such as pyramids, pie charts, staircases, cycles, timelines, and diagrams; choose it as a close companion or deliberate variant of primary, not as the cardBackground. cardBackground is the readable text container surface. Do not include animation, transitions, shadows, border radius, or masks.",
+        "Частичные данные заменяемой темы. Указывайте только значения цветов, шрифтов и фона. Используйте реальные, известные названия семейств шрифтов, соответствующие бренду и требованию. Не выдумывайте названия шрифтов. smartLayout — это цвет заливки для SVG-элементов макета, таких как пирамиды, круговые диаграммы, лестницы, циклы, таймлайны и диаграммы; выбирайте его как близкий компаньон или намеренный вариант primary, а не как cardBackground. cardBackground — это читаемая поверхность контейнера текста. Не включайте анимацию, переходы, тени, скругления углов или маски.",
       ),
     }),
   },
 );
 
-const REGENERATE_SLIDE_DESCRIPTION = `You are a presentation XML expert. Regenerate one or more existing slides from the user's request.
+const REGENERATE_SLIDE_DESCRIPTION = `Вы — эксперт по XML-разметке презентаций. Перегенерируйте один или несколько существующих слайдов на основе запроса пользователя.
 
-Your task is to return exactly two arrays: \`slideIds\` and \`slides\`, with the same length and same order so that \`slides[i]\` replaces \`slideIds[i]\`.
+Ваша задача — вернуть ровно два массива: \`slideIds\` и \`slides\`, одинаковой длины и в одинаковом порядке, чтобы \`slides[i]\` заменял \`slideIds[i]\`.
 
-Use this tool for slide content, layout, text, chart, infographic, and structure changes. If the user also wants a new root image, regenerate the XML content here first; replace/generate the root image afterward with replace_image.
+Используйте этот инструмент для изменений содержимого слайда: макета, текста, диаграмм, инфографики и структуры. Если пользователь также хочет новое корневое изображение, сначала перегенерируйте XML-контент здесь; корневое изображение замените/сгенерируйте после этого с помощью replace_image.
 
-Return only valid XML strings in \`slides\`. Each item must be one <SECTION>...</SECTION> block, not a full <PRESENTATION>. Use only supported tags and attributes. Put headings, body, and layout content before any direct child root <IMG ... />. If a root image is included, it must be the final direct child of <SECTION>. Keep <IMG /> tags self-closing.
+Возвращайте только корректные XML-строки в \`slides\`. Каждый элемент должен быть одним блоком <SECTION>...</SECTION>, а не полным <PRESENTATION>. Используйте только поддерживаемые теги и атрибуты. Размещайте заголовки, текст и содержимое макета перед любым прямым дочерним корневым <IMG ... />. Если корневое изображение включено, оно должно быть последним прямым дочерним элементом <SECTION>. Теги <IMG /> должны оставаться самозакрывающимися.
 
-Preserve structure when the request is text-only. Keep the same SECTION layout, component type, item count when reasonable, root image placement, and existing image URLs unless the user asks to change them. When the user asks for a structural change, choose the component that fits the content shape: list for grouped points, sequence for process or progression, comparison for trade-offs or states, relationship for connected concepts, data for evidence, infographic for custom diagrams, and columns for balanced mixed-content lanes.
+Сохраняйте структуру, когда запрос касается только текста. Сохраняйте тот же макет SECTION, тип компонента, количество элементов (если это разумно), размещение корневого изображения и существующие URL изображений, если пользователь не просит их изменить. Когда пользователь просит структурное изменение, выбирайте компонент, соответствующий форме содержимого: list для сгруппированных пунктов, sequence для процессов или последовательностей, comparison для компромиссов или состояний, relationship для связанных концепций, data для доказательств, infographic для пользовательских диаграмм и columns для сбалансированных колонок со смешанным контентом.
 
 ${LAYOUT_REFERENCE}
 
 ${COMPONENT_INSTRUCTIONS}
 
-Use images deliberately. A direct child <IMG /> is the root slide image and must stay last. Use short English keyword queries for stock, web, Unsplash, Pixabay, Google, or GIF search. Use detailed visual prompts for AI image generation. Keep existing image urls exactly when the user did not request image regeneration.
+Используйте изображения осознанно. Прямой дочерний <IMG /> — это корневое изображение слайда, и оно должно оставаться последним. Используйте короткие англоязычные ключевые запросы для стоковых, веб-, Unsplash, Pixabay, Google или GIF-поиска. Используйте подробные визуальные промпты для генерации изображений ИИ. Сохраняйте существующие URL изображений в точности, когда пользователь не запрашивал перегенерацию изображения.
 
-Use icon attributes as search hints only. Each icon value must be exactly one broad lowercase English keyword with no spaces, punctuation, hyphens, underscores, or react-icons component names. Good examples: security, analytics, team, growth, upload, idea, automation, calendar, money, network, settings, document, message. Do not default to home unless the content is actually about home. For icon lists, use <ICONS variant="icon"> with DIV icon attributes, or <ICONS variant="image"> with DIV prompt attributes for generated item images. Use orientation="side" for visual beside text and orientation="top" for visual above text.
+Используйте атрибуты иконок только как подсказки для поиска. Каждое значение иконки должно быть ровно одним широким англоязычным ключевым словом в нижнем регистре, без пробелов, знаков препинания, дефисов, подчёркиваний или имён компонентов react-icons. Хорошие примеры: security, analytics, team, growth, upload, idea, automation, calendar, money, network, settings, document, message. Не используйте home по умолчанию, если контент на самом деле не про дом. Для списков иконок используйте <ICONS variant="icon"> с атрибутами иконок DIV, или <ICONS variant="image"> с атрибутами промптов DIV для генерируемых изображений элементов. Используйте orientation="side" для изображения рядом с текстом и orientation="top" для изображения над текстом.
 
-Do not choose background layouts or full-slide image backgrounds by default. Only use <SECTION layout="background"> when the user explicitly asks to make an image the slide background, or when preserving an existing/template structure that already uses it.
+Не выбирайте фоновые макеты или полноэкранные фоновые изображения по умолчанию. Используйте <SECTION layout="background"> только когда пользователь явно просит сделать изображение фоном слайда, либо при сохранении существующей/шаблонной структуры, которая уже его использует.
 
-Use infographics when a process map, lifecycle, hierarchy, relationship diagram, matrix, framework, funnel, or cause-and-effect flow communicates better than a list, chart, or image. If the user explicitly asks for an infographic, diagram, process map, framework, or similar visual on a slide, include exactly one <INFOGRAPHIC> element on that slide. The infographic text must include only the information needed to generate the diagram: exact labels, entities, values, steps, sequence, relationships, the required visual orientation, and the takeaway. Do not include unrelated slide state. For <SECTION layout="vertical">, request a horizontal/landscape infographic because the infographic will sit in the wide content area. For <SECTION layout="left"> or <SECTION layout="right">, request a vertical/stacked infographic because it must fit beside the side root image. Limit layout-based infographic prompts to 5 or fewer visible items by merging lower-priority details. If INFOGRAPHIC is the main/root component, do not add another layout component; only simple headings or paragraphs may accompany it.
+Используйте инфографику, когда карта процесса, жизненный цикл, иерархия, диаграмма связей, матрица, фреймворк, воронка или причинно-следственная схема передают смысл лучше, чем список, диаграмма или изображение. Если пользователь явно просит инфографику, диаграмму, карту процесса, фреймворк или подобную визуализацию на слайде, включите ровно один элемент <INFOGRAPHIC> на этом слайде. Текст инфографики должен содержать только информацию, необходимую для генерации диаграммы: точные подписи, сущности, значения, шаги, последовательность, связи, требуемую визуальную ориентацию и вывод. Не включайте не относящееся к делу состояние слайда. Для <SECTION layout="vertical"> запрашивайте горизонтальную/альбомную инфографику, так как она разместится в широкой области контента. Для <SECTION layout="left"> или <SECTION layout="right"> запрашивайте вертикальную/стопочную инфографику, так как она должна помещаться рядом с боковым корневым изображением. Ограничьте промпты инфографики, зависящие от макета, 5 или меньшим количеством видимых элементов, объединяя менее приоритетные детали. Если INFOGRAPHIC — главный/корневой компонент, не добавляйте другой компонент макета; допускаются только простые заголовки или абзацы.
 
-Mandatory rules:
-- Include boolean-style attributes only when enabled; omit false attributes.
-- Write compact real slide copy, not placeholders.
-- Convert markdown into XML text content; do not include markdown markers inside headings or paragraphs.`;
+Обязательные правила:
+- Включайте атрибуты булевого типа только когда они включены; опускайте атрибуты со значением false.
+- Пишите компактный реальный текст слайдов, а не плейсхолдеры.
+- Конвертируйте markdown в текстовое содержимое XML; не включайте разметку markdown внутри заголовков или абзацев.`;
 
 const regenerate_slide = tool(
   async (props) => {
     const { slideIds: _slideIds } = props;
-    return `Slides regenerated successfully`;
+    return `Слайды успешно перегенерированы`;
   },
   {
     name: "regenerate_slide",
@@ -210,13 +210,13 @@ const regenerate_slide = tool(
           .array(z.string())
           .min(1)
           .describe(
-            "Array of slide ids to regenerate. Order must match the `slides` array.",
+            "Массив id слайдов для перегенерации. Порядок должен совпадать с массивом `slides`.",
           ),
         slides: z
           .array(z.string())
           .min(1)
           .describe(
-            "Array of XML <SECTION> strings. Each item is a single slide's content.",
+            "Массив XML-строк <SECTION>. Каждый элемент — это содержимое одного слайда.",
           ),
       })
       .superRefine((data, ctx) => {
@@ -224,7 +224,7 @@ const regenerate_slide = tool(
           ctx.addIssue({
             code: z.ZodIssueCode.custom,
             message:
-              "`slideIds` and `slides` must have the same length and matching order.",
+              "`slideIds` и `slides` должны иметь одинаковую длину и совпадающий порядок.",
             path: ["slides"],
           });
         }
@@ -232,54 +232,54 @@ const regenerate_slide = tool(
   },
 );
 
-// Create new slides and insert them after a given slide id (if provided), else append
+// Создаёт новые слайды и вставляет их после заданного id слайда (если указан), иначе добавляет в конец
 const create_slide = tool(
   async (props) => {
     const { afterSlideId: _afterSlideId, slides: _slides } = props as {
       afterSlideId?: string;
       slides: string[];
     };
-    return `Slides created successfully`;
+    return `Слайды успешно созданы`;
   },
   {
     name: "create_slide",
     description:
-      "Create one or more slides. Return an array of XML <SECTION> strings and optionally the slide id to insert after. Generate headings/body/layout content first; when adding a direct child root <IMG ... />, place it as the final child of <SECTION> so the content appears before root image generation.",
+      "Создать один или несколько слайдов. Верните массив XML-строк <SECTION> и, опционально, id слайда, после которого вставить. Сначала генерируйте заголовки/текст/содержимое макета; при добавлении прямого дочернего корневого <IMG ... /> размещайте его последним дочерним элементом <SECTION>, чтобы контент появлялся до генерации корневого изображения.",
     schema: z.object({
       slides: z
         .array(z.string())
         .min(1)
         .describe(
-          'Array of XML <SECTION> strings. Each item is a single slide\'s content. Supported default layouts are left, right, and vertical. Use layout="background" only when the user explicitly asks for a full-slide image background or when preserving an existing/template structure that already uses it. For the root image only provide the query and not url. Include an <INFOGRAPHIC> XML element inside SECTION when a custom visual explanation improves clarity. The element text must include labels, values, entities, sequence, relationships, takeaway, and required orientation, without unrelated slide state. For layout="vertical", request a horizontal/landscape infographic for the wide content area. For layout="left" or layout="right", request a vertical/stacked infographic for the narrow side-by-side content area. If INFOGRAPHIC is the main slide component, only simple headings or paragraphs may accompany it; do not add another layout component. For layout-based infographic prompts, cap visible items at 5 or fewer by combining lower-priority details.',
+          'Массив XML-строк <SECTION>. Каждый элемент — это содержимое одного слайда. Поддерживаемые макеты по умолчанию: left, right и vertical. Используйте layout="background" только когда пользователь явно просит полноэкранный фоновый образ слайда или при сохранении существующей/шаблонной структуры, которая уже его использует. Для корневого изображения укажите только запрос, а не URL. Включите XML-элемент <INFOGRAPHIC> внутри SECTION, когда пользовательская визуальная схема улучшает понимание. Текст элемента должен включать подписи, значения, сущности, последовательность, связи, вывод и требуемую ориентацию, без не относящегося к делу состояния слайда. Для layout="vertical" запрашивайте горизонтальную/альбомную инфографику для широкой области контента. Для layout="left" или layout="right" запрашивайте вертикальную/стопочную инфографику для узкой боковой области контента. Если INFOGRAPHIC — главный компонент слайда, его могут сопровождать только простые заголовки или абзацы; не добавляйте другой компонент макета. Для промптов инфографики, зависящих от макета, ограничьте видимые элементы 5 или меньшим количеством, объединяя менее приоритетные детали.',
         ),
       afterSlideId: z
         .string()
         .optional()
         .describe(
-          "Insert new slides immediately after this slide id. If omitted or not found, append to the end.",
+          "Вставить новые слайды сразу после этого id слайда. Если не указано или не найдено, добавить в конец.",
         ),
     }),
   },
 );
 
-// Delete slides by ids
+// Удаляет слайды по id
 const delete_slide = tool(
   async (props) => {
     const { slideIds: _slideIds } = props as { slideIds: string[] };
-    return `Slides deleted successfully`;
+    return `Слайды успешно удалены`;
   },
   {
     name: "delete_slide",
-    description: "Delete one or more slides by id.",
+    description: "Удалить один или несколько слайдов по id.",
     schema: z.object({
       slideIds: z
         .array(z.string())
         .min(1)
-        .describe("Array of slide ids to delete."),
+        .describe("Массив id слайдов для удаления."),
     }),
   },
 );
-// Export all tools as an array
+// Экспортирует все инструменты в виде массива
 export const presentationTools = [
   edit_slide_properties,
   replace_image,
