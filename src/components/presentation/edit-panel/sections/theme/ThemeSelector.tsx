@@ -249,7 +249,7 @@ export function ThemeSelector({
       {hasUserThemes && (
         <div className="px-4 pt-3">
           <h3 className="mb-3 text-xs font-semibold tracking-wider text-muted-foreground uppercase">
-            My Themes
+            Мои темы
           </h3>
           <div className="grid grid-cols-2 gap-3">
             {userThemes.map((item, index) => (
@@ -287,7 +287,7 @@ export function ThemeSelector({
         <div className={`px-4 ${hasUserThemes ? "pt-6" : "pt-3"}`}>
           {hasUserThemes && (
             <h3 className="mb-3 text-xs font-semibold tracking-wider text-muted-foreground uppercase">
-              ALLWEONE Themes
+              Утвержденные темы
             </h3>
           )}
           <div className="grid grid-cols-2 gap-3">

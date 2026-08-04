@@ -89,7 +89,7 @@ export function ThemeModalContent({
               value="allweone-themes"
               className="rounded-none border-b-2 border-transparent px-0 py-2 data-[state=active]:border-primary data-[state=active]:bg-transparent data-[state=active]:shadow-none"
             >
-              ALLWEONE
+              Утвержденные темы
             </TabsTrigger>
             <TabsTrigger
               value="explore"

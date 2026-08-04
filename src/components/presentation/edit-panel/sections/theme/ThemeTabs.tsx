@@ -23,7 +23,7 @@ export function ThemeTabs() {
               : "text-muted-foreground hover:text-foreground",
           )}
         >
-          ALLWEONE
+          Утвержденные темы
         </button>
         <button
           type="button"
