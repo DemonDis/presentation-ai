@@ -547,7 +547,7 @@ export const usePresentationState = create<PresentationState>()(
       numSlides: 5,
       language: "ru",
       modelProvider: "remote",
-      modelId: "Qwen/Qwen3.5-397B-A17B-GPTQ-Int4",
+      modelId: "Deepseek/DeepSeek-V4-Flash-0731",
       pageStyle: "default",
       presentationInput: "",
       outline: [],
